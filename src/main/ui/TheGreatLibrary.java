@@ -4,28 +4,46 @@ import model.Book;
 import java.util.*;
 
 public class TheGreatLibrary {
-    List<Book> listOfBooks = new ArrayList<Book>();
-    Scanner scanner = new Scanner(System.in);
+    private List<Book> listOfBooks = new ArrayList<Book>();
+    private Scanner scanner = new Scanner(System.in);
+    private String operation;
 
-    // constructor
+    // MODIFIES: This; Book objects
+    // EFFECTS: constructs the Great Library
     public TheGreatLibrary(){
         printWelcomeMsg();
-        printIntro();
-        addBooks();
-        printAllBooks();
+
+        while (true) {
+            System.out.println("Please select an operation:");
+            System.out.println("1: Add a book");
+            System.out.println("2: Show all books");
+            System.out.println("3: Quit");
+            operation = scanner.nextLine();
+            if (operation.equals("1")){
+                addBooks();
+            }
+            else if (operation.equals("2")){
+                printAllBooks();
+            }
+            else if (operation.equals("3")){
+                break;
+            }
+            else{
+                System.out.println("Invalid operation selected!");
+            }
+        }
     }
 
-    // print the welcome message
+    // EFFECTS: print the welcome message
     public void printWelcomeMsg(){
         System.out.println("Welcome to The Great Library!");
-    }
-
-    // print the intro
-    public void printIntro(){
         System.out.println("This is a personal library manager.");
+        System.out.println("---------------------------------------------");
     }
 
-    // add books to the library
+    // MODIFIES: This;
+    //           book;
+    // EFFECTS: add books to the library
     public void addBooks(){
         Book book = new Book();
 
@@ -59,12 +77,12 @@ public class TheGreatLibrary {
         }
     }
 
-    // print all books in the library
+    // EFFECTS: print all books in the library
     public void printAllBooks(){
         System.out.println(listOfBooks);
     }
 
-    // star TheGreatLibrary app
+    // EFFECTS: star TheGreatLibrary app
     public static void main(String[] args) {
         new TheGreatLibrary();
     }

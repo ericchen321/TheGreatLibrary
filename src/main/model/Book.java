@@ -1,7 +1,7 @@
 package model;
 
 public class Book {
-    public enum Genre {
+    private enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
     private String name;
@@ -42,7 +42,6 @@ public class Book {
         return genre;
     }
 
-    // convert string genre to enum typed genre
     public Genre resolveGenre(String genre){
         switch (genre) {
             case "art":
