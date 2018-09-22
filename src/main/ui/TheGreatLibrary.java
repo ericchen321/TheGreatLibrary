@@ -1,6 +1,5 @@
 package ui;
 
-import model.Book;
 import model.Bookshelf;
 
 import java.util.*;
@@ -21,15 +20,19 @@ public class TheGreatLibrary {
             System.out.println("Please select an operation:");
             System.out.println("1: Add a book");
             System.out.println("2: Show all books");
-            System.out.println("3: Quit");
+            System.out.println("3: Sort books by year of publish");
+            System.out.println("4: Quit");
             operation = scanner.nextLine();
             if (operation.equals("1")){
-                bookshelf.addBooks();
+                bookshelf.addBooksUI();
             }
             else if (operation.equals("2")){
                 bookshelf.printAllBooks();
             }
             else if (operation.equals("3")){
+                bookshelf.sortBooksByYearOfPub();
+            }
+            else if (operation.equals("4")){
                 break;
             }
             else{
