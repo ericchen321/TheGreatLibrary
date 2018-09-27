@@ -5,6 +5,7 @@ import model.Bookshelf;
 import java.util.*;
 
 public class TheGreatLibrary {
+    private static final String DIVIDER = "---------------------------------------------";
     private Scanner scanner = new Scanner(System.in);
     private Bookshelf bookshelf = new Bookshelf();
     private String operation;
@@ -17,12 +18,14 @@ public class TheGreatLibrary {
         printWelcomeMsg();
 
         while (true) {
+            System.out.println(DIVIDER);
             System.out.println("Please select an operation:");
             System.out.println("1: Add a book");
             System.out.println("2: Show all books");
             System.out.println("3: Export books to text file");
             System.out.println("4: Import books from text file");
             System.out.println("5: Quit");
+            System.out.println(DIVIDER);
             operation = scanner.nextLine();
             if (operation.equals("1")){
                 bookshelf.addBooksUI();
@@ -49,7 +52,6 @@ public class TheGreatLibrary {
     public void printWelcomeMsg(){
         System.out.println("Welcome to The Great Library!");
         System.out.println("This is a personal library manager.");
-        System.out.println("---------------------------------------------");
     }
 
     // EFFECTS: star TheGreatLibrary app

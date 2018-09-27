@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Bookshelf {
+    private static final String SHELFDIVIDER = "=====================";
     private List<Book> listOfBooks = new ArrayList<Book>();
     private Scanner scanner = new Scanner(System.in);
 
 
     // EFFECTS: print all books on the bookshelf
     public void printAllBooks(){
-        System.out.println(listOfBooks);
+        System.out.println(SHELFDIVIDER);
+        for(Book b:listOfBooks){
+            System.out.println(b);
+        }
+        System.out.println(SHELFDIVIDER);
     }
 
     // EFFECTS: get the book on the shelf at the given position(0-based index)
