@@ -1,6 +1,8 @@
 package model;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable{
     private enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
@@ -71,7 +73,6 @@ public class Book {
     }
 
     // TODO: need tests!!!!!
-    // MODIFIES: new Genre enum
     // EFFECTS: converts genre from string to enumeration
     public Genre resolveGenre(String genre){
         switch (genre) {
@@ -93,7 +94,7 @@ public class Book {
     }
 
     public String toString(){
-        return name + " by " + author + " published in " + yearOfPublish;
+        return name + " by " + author.getAuthorName() + " published in " + yearOfPublish;
     }
 
 

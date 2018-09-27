@@ -20,8 +20,9 @@ public class TheGreatLibrary {
             System.out.println("Please select an operation:");
             System.out.println("1: Add a book");
             System.out.println("2: Show all books");
-            System.out.println("3: Sort books by year of publish");
-            System.out.println("4: Quit");
+            System.out.println("3: Export books to text file");
+            System.out.println("4: Import books from text file");
+            System.out.println("5: Quit");
             operation = scanner.nextLine();
             if (operation.equals("1")){
                 bookshelf.addBooksUI();
@@ -30,9 +31,12 @@ public class TheGreatLibrary {
                 bookshelf.printAllBooks();
             }
             else if (operation.equals("3")){
-                bookshelf.sortBooksByYearOfPub();
+                bookshelf.exportBooks();
             }
             else if (operation.equals("4")){
+                bookshelf.importBooks();
+            }
+            else if (operation.equals("5")){
                 break;
             }
             else{

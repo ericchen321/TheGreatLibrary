@@ -1,5 +1,6 @@
 package model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +15,6 @@ public class Bookshelf {
         System.out.println(listOfBooks);
     }
 
-    // TODO: not fully tested!!!!!!!
     // EFFECTS: get the book on the shelf at the given position(0-based index)
     public Book getBook(int pos){
         if (pos>=0 && pos<listOfBooks.size()) {
@@ -23,8 +23,7 @@ public class Bookshelf {
         return null;
     }
 
-    // MODIFIES: This;
-    //           book;
+    // MODIFIES: This
     // EFFECTS: add a book to the bookshelf, returns true if added successfully
     public boolean addBook(String name, String author, String genre, int yop){
         Book book = new Book(name, author, genre, yop);
@@ -32,8 +31,7 @@ public class Bookshelf {
         return true;
     }
 
-    // MODIFIES: This;
-    //           book;
+    // MODIFIES: This
     // EFFECTS: add books to the bookshelf
     public void addBooksUI(){
         Book book = new Book();
@@ -68,9 +66,40 @@ public class Bookshelf {
         }
     }
 
-    // MODIFIES: This
-    // EFFECTS: sort the bookshelf by year of publish
-    public void sortBooksByYearOfPub(){
+    // EFFECTS: export the bookshelf to text file
+    public void exportBooks(){
+        String fileName = "bookShelf";
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try{
+            fos = new FileOutputStream(fileName);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(listOfBooks);
+            oos.close();
+            System.out.println("Bookshelf exported");
+        }
+        catch (IOException excep) {
+            excep.printStackTrace();
+        }
+    }
 
+    // MODIFIES: this
+    // EFFECTS: import books from text file
+    public void importBooks(){
+        String fileName = "bookShelf";
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(fileName);
+            ois = new ObjectInputStream(fis);
+            listOfBooks = (ArrayList) ois.readObject();
+            ois.close();
+        }
+        catch (IOException excep){
+            excep.printStackTrace();
+        }
+        catch(ClassNotFoundException excep){
+            excep.printStackTrace();
+        }
     }
 }
