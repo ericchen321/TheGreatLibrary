@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Book implements Serializable{
-    private enum Genre {
+    public enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
     private String name;
@@ -16,7 +16,6 @@ public class Book implements Serializable{
 
     }
 
-    // TODO: Need tests!!!!!
     public Book(String name, String author, String genre, int yop){
         this.name = name;
         this.author.setAuthorName(author);
@@ -72,7 +71,6 @@ public class Book implements Serializable{
         }
     }
 
-    // TODO: need tests!!!!!
     // EFFECTS: converts genre from string to enumeration
     public Genre resolveGenre(String genre){
         switch (genre) {

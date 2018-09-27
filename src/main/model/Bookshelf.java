@@ -73,7 +73,7 @@ public class Bookshelf {
 
     // EFFECTS: export the bookshelf to text file
     public void exportBooks(){
-        String fileName = "bookShelf";
+        String fileName = "bookShelf.shf";
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try{
@@ -91,7 +91,7 @@ public class Bookshelf {
     // MODIFIES: this
     // EFFECTS: import books from text file
     public void importBooks(){
-        String fileName = "bookShelf";
+        String fileName = "bookShelf.shf";
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try{

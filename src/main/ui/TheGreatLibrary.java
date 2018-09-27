@@ -22,8 +22,8 @@ public class TheGreatLibrary {
             System.out.println("Please select an operation:");
             System.out.println("1: Add a book");
             System.out.println("2: Show all books");
-            System.out.println("3: Export books to text file");
-            System.out.println("4: Import books from text file");
+            System.out.println("3: Export books to binary file");
+            System.out.println("4: Import books from binary file");
             System.out.println("5: Quit");
             System.out.println(DIVIDER);
             operation = scanner.nextLine();
