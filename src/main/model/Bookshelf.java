@@ -1,7 +1,10 @@
 package model;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,8 +14,13 @@ public class Bookshelf {
     private Scanner scanner = new Scanner(System.in);
 
 
-    // EFFECTS: print all books on the bookshelf
-    public void printAllBooks(){
+    // EFFECTS: returns the size of the bookshelf
+    public int size(){
+        return listOfBooks.size();
+    }
+
+    // EFFECTS: print all books on the shelf
+    public void printAllBooks() {
         System.out.println(SHELFDIVIDER);
         for(Book b:listOfBooks){
             System.out.println(b);
@@ -29,11 +37,33 @@ public class Bookshelf {
     }
 
     // MODIFIES: This
-    // EFFECTS: add a book to the bookshelf, returns true if added successfully
+    // EFFECTS: adds a book to the bookshelf if not already added and returns true,
+    //          otherwise returns false
     public boolean addBook(String name, String author, String genre, int yop){
         Book book = new Book(name, author, genre, yop);
-        listOfBooks.add(book);
-        return true;
+        if (replicaCheck(book)){
+            listOfBooks.add(book);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    // EFFECTS: retures true if the bookshelf does not have a book with same name,
+    //          author, genre, year of publish as the given book
+    public boolean replicaCheck(Book book){
+        boolean replicaNotFound = true;
+
+        for (Book b: listOfBooks){
+            replicaNotFound = !((b.getBookName().equals(book.getBookName()))
+                    && (b.getBookAuthorName().equals(book.getBookAuthorName()))
+                    && (b.getGenre().equals(book.getGenre()))
+                    && (b.getYearOfPublish()==book.getYearOfPublish()));
+            if (!replicaNotFound)
+                break;
+        }
+        return replicaNotFound;
     }
 
     // MODIFIES: This
@@ -107,4 +137,27 @@ public class Bookshelf {
             excep.printStackTrace();
         }
     }
+
+    // MODIFIES: this
+    // EFFECT: scan books from text file and write them into the shelf
+    public void scanFromFile(String pathName){
+        try{
+            List<String> lines = Files.readAllLines(Paths.get(pathName));
+            for (String line : lines){
+                ArrayList<String> entries = splitOnSlash(line);
+                addBook(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
+            }
+        }
+        catch(IOException excep){
+            excep.printStackTrace();
+        }
+    }
+
+    // REFERECE: modified based upon FileReaderWriter, CPSC 210
+    // EFFECTS: split a string by "/", returns substrings
+    public static ArrayList<String> splitOnSlash(String line){
+        String[] splits = line.split("/");
+        return new ArrayList<String>(Arrays.asList(splits));
+    }
+
 }

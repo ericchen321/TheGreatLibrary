@@ -5,18 +5,11 @@ import model.Bookshelf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestBookshelf {
     private Bookshelf bookshelf;
-
-    // helper for checking book info, returns true if info is correct
-    private boolean checkBookInfo(Book book, String name, String author, String genre, int yop){
-       return (book.getBookName().equals(name)
-               && book.getBookAuthorName().equals(author)
-               && book.getGenre().equals(genre)
-               && book.getYearOfPublish()==yop);
-    }
 
     @BeforeEach
     public void setUp(){
@@ -24,38 +17,62 @@ public class TestBookshelf {
     }
 
     @Test
-    public void testAddBookAddOneBook(){
-        Book book0;
+    public void testAddBookAddOneBookNoReplica(){
         assertTrue(bookshelf.addBook("LOL", "Eric", "art",2018));
-        book0 = bookshelf.getBook(0);
-        assertTrue(checkBookInfo(book0, "LOL","Eric","art",2018));
     }
 
     @Test
-    public void testAddBookAddTwoBooks(){
-        Book book0, book1;
+    public void testAddBookAddTwoBooksOneReplica(){
         assertTrue(bookshelf.addBook("BNW", "Huxley", "fiction", 1932));
-        assertTrue(bookshelf.addBook("Haha", "Jemma", "biography",2010));
-        book0 = bookshelf.getBook(0);
-        book1 = bookshelf.getBook(1);
-        assertTrue(checkBookInfo(book0,"BNW","Huxley","fiction",1932));
-        assertTrue(checkBookInfo(book1,"Haha","Jemma","biography",2010));
+        assertFalse(bookshelf.addBook("BNW", "Huxley", "fiction",1932));
     }
 
     @Test
-    public void testGetBookNoBooks(){
-        assertEquals(null, bookshelf.getBook(0));
-        assertEquals(null, bookshelf.getBook(1));
-        assertEquals(null, bookshelf.getBook(-1));
+    public void testReplicaCheckNoIdenticalField(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("Special Relativity","AE","uncategorized",1915);
+        assertTrue(bookshelf.replicaCheck(testBook));
     }
 
     @Test
-    public void testGetBookHasBookOutOfBound(){
-        Book book0, book1;
-        assertTrue(bookshelf.addBook("BNW", "Huxley", "fiction", 1932));
-        assertTrue(bookshelf.addBook("Haha", "Jemma", "biography",2010));
-        assertEquals(null, bookshelf.getBook(-1));
-        assertEquals(null, bookshelf.getBook(2));
+    public void testReplicaCheckNotIdenticalName(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("FB","JKR","fiction",2017);
+        assertTrue(bookshelf.replicaCheck(testBook));
     }
 
+    @Test
+    public void testReplicaCheckNotIdenticalAuthor(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("HP","ABC","fiction",2017);
+        assertTrue(bookshelf.replicaCheck(testBook));
+    }
+
+    @Test
+    public void testReplicaCheckNotIdenticalGenre(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("HP","JKR","biography",2017);
+        assertTrue(bookshelf.replicaCheck(testBook));
+    }
+
+    @Test
+    public void testReplicaCheckNotIdenticalYearOfPublish(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("HP","JKR","fiction",2015);
+    }
+
+    @Test
+    public void testReplicaCheckOneReplica(){
+        bookshelf.addBook("HP","JKR","fiction",2017);
+        Book testBook = new Book("HP","JKR","fiction",2017);
+        assertFalse(bookshelf.replicaCheck(testBook));
+    }
+
+    @Test
+    public void testScanFromFileAddOneFile(){
+        bookshelf.scanFromFile("src/testIOFiles/testScanFromFileAddOneFile.txt");
+        assertFalse(bookshelf.addBook("Special Relativity","Joe","uncategorized",2000));
+        assertFalse(bookshelf.addBook("How to Play League Right","Bill","biography",2014));
+        assertFalse(bookshelf.addBook("Reddit it","Jemma","fiction",2012));
+    }
 }

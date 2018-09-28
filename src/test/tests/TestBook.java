@@ -11,6 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestBook {
     private Book book;
 
+    // helper for checking book info, returns true if info is correct
+    private static boolean checkBookInfo(Book book, String name, String author, String genre, int yop){
+        return (book.getBookName().equals(name)
+                && book.getBookAuthorName().equals(author)
+                && book.getGenre().equals(genre)
+                && book.getYearOfPublish()==yop);
+    }
+
     @BeforeEach
     public void setup(){
         book = new Book();
@@ -19,10 +27,7 @@ public class TestBook {
     @Test
     public void testBookGivenAllInfo(){
         book = new Book("LOL", "Eric", "fiction",2018);
-        assertTrue(book.getBookName().equals("LOL"));
-        assertTrue(book.getBookAuthorName().equals("Eric"));
-        assertTrue(book.getGenre().equals("fiction"));
-        assertEquals(2018,book.getYearOfPublish());
+        checkBookInfo(book,"LOL","Eric","fiction",2018);
     }
 
     @Test
