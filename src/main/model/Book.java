@@ -11,7 +11,7 @@ public class Book {
 
     // constructors
     public Book(){
-
+        System.out.println("!");
     }
 
     public Book(String name, String author, String genre, int yop){
