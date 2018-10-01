@@ -1,10 +1,6 @@
 package model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-public class Author implements Serializable{
+public class Author {
     private String name;
 
     // getters

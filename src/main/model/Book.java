@@ -1,8 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-public class Book implements Serializable{
+public class Book {
     public enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
