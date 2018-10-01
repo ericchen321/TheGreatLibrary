@@ -37,10 +37,9 @@ public class TheGreatLibrary {
             System.out.println("Please select an operation:");
             System.out.println("1: Add a book");
             System.out.println("2: Show all books");
-            System.out.println("3: Export bookshelf");
-            System.out.println("4: Import bookshelf");
-            System.out.println("5: Scan books from file");
-            System.out.println("6: Quit");
+            System.out.println("3: Scan books from file");
+            System.out.println("4: Print books to file");
+            System.out.println("5: Quit");
             System.out.println(DIVIDER);
             operation = scanner.nextLine();
             if (operation.equals("1")){
@@ -50,15 +49,12 @@ public class TheGreatLibrary {
                 bookshelf.printAllBooks();
             }
             else if (operation.equals("3")){
-                bookshelf.exportBooks();
-            }
-            else if (operation.equals("4")){
-                bookshelf.importBooks();
-            }
-            else if (operation.equals("5")){
                 bookshelf.scanFromFile("input-books.txt");
             }
-            else if (operation.equals("6")){
+            else if (operation.equals("4")){
+                bookshelf.printToFile("output-books.txt");
+            }
+            else if (operation.equals("5")){
                 break;
             }
             else{

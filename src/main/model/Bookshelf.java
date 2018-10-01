@@ -101,7 +101,7 @@ public class Bookshelf {
         }
     }
 
-    // TODO: need tests
+    /* MIGHT DELETE THE IMPORT&EXPORT FUNCTIONS
     // EFFECTS: export the bookshelf to text file
     public void exportBooks(){
         String fileName = "bookShelf.shf";
@@ -119,7 +119,6 @@ public class Bookshelf {
         }
     }
 
-    // TODO: need tests
     // MODIFIES: this
     // EFFECTS: import books from text file
     public void importBooks(){
@@ -139,9 +138,10 @@ public class Bookshelf {
             excep.printStackTrace();
         }
     }
+    */
 
     // MODIFIES: this
-    // EFFECT: scan books from text file and write them into the shelf
+    // EFFECT: write books in text file with given path name to the shelf
     public void scanFromFile(String pathName){
         try{
             List<String> lines = Files.readAllLines(Paths.get(pathName));
@@ -155,11 +155,15 @@ public class Bookshelf {
         }
     }
 
+    // TODO: tests & implementation
+    // EFFECT: print books on the shelf to textfile with given path name
+    public void printToFile(String pathName) {
+    }
+
     // REFERECE: modified based upon FileReaderWriter, CPSC 210
     // EFFECTS: split a string by "/", returns substrings
     public static ArrayList<String> splitOnSlash(String line){
         String[] splits = line.split("/");
         return new ArrayList<String>(Arrays.asList(splits));
     }
-
 }
