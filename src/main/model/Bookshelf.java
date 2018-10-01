@@ -101,6 +101,7 @@ public class Bookshelf {
         }
     }
 
+    // TODO: need tests
     // EFFECTS: export the bookshelf to text file
     public void exportBooks(){
         String fileName = "bookShelf.shf";
@@ -118,6 +119,7 @@ public class Bookshelf {
         }
     }
 
+    // TODO: need tests
     // MODIFIES: this
     // EFFECTS: import books from text file
     public void importBooks(){

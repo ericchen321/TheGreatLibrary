@@ -1,14 +1,29 @@
 package ui;
 
 import model.Bookshelf;
-
 import java.util.*;
+import javax.swing.*;
 
 public class TheGreatLibrary {
     private static final String DIVIDER = "---------------------------------------------";
     private Scanner scanner = new Scanner(System.in);
     private Bookshelf bookshelf = new Bookshelf();
     private String operation;
+
+    // TODO: implementation
+    // REFERENCE: "Clown Game" from CPSC 210 assignment
+    // EFFECTS: create and setup the window
+    private static void theGreatLibraryGUI(){
+        //Create and set up the window.
+        JFrame frame = new JFrame("The Great Library");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(new TGLPanel(false, false, false, false, false));
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     // MODIFIES: This;
     //           Bookshelf object
@@ -60,6 +75,12 @@ public class TheGreatLibrary {
 
     // EFFECTS: star TheGreatLibrary app
     public static void main(String[] args) {
-        new TheGreatLibrary();
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                theGreatLibraryGUI();
+            }
+        });
     }
 }
