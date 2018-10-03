@@ -1,6 +1,7 @@
 package model;
 
-public class Book {
+public class Book{
+
     public enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
