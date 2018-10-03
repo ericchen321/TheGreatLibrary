@@ -35,10 +35,10 @@ public class TheGreatLibrary {
         while (true) {
             System.out.println(DIVIDER);
             System.out.println("Please select an operation:");
-            System.out.println("1: Add a book");
-            System.out.println("2: Show all books");
-            System.out.println("3: Scan books from file");
-            System.out.println("4: Print books to file");
+            System.out.println("1: Add a book/movie");
+            System.out.println("2: Show all books & movies");
+            System.out.println("3: Scan books & movies from file");
+            System.out.println("4: Print books & movies to file");
             System.out.println("5: Quit");
             System.out.println(DIVIDER);
             operation = scanner.nextLine();

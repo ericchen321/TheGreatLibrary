@@ -17,7 +17,7 @@ public class Book{
 
     public Book(String name, String author, String genre, int yop){
         this.name = name;
-        this.author.setAuthorName(author);
+        this.author.setName(author);
         this.yearOfPublish = yop;
         setGenre(genre);
     }
@@ -28,7 +28,7 @@ public class Book{
     }
 
     public void setBookAuthorName(String author) {
-        this.author.setAuthorName(author);
+        this.author.setName(author);
     }
 
     public void setYearOfPublish(int yOfp) {
@@ -68,7 +68,7 @@ public class Book{
     }
 
     public String getBookAuthorName() {
-        return author.getAuthorName();
+        return author.getName();
     }
 
     public int getYearOfPublish() {
@@ -95,7 +95,7 @@ public class Book{
     }
 
     public String toString(){
-        return name + " by " + author.getAuthorName() + " published in " + yearOfPublish;
+        return name + " by " + author.getName() + " published in " + yearOfPublish;
     }
 
 
