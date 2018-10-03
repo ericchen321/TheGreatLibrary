@@ -80,7 +80,7 @@ public class Bookshelf {
             book.setYearOfPublish(scanner.nextInt());
             scanner.nextLine();
             System.out.println("Please enter the genre:");
-            book.setGenre(book.resolveGenre(scanner.nextLine()));
+            book.setGenre(scanner.nextLine());
             System.out.println("Now let's confirm the book's info:");
             System.out.println("book's name: " + book.getBookName());
             System.out.println("book's author: " + book.getBookAuthorName());
@@ -100,45 +100,6 @@ public class Bookshelf {
             }
         }
     }
-
-    /* MIGHT DELETE THE IMPORT&EXPORT FUNCTIONS
-    // EFFECTS: export the bookshelf to text file
-    public void exportBooks(){
-        String fileName = "bookShelf.shf";
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-        try{
-            fos = new FileOutputStream(fileName);
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(listOfBooks);
-            oos.close();
-            System.out.println("Bookshelf exported");
-        }
-        catch (IOException excep) {
-            excep.printStackTrace();
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: import books from text file
-    public void importBooks(){
-        String fileName = "bookShelf.shf";
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        try{
-            fis = new FileInputStream(fileName);
-            ois = new ObjectInputStream(fis);
-            listOfBooks = (ArrayList) ois.readObject();
-            ois.close();
-        }
-        catch (IOException excep){
-            excep.printStackTrace();
-        }
-        catch(ClassNotFoundException excep){
-            excep.printStackTrace();
-        }
-    }
-    */
 
     // MODIFIES: this
     // EFFECT: write books in text file with given path name to the shelf

@@ -2,7 +2,7 @@ package model;
 
 public class Book{
 
-    public enum Genre {
+    private enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
     private String name;
@@ -19,7 +19,7 @@ public class Book{
         this.name = name;
         this.author.setAuthorName(author);
         this.yearOfPublish = yop;
-        this.genre = resolveGenre(genre);
+        setGenre(genre);
     }
 
     // setters and getters
@@ -35,8 +35,32 @@ public class Book{
         yearOfPublish = yOfp;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    // EFFECTS: returns true if genre set to user specified;
+    //                  false if set to uncategorized
+    public boolean setGenre(String genre) {
+        switch (genre) {
+            case "art":
+                this.genre = Genre.ART;
+                return true;
+            case "biography":
+                this.genre = Genre.BIOGRAPHY;
+                return true;
+            case "classics":
+                this.genre = Genre.CLASSICS;
+                return true;
+            case "fantasy":
+                this.genre = Genre.FANTASY;
+                return true;
+            case "history":
+                this.genre = Genre.HISTORY;
+                return true;
+            case "fiction":
+                this.genre = Genre.FICTION;
+                return true;
+            default:
+                this.genre = Genre.UNCATAGORIZED;
+                return false;
+        }
     }
 
     public String getBookName() {
@@ -67,26 +91,6 @@ public class Book{
                 return "fiction";
             default:
                 return "uncategorized";
-        }
-    }
-
-    // EFFECTS: converts genre from string to enumeration
-    public Genre resolveGenre(String genre){
-        switch (genre) {
-            case "art":
-                return Genre.ART;
-            case "biography":
-                return Genre.BIOGRAPHY;
-            case "classics":
-                return Genre.CLASSICS;
-            case "fantasy":
-                return Genre.FANTASY;
-            case "history":
-                return Genre.HISTORY;
-            case "fiction":
-                return Genre.FICTION;
-            default:
-                return Genre.UNCATAGORIZED;
         }
     }
 
