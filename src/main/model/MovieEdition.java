@@ -1,16 +1,19 @@
 package model;
 
 public class MovieEdition implements Edition, Item{
+    private int yearOfPublish;
+    private String publisher;
+    private int IMDBN;
 
-    public String getYearOfPublish() {
-        return null;
+    public int getYearOfPublish() {
+        return yearOfPublish;
     }
 
     public String getPulisher() {
-        return null;
+        return publisher;
     }
 
     public int getID() {
-        return 0;
+        return IMDBN;
     }
 }

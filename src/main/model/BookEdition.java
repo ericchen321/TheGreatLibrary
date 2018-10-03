@@ -1,16 +1,20 @@
 package model;
 
 public class BookEdition implements Edition, Item{
+    private int yearOfPublish;
+    private String publisher;
+    private int ISBN;
 
-    public String getYearOfPublish() {
-        return null;
+    // setters and getters
+    public int getYearOfPublish() {
+        return yearOfPublish;
     }
 
     public String getPulisher() {
-        return null;
+        return publisher;
     }
 
     public int getID() {
-        return 0;
+        return ISBN;
     }
 }

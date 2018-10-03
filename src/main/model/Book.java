@@ -1,12 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book{
 
     private enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
     private String name;
-    private Author author = new Author();
+    private Artist author = new Author();
+    private List<Edition> editions = new ArrayList<>();
     private int yearOfPublish;
     private Genre genre;
 
