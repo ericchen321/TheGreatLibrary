@@ -49,7 +49,7 @@ public class TheGreatLibrary {
                 bookshelf.printAll();
             }
             else if (operation.equals("3")){
-                bookshelf.scanFromFile("input-books.txt");
+                bookshelf.loadFromFile("input-books.txt");
             }
             else if (operation.equals("4")){
                 bookshelf.printToFile("output-books.txt");

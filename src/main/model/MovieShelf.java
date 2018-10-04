@@ -13,4 +13,12 @@ public class MovieShelf implements Shelf, Loadable, Saveable{
     public void addUI() {
 
     }
+
+    public void loadFromFile(String pathName) {
+
+    }
+
+    public void printToFile(String pathName) {
+
+    }
 }

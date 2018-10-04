@@ -89,7 +89,7 @@ public class Bookshelf implements Shelf, Loadable, Saveable{
 
     // MODIFIES: this
     // EFFECT: write books in text file with given path name to the shelf
-    public void scanFromFile(String pathName){
+    public void loadFromFile(String pathName){
         try{
             List<String> lines = Files.readAllLines(Paths.get(pathName));
             for (String line : lines){
