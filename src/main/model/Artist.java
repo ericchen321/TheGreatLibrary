@@ -14,6 +14,6 @@ public abstract class Artist {
     }
 
     // TODO: need tests
-    // EFFECTS: return the type of artist: artist/author/director/cast
+    // EFFECTS: return the type of artist: author/director/cast/etc
     abstract public String getArtistType();
 }

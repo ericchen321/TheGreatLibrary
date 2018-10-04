@@ -18,52 +18,52 @@ public class TestBookshelf {
 
     @Test
     public void testAddBookAddOneBookNoReplica(){
-        assertTrue(bookshelf.addBook("LOL", "Eric", "art",2018));
+        assertTrue(bookshelf.add("LOL", "Eric", "art",2018));
     }
 
     @Test
     public void testAddBookAddTwoBooksOneReplica(){
-        assertTrue(bookshelf.addBook("BNW", "Huxley", "fiction", 1932));
-        assertFalse(bookshelf.addBook("BNW", "Huxley", "fiction",1932));
+        assertTrue(bookshelf.add("BNW", "Huxley", "fiction", 1932));
+        assertFalse(bookshelf.add("BNW", "Huxley", "fiction",1932));
     }
 
     @Test
     public void testReplicaCheckNoIdenticalField(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("Special Relativity","AE","uncategorized",1915);
         assertTrue(bookshelf.replicaCheck(testBook));
     }
 
     @Test
     public void testReplicaCheckNotIdenticalName(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("FB","JKR","fiction",2017);
         assertTrue(bookshelf.replicaCheck(testBook));
     }
 
     @Test
     public void testReplicaCheckNotIdenticalAuthor(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("HP","ABC","fiction",2017);
         assertTrue(bookshelf.replicaCheck(testBook));
     }
 
     @Test
     public void testReplicaCheckNotIdenticalGenre(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("HP","JKR","biography",2017);
         assertTrue(bookshelf.replicaCheck(testBook));
     }
 
     @Test
     public void testReplicaCheckNotIdenticalYearOfPublish(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("HP","JKR","fiction",2015);
     }
 
     @Test
     public void testReplicaCheckOneReplica(){
-        bookshelf.addBook("HP","JKR","fiction",2017);
+        bookshelf.add("HP","JKR","fiction",2017);
         Book testBook = new Book("HP","JKR","fiction",2017);
         assertFalse(bookshelf.replicaCheck(testBook));
     }
@@ -71,8 +71,8 @@ public class TestBookshelf {
     @Test
     public void testScanFromFileAddOneFile(){
         bookshelf.scanFromFile("src/testIOFiles/testScanFromFileAddOneFile.txt");
-        assertFalse(bookshelf.addBook("Special Relativity","Joe","uncategorized",2000));
-        assertFalse(bookshelf.addBook("How to Play League Right","Bill","biography",2014));
-        assertFalse(bookshelf.addBook("Reddit it","Jemma","fiction",2012));
+        assertFalse(bookshelf.add("Special Relativity","Joe","uncategorized",2000));
+        assertFalse(bookshelf.add("How to Play League Right","Bill","biography",2014));
+        assertFalse(bookshelf.add("Reddit it","Jemma","fiction",2012));
     }
 }

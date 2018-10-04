@@ -43,10 +43,10 @@ public class TheGreatLibrary {
             System.out.println(DIVIDER);
             operation = scanner.nextLine();
             if (operation.equals("1")){
-                bookshelf.addBooksUI();
+                bookshelf.addUI();
             }
             else if (operation.equals("2")){
-                bookshelf.printAllBooks();
+                bookshelf.printAll();
             }
             else if (operation.equals("3")){
                 bookshelf.scanFromFile("input-books.txt");

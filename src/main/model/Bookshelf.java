@@ -8,19 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Bookshelf {
+public class Bookshelf implements Shelf, Loadable, Saveable{
     private static final String SHELFDIVIDER = "=====================";
     private List<Book> listOfBooks = new ArrayList<Book>();
     private Scanner scanner = new Scanner(System.in);
 
-
-    // EFFECTS: returns the size of the bookshelf
-    public int size(){
-        return listOfBooks.size();
-    }
-
     // EFFECTS: print all books on the shelf
-    public void printAllBooks() {
+    public void printAll() {
         System.out.println(SHELFDIVIDER);
         for(Book b:listOfBooks){
             System.out.println(b);
@@ -28,18 +22,10 @@ public class Bookshelf {
         System.out.println(SHELFDIVIDER);
     }
 
-    // EFFECTS: get the book on the shelf at the given position(0-based index)
-    public Book getBook(int pos){
-        if (pos>=0 && pos<listOfBooks.size()) {
-            return listOfBooks.get(pos);
-        }
-        return null;
-    }
-
     // MODIFIES: This
     // EFFECTS: adds a book to the bookshelf if not already added and returns true,
     //          otherwise returns false
-    public boolean addBook(String name, String author, String genre, int yop){
+    public boolean add(String name, String author, String genre, int yop){
         Book book = new Book(name, author, genre, yop);
         if (replicaCheck(book)){
             listOfBooks.add(book);
@@ -52,7 +38,7 @@ public class Bookshelf {
 
     // EFFECTS: retures true if the bookshelf does not have a book with same name,
     //          author, genre, year of publish as the given book
-    public boolean replicaCheck(Book book){
+    private boolean replicaCheck(Book book){
         boolean replicaNotFound = true;
 
         for (Book b: listOfBooks){
@@ -67,8 +53,8 @@ public class Bookshelf {
     }
 
     // MODIFIES: This
-    // EFFECTS: add books to the bookshelf
-    public void addBooksUI(){
+    // EFFECTS: add book to the bookshelf by scanning inputs from keyboard
+    public void addUI(){
         Book book = new Book();
 
         while (true) {
@@ -108,7 +94,7 @@ public class Bookshelf {
             List<String> lines = Files.readAllLines(Paths.get(pathName));
             for (String line : lines){
                 ArrayList<String> entries = splitOnSlash(line);
-                addBook(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
+                add(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
             }
         }
         catch(IOException excep){
