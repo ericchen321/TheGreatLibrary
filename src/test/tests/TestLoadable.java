@@ -19,8 +19,8 @@ public class TestLoadable {
 
     // TODO: need to test for movie
     @Test
-    public void testLoadFromFileAddOneFile(){
-        bookshelfloadable.loadFromFile("src/testIOFiles/testScanFromFileAddOneFile.txt");
+    public void testLoadFromFile(){
+        bookshelfloadable.loadFromFile("src/testIOFiles/testScanFromFileBookshelf.txt");
         assertFalse(bookshelf.add("Special Relativity","Joe","uncategorized",2000));
         assertFalse(bookshelf.add("How to Play League Right","Bill","biography",2014));
         assertFalse(bookshelf.add("Reddit it","Jemma","fiction",2012));

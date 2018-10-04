@@ -1,13 +1,14 @@
 package ui;
 
-import model.Bookshelf;
 import java.util.*;
 import javax.swing.*;
 
 public class TheGreatLibrary {
     private static final String DIVIDER = "---------------------------------------------";
+    private ShelfUI bookshelfUI = new BookshelfUI();
+    private ShelfUI movieshelfUI = new MovieshelfUI();
     private Scanner scanner = new Scanner(System.in);
-    private Bookshelf bookshelf = new Bookshelf();
+
     private String operation;
 
     // TODO: implementation
@@ -35,26 +36,18 @@ public class TheGreatLibrary {
         while (true) {
             System.out.println(DIVIDER);
             System.out.println("Please select an operation:");
-            System.out.println("1: Add a book/movie");
-            System.out.println("2: Show all books & movies");
-            System.out.println("3: Scan books & movies from file");
-            System.out.println("4: Print books & movies to file");
-            System.out.println("5: Quit");
+            System.out.println("1: Manage books");
+            System.out.println("2: Manage movies");
+            System.out.println("3: Quit");
             System.out.println(DIVIDER);
             operation = scanner.nextLine();
             if (operation.equals("1")){
-                bookshelf.addUI();
+                bookshelfUI.shelfMainMenu();
             }
             else if (operation.equals("2")){
-                bookshelf.printAll();
+                movieshelfUI.shelfMainMenu();
             }
             else if (operation.equals("3")){
-                bookshelf.loadFromFile("input-books.txt");
-            }
-            else if (operation.equals("4")){
-                bookshelf.printToFile("output-books.txt");
-            }
-            else if (operation.equals("5")){
                 break;
             }
             else{
@@ -71,6 +64,7 @@ public class TheGreatLibrary {
 
     // EFFECTS: star TheGreatLibrary app
     public static void main(String[] args) {
+        // TODO: add GUI later
         /*
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.

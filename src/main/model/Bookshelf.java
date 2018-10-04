@@ -6,21 +6,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
-public class Bookshelf implements Shelf, Loadable, Saveable{
-    private static final String SHELFDIVIDER = "=====================";
+public class Bookshelf implements Loadable, Saveable{
     private List<Book> listOfBooks = new ArrayList<Book>();
-    private Scanner scanner = new Scanner(System.in);
-
-    // EFFECTS: print all books on the shelf
-    public void printAll() {
-        System.out.println(SHELFDIVIDER);
-        for(Book b:listOfBooks){
-            System.out.println(b);
-        }
-        System.out.println(SHELFDIVIDER);
-    }
 
     // MODIFIES: This
     // EFFECTS: adds a book to the bookshelf if not already added and returns true,
@@ -52,41 +40,6 @@ public class Bookshelf implements Shelf, Loadable, Saveable{
         return replicaNotFound;
     }
 
-    // MODIFIES: This
-    // EFFECTS: add book to the bookshelf by scanning inputs from keyboard
-    public void addUI(){
-        Book book = new Book();
-
-        while (true) {
-            System.out.println("Please enter book name:");
-            book.setBookName(scanner.nextLine());
-            System.out.println("Please enter author's name:");
-            book.setBookAuthorName(scanner.nextLine());
-            System.out.println("Please enter year of publish:");
-            book.setYearOfPublish(scanner.nextInt());
-            scanner.nextLine();
-            System.out.println("Please enter the genre:");
-            book.setGenre(scanner.nextLine());
-            System.out.println("Now let's confirm the book's info:");
-            System.out.println("book's name: " + book.getBookName());
-            System.out.println("book's author: " + book.getBookAuthorName());
-            System.out.println("book's publish year:" + book.getYearOfPublish());
-            System.out.println("book genre:" + book.getGenre());
-            System.out.println("Confirm add to your library? y/n");
-            if (scanner.nextLine().equals("y")) {
-                listOfBooks.add(book);
-                System.out.println("Book added!");
-            }
-            System.out.println("Want to add another book? y/n");
-            if (scanner.nextLine().equals("y")) {
-                book = new Book();
-            }
-            else{
-                break;
-            }
-        }
-    }
-
     // MODIFIES: this
     // EFFECT: write books in text file with given path name to the shelf
     public void loadFromFile(String pathName){
@@ -102,9 +55,18 @@ public class Bookshelf implements Shelf, Loadable, Saveable{
         }
     }
 
-    // TODO: tests & implementation
-    // EFFECT: print books on the shelf to textfile with given path name
+    // EFFECTS: print books on the shelf to textfile with given path name
     public void printToFile(String pathName) {
+        try{
+            PrintWriter writer = new PrintWriter(pathName,"UTF-8");
+            for (Book b: listOfBooks){
+                writer.println(b.getBookName()+"/"+b.getBookAuthorName()+"/"+b.getGenre()+"/"+b.getYearOfPublish());
+            }
+            writer.close(); //note -- if you miss this, the file will not be written at all.
+        }
+        catch (IOException excep){
+            excep.printStackTrace();
+        }
     }
 
     // REFERECE: modified based upon FileReaderWriter, CPSC 210
