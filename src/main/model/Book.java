@@ -96,6 +96,17 @@ public class Book{
         }
     }
 
+    // TODO: test and implementation
+    // REQUIRES: given edition is an edition of this book
+    // MODIFIES: this
+    // EFFECTS: if given edition's publish year is earlier than current
+    //          publish year of the book then update to the earlier publish year
+    //          and return true
+    //          else do not update this book's publish year and return false
+    public boolean updateYearOfPub(BookEdition ed){
+        return false; // stub
+    }
+
     public String toString(){
         return name + " by " + author.getName() + " published in " + yearOfPublish;
     }

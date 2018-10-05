@@ -38,6 +38,12 @@ public class Bookshelf implements Loadable, Saveable{
         return replicaNotFound;
     }
 
+    // TODO: test & implementation (can throw exception)
+    // EFFECTS: return the number of editions of the book with given name & author
+    public int getEditionSize(String bookName, String authorName){
+        return 0; // stub
+    }
+
     // MODIFIES: this
     // EFFECT: write books in text file with given path name to the shelf
     public void loadFromFile(String pathName){
@@ -79,7 +85,8 @@ public class Bookshelf implements Loadable, Saveable{
     // EFFECTS: if book not on the shelf yet
     //          then create book & add given edition & return true
     //          else if book already exists but edition not included yet
-    //          then add given edition to the book & return true
+    //          then add given edition to the book, update the books's publish year
+    //               & return true
     //          else do not add edition and return false
     public boolean addEditionToBookshelf(String bookName, String authorName, BookEdition bookEd) {
         return false; // stub

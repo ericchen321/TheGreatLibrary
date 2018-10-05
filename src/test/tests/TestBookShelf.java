@@ -5,6 +5,7 @@ import model.Bookshelf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,13 +33,19 @@ public class TestBookShelf {
     // TODO
     @Test
     public void testAddEditionToBookshelfNoBook(){
-
+        BookEdition ed = new BookEdition("Anchor Books",1999,9780385495226L);
+        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston",ed));
+        assertFalse(bookshelf.add("The Hot Zone","R Preston","uncategorized",1999));
+        assertEquals(1,bookshelf.getEditionSize("The Hot Zone", "R Preston"));
     }
 
     // TODO
     @Test
     public void testAddEditionToBookshelfBookExistsNoSameEdition(){
-
+        BookEdition ed = new BookEdition("Random House", 1994,9780679430940L);
+        bookshelf.add("The Hot Zone","R Preston","uncategorized",1999);
+        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston",ed));
+        assertEquals(1,bookshelf.getEditionSize("The Hot Zone","R Preston"));
     }
 
     // TODO
