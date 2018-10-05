@@ -1,5 +1,6 @@
 package tests;
 
+import model.BookEdition;
 import model.Bookshelf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,7 @@ public class TestBookShelf {
     public void testAddAddOneNoReplica(){
         assertTrue(bookshelf.add("LOL","Eric","art",2018));
         assertTrue(bookshelf.add("LOL","Jemma","art",2018));
-        assertTrue(bookshelf.add("LOL","Eric","fiction",2018));
-        assertTrue(bookshelf.add("LOL","Eric","art",1999));
+        assertTrue(bookshelf.add("UAS","Jemma","fiction",2018));
     }
 
     @Test
@@ -28,4 +28,23 @@ public class TestBookShelf {
         assertTrue(bookshelf.add("BNW", "Huxley", "fiction", 1932));
         assertFalse(bookshelf.add("BNW", "Huxley", "fiction",1932));
     }
+
+    // TODO
+    @Test
+    public void testAddEditionToBookshelfNoBook(){
+
+    }
+
+    // TODO
+    @Test
+    public void testAddEditionToBookshelfBookExistsNoSameEdition(){
+
+    }
+
+    // TODO
+    @Test
+    public void testAddEditionToBookshelfBookExistsSameEditionExists(){
+
+    }
+
 }

@@ -1,9 +1,12 @@
 package ui;
 
+import model.BookEdition;
 import model.Bookshelf;
 import model.Loadable;
 import model.Saveable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookshelfUI implements ShelfUI {
@@ -21,7 +24,8 @@ public class BookshelfUI implements ShelfUI {
             System.out.println("1: Add books to the bookshelf");
             System.out.println("2: Import books into the bookshelf");
             System.out.println("3: Export books from the bookshelf");
-            System.out.println("4: Exit bookshelf");
+            System.out.println("4: Add editions for a book");
+            System.out.println("5: Exit bookshelf");
             System.out.println(SHELFDIVIDER);
             operation = scanner.nextLine();
             if (operation.equals("1")){
@@ -34,6 +38,9 @@ public class BookshelfUI implements ShelfUI {
                 exportBooksUI();
             }
             else if (operation.equals("4")){
+                addBookEditionUI();
+            }
+            else if (operation.equals("5")){
                 break;
             }
             else{
@@ -41,6 +48,24 @@ public class BookshelfUI implements ShelfUI {
             }
         }
 
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add editions of a book
+    private void addBookEditionUI() {
+        ArrayList<String> editionInfo = new ArrayList<String>();
+        System.out.println("Please enter the book's edition in the following format:");
+        System.out.println("book name/author name/publisher/year of publish/ISBN");
+        editionInfo = Bookshelf.splitOnSlash(scanner.nextLine());
+        BookEdition bookEd = new BookEdition(editionInfo.get(2),
+                                            Integer.parseInt(editionInfo.get(3)),
+                                            Integer.parseInt(editionInfo.get(4)));
+        if(bookshelf.addEditionToBookshelf(editionInfo.get(0), editionInfo.get(1),bookEd)){
+            System.out.println("Edition added to the bookshelf!");
+        }
+        else{
+            System.out.println("Edition already exists!");
+        }
     }
 
     // MODIFIES: this

@@ -1,9 +1,9 @@
 package model;
 
 public class MovieEdition extends Edition{
-    private int IMDBN;
+    private long IMDBN;
 
-    public int getID() {
+    public long getID() {
         return IMDBN;
     }
 }
