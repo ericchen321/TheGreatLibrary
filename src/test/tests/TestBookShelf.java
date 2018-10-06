@@ -30,7 +30,6 @@ public class TestBookShelf {
         assertFalse(bookshelf.add("BNW", "Huxley", "fiction",1932));
     }
 
-    // TODO
     @Test
     public void testAddEditionToBookshelfNoBook(){
         BookEdition ed = new BookEdition("Anchor Books",1999,9780385495226L);
@@ -39,19 +38,20 @@ public class TestBookShelf {
         assertEquals(1,bookshelf.getEditionSize("The Hot Zone", "R Preston"));
     }
 
-    // TODO
     @Test
     public void testAddEditionToBookshelfBookExistsNoSameEdition(){
-        BookEdition ed = new BookEdition("Random House", 1994,9780679430940L);
         bookshelf.add("The Hot Zone","R Preston","uncategorized",1999);
+        BookEdition ed = new BookEdition("Random House", 1994,9780679430940L);
         assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston",ed));
         assertEquals(1,bookshelf.getEditionSize("The Hot Zone","R Preston"));
     }
 
-    // TODO
     @Test
     public void testAddEditionToBookshelfBookExistsSameEditionExists(){
-
+        bookshelf.add("The Hot Zone","R Preston","uncategorized",1999);
+        BookEdition ed = new BookEdition("Random House",1994,9780679430940L);
+        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston",ed));
+        assertFalse(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston",ed));
     }
 
 }

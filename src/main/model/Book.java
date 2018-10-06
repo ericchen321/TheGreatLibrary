@@ -10,12 +10,19 @@ public class Book{
     }
     private String name;
     private Artist author = new Author();
-    private List<Edition> editions = new ArrayList<>();
+    private List<BookEdition> editions = new ArrayList<>();
     private int yearOfPublish;
     private Genre genre;
 
     // constructors
     public Book(){}
+
+    // TODO: need test
+    public Book(String name, String author){
+        this.name = name;
+        this.author.setName(author);
+        setGenre("uncategorized");
+    }
 
     public Book(String name, String author, String genre, int yop){
         this.name = name;
@@ -96,6 +103,11 @@ public class Book{
         }
     }
 
+    // EFFECTS: return the number of editions
+    public int getEditionSize(){
+        return editions.size();
+    }
+
     // TODO: test and implementation
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
@@ -103,8 +115,22 @@ public class Book{
     //          publish year of the book then update to the earlier publish year
     //          and return true
     //          else do not update this book's publish year and return false
-    public boolean updateYearOfPub(BookEdition ed){
+    private boolean updateYearOfPub(BookEdition ed){
         return false; // stub
+    }
+
+    // TODO: test
+    // REQUIRES: given edition is an edition of this book
+    // MODIFIES: this
+    // EFFECTS: if given edition exists then do not add, and return false
+    //          else add given edition and return true
+    public boolean addEdition(BookEdition bookEd) {
+        for (BookEdition e: editions){
+            if (e.getID() == bookEd.getID())
+                return false;
+        }
+        editions.add(bookEd);
+        return true;
     }
 
     public String toString(){

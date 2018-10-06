@@ -39,9 +39,15 @@ public class Bookshelf implements Loadable, Saveable{
     }
 
     // TODO: test & implementation (can throw exception)
-    // EFFECTS: return the number of editions of the book with given name & author
+    // EFFECTS: if book with given name and author exists
+    //          then return the number of editions
+    //          else return 0
     public int getEditionSize(String bookName, String authorName){
-        return 0; // stub
+        for (Book b: listOfBooks){
+            if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName))
+                return b.getEditionSize();
+        }
+        return 0;
     }
 
     // MODIFIES: this
@@ -80,7 +86,7 @@ public class Bookshelf implements Loadable, Saveable{
         return new ArrayList<String>(Arrays.asList(splits));
     }
 
-    // TODO: need tests and implementation
+    // TODO: need tests
     // MODIFIES: this
     // EFFECTS: if book not on the shelf yet
     //          then create book & add given edition & return true
@@ -89,6 +95,13 @@ public class Bookshelf implements Loadable, Saveable{
     //               & return true
     //          else do not add edition and return false
     public boolean addEditionToBookshelf(String bookName, String authorName, BookEdition bookEd) {
-        return false; // stub
+        Book book = new Book(bookName, authorName);
+        for (Book b: listOfBooks){
+            if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName)){
+                return b.addEdition(bookEd);
+            }
+        }
+        listOfBooks.add(book);
+        return book.addEdition(bookEd);
     }
 }
