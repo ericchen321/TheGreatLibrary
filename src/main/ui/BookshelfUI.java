@@ -5,16 +5,18 @@ import model.Bookshelf;
 import model.Loadable;
 import model.Saveable;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BookshelfUI implements ShelfUI {
+public class BookshelfUI extends ShelfUI {
     private static final String SHELFDIVIDER = "=====================";
     private Bookshelf bookshelf = new Bookshelf();
     private Scanner scanner = new Scanner(System.in);
     private String operation;
-
 
     // EFFECTS: interactive loop for the bookshelf
     public void shelfMainMenu() {

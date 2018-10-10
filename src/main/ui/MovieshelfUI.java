@@ -2,11 +2,13 @@ package ui;
 
 import model.MovieShelf;
 
-public class MovieshelfUI implements ShelfUI{
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+
+public class MovieshelfUI extends ShelfUI{
     private MovieShelf movieshelf = new MovieShelf();
 
+    // TODO
     // EFFECTS: interactive loop for the movieshelf
-    public void shelfMainMenu() {
-
-    }
+    public void shelfMainMenu() {}
 }
