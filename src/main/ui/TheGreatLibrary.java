@@ -5,14 +5,11 @@ import java.util.*;
 import javax.swing.*;
 
 public class TheGreatLibrary extends JFrame{
-    private static final String DIVIDER = "---------------------------------------------";
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
     private BookshelfUI bookshelfUI = new BookshelfUI();
     private MovieshelfUI movieshelfUI = new MovieshelfUI();
     private Scanner scanner = new Scanner(System.in);
-
-    private String operation;
 
     // TODO: refactored app constructor for GUI
     // MODIFIES: This;

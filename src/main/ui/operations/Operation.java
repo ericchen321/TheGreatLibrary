@@ -1,5 +1,7 @@
 package ui.operations;
 
+import model.Bookshelf;
+
 import javax.swing.*;
 import java.awt.*;
 

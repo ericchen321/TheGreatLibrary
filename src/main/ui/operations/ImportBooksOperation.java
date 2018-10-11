@@ -4,7 +4,6 @@ import model.Bookshelf;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ImportBooksOperation extends ImportOperation {
     // constructors
@@ -24,15 +23,13 @@ public class ImportBooksOperation extends ImportOperation {
     // MODIFIES: this
     // EFFECTS: set action when button for import operation is clicked
     private void setButtonAction(Bookshelf bookshelf){
-        ImportOpButtonListener buttonAL = new ImportOpButtonListener(bookshelf);
+        ImportOpActionListener buttonAL = new ImportBookActionListener(bookshelf);
         button.addActionListener(buttonAL);
     }
 
-    private class ImportOpButtonListener implements ActionListener {
-        Bookshelf bookshelf;
-
-        public ImportOpButtonListener(Bookshelf bookshelf){
-            this.bookshelf = bookshelf;
+    private class ImportBookActionListener extends ImportOpActionListener {
+        public ImportBookActionListener(Bookshelf bookshelf) {
+            super(bookshelf);
         }
 
         @Override
@@ -41,4 +38,6 @@ public class ImportBooksOperation extends ImportOperation {
             System.out.println("Books imported!");
         }
     }
+
+
 }
