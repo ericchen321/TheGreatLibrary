@@ -1,8 +1,14 @@
 package ui.operations;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class Operation {
+    protected static final int BUTTONWIDTH = 800;
+    protected static final int BUTTONHEIGHT = 150;
+    protected static final String BUTTONFONTNAME = "Arial";
+    protected static final int BUTTONFONTTYPE = Font.PLAIN;
+    protected static final int BUTTONFONTSIZE = 40;
     protected JButton button;
 
     // setters and getters
@@ -22,5 +28,7 @@ public abstract class Operation {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
+        button.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
+        button.setFont(new Font(BUTTONFONTNAME, BUTTONFONTTYPE, BUTTONFONTSIZE));
     }
 }
