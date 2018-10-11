@@ -1,28 +1,30 @@
 package model;
 
 public abstract class Edition {
-    protected int yearOfPublish;
     protected String publisher;
+    protected int yearOfPublish;
+    protected long ID;
 
     // constructors
     public Edition(){}
 
     // TODO: need tests
-    public Edition(String publisher, int yop){
+    public Edition(String publisher, int yop, long id){
         this.publisher = publisher;
         this.yearOfPublish = yop;
+        this.ID = id;
     }
 
-    // EFFECTS: get the year in which the edition is published
+    // setters and getters
     public int getYearOfPublish(){
         return yearOfPublish;
     }
 
-    // EFFECTS: get the name of the publisher of the edition
     public String getPulisher(){
         return publisher;
     }
 
-    // EFFECTS: get a unique ID for the edition
-    public abstract long getID();
+    public long getID(){
+        return ID;
+    };
 }
