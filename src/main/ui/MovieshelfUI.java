@@ -11,4 +11,10 @@ public class MovieshelfUI extends ShelfUI{
     // TODO
     // EFFECTS: interactive loop for the movieshelf
     public void shelfMainMenu() {}
+
+    // TODO
+    @Override
+    public void addOperations() {
+
+    }
 }
