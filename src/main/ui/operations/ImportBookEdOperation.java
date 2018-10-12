@@ -80,13 +80,9 @@ public class ImportBookEdOperation extends ImportOperation {
                 }
 
                 public void actionPerformed(ActionEvent e) {
-                    BookEdition bookEd = new BookEdition(publisher.getText(),
-                            Integer.parseInt(yearOfPublish.getText()),
-                            Integer.parseInt(isbn.getText()));
-
                     if (bookshelf.addEditionToBookshelf(bookName.getText(),
                                                     authorName.getText(),
-                                                    bookEd)){
+                            publisher.getText(),Integer.parseInt(yearOfPublish.getText()),Integer.parseInt(isbn.getText()))){
                         System.out.println("Edition added!");
                     }
                     else{
