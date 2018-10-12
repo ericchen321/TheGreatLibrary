@@ -18,6 +18,12 @@ public class TestEdition {
 
     // TODO
     @Test
+    public void EditionCreateAnEdition(){
+
+    }
+
+    // TODO
+    @Test
     public void checkIDValidityValidID(){
 
     }
