@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class Operation {
-    protected static final int BUTTONWIDTH = 800;
-    protected static final int BUTTONHEIGHT = 150;
-    protected static final String BUTTONFONTNAME = "Arial";
-    protected static final int BUTTONFONTTYPE = Font.PLAIN;
-    protected static final int BUTTONFONTSIZE = 40;
+    protected static final int BUTTON_WIDTH = 800;
+    protected static final int BUTTON_HEIGHT = 150;
+    protected static final String BUTTON_FONTNAME = "Arial";
+    protected static final int BUTTON_FONTTYPE = Font.PLAIN;
+    protected static final int BUTTON_FONTSIZE = 40;
     protected JButton button;
 
     // setters and getters
@@ -28,7 +28,7 @@ public abstract class Operation {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
-        button.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
-        button.setFont(new Font(BUTTONFONTNAME, BUTTONFONTTYPE, BUTTONFONTSIZE));
+        button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        button.setFont(new Font(BUTTON_FONTNAME, BUTTON_FONTTYPE, BUTTON_FONTSIZE));
     }
 }
