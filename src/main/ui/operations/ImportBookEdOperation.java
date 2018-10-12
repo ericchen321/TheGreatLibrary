@@ -37,12 +37,12 @@ public class ImportBookEdOperation extends ImportOperation {
 
         // TODO: may need exception handling
         public void actionPerformed(ActionEvent e) {
-            final int ADDEDITIONDIALOGUEWIDTH = 400;
-            final int ADDEDITIONDIALOGUEHEIGHT = 200;
-            final int ROWNUM = 6;
-            final int COLNUM = 4;
-            final int HORIZSPACING = 2;
-            final int VERTISPACING = 2;
+            final int ADD_EDITION_DIALOGUE_WIDTH = 400;
+            final int ADD_EDITION_DIALOGUE_HEIGHT = 200;
+            final int ROW_NUM = 6;
+            final int COL_NUM = 4;
+            final int HORIZ_SPACING = 2;
+            final int VERTI_SPACING = 2;
             JTextField bookName = new JTextField();
             JTextField authorName = new JTextField();
             JTextField publisher = new JTextField();
@@ -53,11 +53,11 @@ public class ImportBookEdOperation extends ImportOperation {
 
             JFrame addEditionDialogue = new JFrame("Add edition");
             addEditionDialogue.setLayout(new BorderLayout());
-            addEditionDialogue.setMinimumSize(new Dimension(ADDEDITIONDIALOGUEWIDTH, ADDEDITIONDIALOGUEHEIGHT));
+            addEditionDialogue.setMinimumSize(new Dimension(ADD_EDITION_DIALOGUE_WIDTH, ADD_EDITION_DIALOGUE_HEIGHT));
             addEditionDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             addEditionDialogue.setLocationRelativeTo(null);
             addEditionDialogue.setVisible(true);
-            addEditionDialogue.setLayout(new GridLayout(ROWNUM,COLNUM,HORIZSPACING,VERTISPACING));
+            addEditionDialogue.setLayout(new GridLayout(ROW_NUM,COL_NUM,HORIZ_SPACING,VERTI_SPACING));
             addEditionDialogue.add(new JLabel("Book Name"));
             addEditionDialogue.add(bookName);
             addEditionDialogue.add(new JLabel("Author Name"));
