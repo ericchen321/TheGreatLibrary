@@ -1,6 +1,5 @@
 package ui.operations;
 
-import model.BookEdition;
 import model.Bookshelf;
 
 import javax.swing.*;

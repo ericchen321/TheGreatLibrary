@@ -1,4 +1,5 @@
 package model;
+import model.exceptions.IDNotValidException;
 
 public abstract class Edition {
     protected String publisher;
@@ -27,4 +28,8 @@ public abstract class Edition {
     public long getID(){
         return ID;
     };
+
+    // EFFECTS: throws an exception if ID of the edition is not valid
+    //          otherwise does nothing
+    public abstract void checkIDValidity() throws IDNotValidException;
 }
