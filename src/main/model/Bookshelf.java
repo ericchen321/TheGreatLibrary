@@ -1,5 +1,7 @@
 package model;
 
+import model.exceptions.IDNotValidException;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -88,22 +90,23 @@ public class Bookshelf implements Loadable, Saveable{
 
     // TODO: need tests
     // MODIFIES: this
-    // EFFECTS: create edition using given publisher, year published, ISBN
-    //          if book not on the shelf yet
-    //          then create book & add given edition & return true
-    //          else if book already exists but edition not included yet
-    //          then add given edition to the book, update the books's publish year
-    //               & return true
-    //          else do not add edition and return false
-    public boolean addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, long isbn) {
-        BookEdition bookEd = new BookEdition(publisher,yop,isbn);
-        Book book = new Book(bookName, authorName);
-        for (Book b: listOfBooks){
-            if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName)){
-                return b.addEdition(bookEd);
+    // EFFECTS: if book of given edition not on the bookshelf yet then add book & edition
+    //          else try to add edition & returns true if addition is successful
+    //                                         OR false if not successful
+    public boolean addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn) {
+        try{
+            BookEdition bookEd = new BookEdition(publisher,yop,isbn);
+            Book book = new Book(bookName, authorName);
+            for (Book b: listOfBooks){
+                if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName)){
+                    return b.addEdition(bookEd);
+                }
             }
+            listOfBooks.add(book);
+            return book.addEdition(bookEd);
         }
-        listOfBooks.add(book);
-        return book.addEdition(bookEd);
+        catch (IDNotValidException idNotValidE){
+            return false;
+        }
     }
 }

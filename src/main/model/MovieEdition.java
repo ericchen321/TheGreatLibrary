@@ -3,10 +3,9 @@ package model;
 import model.exceptions.IDNotValidException;
 
 public class MovieEdition extends Edition{
-    private long IMDBN;
 
-    public long getID() {
-        return IMDBN;
+    public String getID() {
+        return ID;
     }
 
     // EFFECTS: throws an exception if IMDB Code of the edition is not valid

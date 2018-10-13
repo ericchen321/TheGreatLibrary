@@ -4,13 +4,13 @@ import model.exceptions.IDNotValidException;
 public abstract class Edition {
     protected String publisher;
     protected int yearOfPublish;
-    protected long ID;
+    protected String ID;
 
     // constructors
     public Edition(){}
 
     // TODO: need tests
-    public Edition(String publisher, int yop, long id){
+    public Edition(String publisher, int yop, String id){
         this.publisher = publisher;
         this.yearOfPublish = yop;
         this.ID = id;
@@ -25,12 +25,12 @@ public abstract class Edition {
         return publisher;
     }
 
-    public long getID(){
+    public String getID(){
         return ID;
     };
 
     // TODO: tests!
     // EFFECTS: throws an exception if ID of the edition is not valid
     //          otherwise does nothing
-    public abstract void checkIDValidity() throws IDNotValidException;
+    protected abstract void checkIDValidity() throws IDNotValidException;
 }

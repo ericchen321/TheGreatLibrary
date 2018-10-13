@@ -2,29 +2,36 @@ package model;
 
 import model.exceptions.IDNotValidException;
 
+import java.text.ParseException;
+
 public class BookEdition extends Edition{
 
     // constructors
     public BookEdition(){}
 
-    // TODO: need tests
-    public BookEdition(String publisher, int yop, long isbn){
+    // TODO: need tests and implementation
+    // MODIFIES: this
+    // EFFECTS: makes a new edition and
+    //          throws an exception if ISBN code is not valid
+    public BookEdition(String publisher, int yop, String isbn) throws IDNotValidException {
         super(publisher, yop, isbn);
+        checkIDValidity();
     }
 
-    // TODO: need tests and modify implmentation
+    // TODO: maybe needs tests?
     // EFFECTS: throws an exception if ISBN contains not only numbers
-    //                                 OR ISBN of the edition is not 10 digits long
-    //                                    and published before 2007
-    //                                 OR ISBN of the edition is not 13 digits long
-    //                                    and published after 2007
+    //                                 OR ISBN of the edition is not 10 or 13 digits long
     //          otherwise does nothing
     @Override
-    public void checkIDValidity() throws IDNotValidException {
-        if (yearOfPublish >= 2007 && ID < 1000000000000L){
+    protected void checkIDValidity() throws IDNotValidException {
+        try{
+            Long.parseLong(ID);
+        }
+        catch (NumberFormatException nfE){
             throw new IDNotValidException();
         }
-        else if (yearOfPublish < 2007 && (ID >= 9999999999L || ID < 1000000000)){
+
+        if(ID.length() != 10 && ID.length() != 13){
             throw new IDNotValidException();
         }
     }

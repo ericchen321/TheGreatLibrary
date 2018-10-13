@@ -124,19 +124,11 @@ public class Book{
     // TODO: test
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
-    // EFFECTS: if given edition contains invalid ID then returns false
-    //          else if given edition exists then do not add, and return false
+    // EFFECTS: if given edition exists then do not add, and return false
     //          else add given edition and return true
     public boolean addEdition(BookEdition bookEd) {
-        try{
-            bookEd.checkIDValidity();
-        }
-        catch (IDNotValidException idNotValidE){
-            return false;
-        }
-
         for (BookEdition e: editions){
-            if (e.getID() == bookEd.getID())
+            if (e.getID().equals(bookEd.getID()))
                 return false;
         }
         editions.add(bookEd);
