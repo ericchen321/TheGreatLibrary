@@ -14,10 +14,6 @@ public class TestBookEdition {
 
     // TODO
     @Test
-    public void BookEditionCreateAnEdition(){}
-
-    // TODO
-    @Test
     public void checkIDValidityISBNContainsNonNumberChars(){}
 
     // TODO

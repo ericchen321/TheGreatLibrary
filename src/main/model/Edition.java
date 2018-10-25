@@ -28,9 +28,4 @@ public abstract class Edition {
     public String getID(){
         return ID;
     };
-
-    // TODO: tests!
-    // EFFECTS: throws an exception if ID of the edition is not valid
-    //          otherwise does nothing
-    protected abstract void checkIDValidity() throws IDNotValidException;
 }

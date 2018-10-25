@@ -11,8 +11,10 @@ public class BookEdition extends Edition{
 
     // TODO: need tests and implementation
     // MODIFIES: this
-    // EFFECTS: makes a new edition and
-    //          throws an exception if ISBN code is not valid
+    // EFFECTS: makes a new book edition and
+    //          throws an exception if ISBN code is not valid:
+    //          ISBN contains not only numbers OR
+    //          ISBN of the edition is not 10 or 13 digits long
     public BookEdition(String publisher, int yop, String isbn) throws IDNotValidException {
         super(publisher, yop, isbn);
         checkIDValidity();
@@ -22,8 +24,7 @@ public class BookEdition extends Edition{
     // EFFECTS: throws an exception if ISBN contains not only numbers
     //                                 OR ISBN of the edition is not 10 or 13 digits long
     //          otherwise does nothing
-    @Override
-    protected void checkIDValidity() throws IDNotValidException {
+    private void checkIDValidity() throws IDNotValidException {
         try{
             Long.parseLong(ID);
         }
