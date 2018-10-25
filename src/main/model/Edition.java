@@ -9,7 +9,8 @@ public abstract class Edition {
     // constructors
     public Edition(){}
 
-    // TODO: need tests
+    // EFFECTS: create an edition of a book or movie with
+    //          given publisher, year published, and an ID
     public Edition(String publisher, int yop, String id){
         this.publisher = publisher;
         this.yearOfPublish = yop;
