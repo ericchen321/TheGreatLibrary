@@ -82,17 +82,21 @@ public class Bookshelf implements Loadable, Saveable{
     //          else if edition already exists
     //               throws EditionAlreadyExistException if given edition already on the shelf
     //          else if book of given edition not on the bookshelf yet then add book & edition
+    //                 & returns edition
     //          else add edition with given information to the given book & update book's publish year
-    public void addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn)
+    //                 & returns edition
+    public Edition addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn)
             throws IDNotValidException,EditionAlreadyExistException {
         BookEdition bookEd = new BookEdition(publisher,yop,isbn);
         Book book = new Book(bookName, authorName);
         for(Book b: listOfBooks){
             if (b.equals(book)){
                 b.addEdition(bookEd);
+                return bookEd;
             }
         }
         listOfBooks.add(book);
         book.addEdition(bookEd);
+        return bookEd;
     }
 }
