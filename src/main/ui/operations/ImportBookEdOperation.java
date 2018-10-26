@@ -94,10 +94,10 @@ public class ImportBookEdOperation extends ImportOperation {
                         System.out.println("Sorry, edition not added because it's already there!");
                     }
                     catch (IDNotThirteenDigitException exc){
-                        System.out.println("You need to use the 13-digit ISBN! Or check your publish year!");
+                        System.out.println("Sorry, edition not added: You need to use the 13-digit ISBN! Or check your publish year!");
                     }
                     catch (IDNotValidException exc){
-                        System.out.println("ISBN can only be 10 or 13 digits!");
+                        System.out.println("Sorry, edition not added: ISBN can only be 10 or 13 digits!");
                     }
                 }
             }
