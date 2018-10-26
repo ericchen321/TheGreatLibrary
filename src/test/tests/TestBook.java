@@ -2,6 +2,7 @@ package tests;
 
 import model.Book;
 import model.BookEdition;
+import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,16 +33,18 @@ public class TestBook {
     }
 
     @Test
-    public void testAddEditionEdDoesExistsExpectsReturnFalse(){
+    public void testAddEditionEdAlreadyExistsExpectEditionAlreadyExistsException(){
         book = new Book("Haha","ABC","biography",2010);
         try {
-            BookEdition bookEd = new BookEdition("RH", 2010, "1234567890");
-            assertTrue(book.addEdition(bookEd));
-            assertFalse(book.addEdition(bookEd));
+            BookEdition bookEd = new BookEdition("RH", 2010, "1234567890123");
+            book.addEdition(bookEd);
+            book.addEdition(bookEd);
+            fail("should not add twice");
         }
         catch (IDNotValidException e){
             fail("should make book eds successfully");
         }
+        catch (EditionAlreadyExistException e){}
     }
 
     // TODO

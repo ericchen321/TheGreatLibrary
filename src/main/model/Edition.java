@@ -1,6 +1,8 @@
 package model;
 import model.exceptions.IDNotValidException;
 
+import java.util.Objects;
+
 public abstract class Edition {
     protected String publisher;
     protected int yearOfPublish;
@@ -29,4 +31,18 @@ public abstract class Edition {
     public String getID(){
         return ID;
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edition edition = (Edition) o;
+        return Objects.equals(ID, edition.ID);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(ID);
+    }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
 
 import java.io.*;
@@ -75,23 +76,23 @@ public class Bookshelf implements Loadable, Saveable{
     }
 
     // MODIFIES: this
-    // EFFECTS: if book of given edition not on the bookshelf yet then add book & edition
-    //          else try to add edition & returns true if addition is successful
-    //                                         OR false if not successful
-    public boolean addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn) {
-        try{
-            BookEdition bookEd = new BookEdition(publisher,yop,isbn);
-            Book book = new Book(bookName, authorName);
-            for (Book b: listOfBooks){
-                if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName)){
-                    return b.addEdition(bookEd);
-                }
+    // EFFECTS: throws IDNotValidException if given ISBN is not valid;
+    //          throws IDNotThirteenDigitException if given publish year >= 2007 but given
+    //                 ISBN is not 13 digits
+    //          else if edition already exists
+    //               throws EditionAlreadyExistException if given edition already on the shelf
+    //          else if book of given edition not on the bookshelf yet then add book & edition
+    //          else add edition with given information to the given book & update book's publish year
+    public void addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn)
+            throws IDNotValidException,EditionAlreadyExistException {
+        BookEdition bookEd = new BookEdition(publisher,yop,isbn);
+        Book book = new Book(bookName, authorName);
+        for(Book b: listOfBooks){
+            if (b.equals(book)){
+                b.addEdition(bookEd);
             }
-            listOfBooks.add(book);
-            return book.addEdition(bookEd);
         }
-        catch (IDNotValidException idNotValidE){
-            return false;
-        }
+        listOfBooks.add(book);
+        book.addEdition(bookEd);
     }
 }

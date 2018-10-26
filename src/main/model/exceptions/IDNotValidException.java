@@ -1,4 +1,4 @@
 package model.exceptions;
 
-public class IDNotValidException extends Throwable{
+public class IDNotValidException extends Exception{
 }

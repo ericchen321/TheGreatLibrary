@@ -2,12 +2,11 @@ package tests;
 
 import model.BookEdition;
 import model.Bookshelf;
+import model.exceptions.EditionAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBookShelf {
     private Bookshelf bookshelf;
@@ -32,23 +31,21 @@ public class TestBookShelf {
 
     @Test
     public void testAddEditionToBookshelfNoBook(){
-        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226"));
+        try{
+            bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
+        }
+        catch (Exception e){
+            fail("should add successfully");
+        }
         assertFalse(bookshelf.add("The Hot Zone","R Preston","uncategorized",1999));
+        try{
+            bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
+            fail("Expects fail to add when adding again");
+        }
+        catch (EditionAlreadyExistException e){}
+        catch (Exception e){
+            fail("no other exceptions should occur");
+        }
         assertEquals(1,bookshelf.getEditionSize("The Hot Zone", "R Preston"));
     }
-
-    @Test
-    public void testAddEditionToBookshelfBookExistsNoSameEdition(){
-        bookshelf.add("The Hot Zone","R Preston","uncategorized",1999);
-        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston","Random House",1994,"9780679430940"));
-        assertEquals(1,bookshelf.getEditionSize("The Hot Zone","R Preston"));
-    }
-
-    @Test
-    public void testAddEditionToBookshelfBookExistsSameEditionExists(){
-        bookshelf.add("The Hot Zone","R Preston","uncategorized",1999);
-        assertTrue(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston","Random House",1994,"9780679430940"));
-        assertFalse(bookshelf.addEditionToBookshelf("The Hot Zone","R Preston","Random House",1994,"9780679430940"));
-    }
-
 }

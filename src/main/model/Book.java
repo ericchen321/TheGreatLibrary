@@ -1,5 +1,7 @@
 package model;
 
+import model.exceptions.EditionAlreadyExistException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -138,16 +140,15 @@ public class Book{
     // TODO: test
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
-    // EFFECTS: if given edition exists then do not add, and return false
+    // EFFECTS: if given edition exists then do not add, and throws EditionAlreadyExistException
     //          else add given edition, update this's publish year, and return true
-    public boolean addEdition(BookEdition bookEd) {
+    public void addEdition(BookEdition bookEd) throws EditionAlreadyExistException{
         for (BookEdition e: editions){
-            if (e.getID().equals(bookEd.getID()))
-                return false;
+            if (e.equals(bookEd))
+                throw new EditionAlreadyExistException();
         }
         editions.add(bookEd);
         updateYearOfPub();
-        return true;
     }
 
     public String toString(){
