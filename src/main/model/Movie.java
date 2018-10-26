@@ -10,8 +10,8 @@ public class Movie{
     }
 
     private String name;
-    private Artist director = new Director();
-    private List<Artist> stars = new ArrayList<>();
+    private Artist director;
+    private List<Artist> stars;
     private int yearOfPublish;
     private Genre genre;
 

@@ -17,27 +17,13 @@ public class Bookshelf implements Loadable, Saveable{
     //          otherwise returns false
     public boolean add(String name, String author, String genre, int yop){
         Book book = new Book(name, author, genre, yop);
-        if (replicaCheck(book)){
+        if (!listOfBooks.contains(book)){
             listOfBooks.add(book);
             return true;
         }
         else{
             return false;
         }
-    }
-
-    // EFFECTS: retures true if the bookshelf does not have a book with same name
-    //          and author as the given book
-    private boolean replicaCheck(Book book){
-        boolean replicaNotFound = true;
-
-        for (Book b: listOfBooks){
-            replicaNotFound = !((b.getBookName().equals(book.getBookName()))
-                    && (b.getBookAuthorName().equals(book.getBookAuthorName())));
-            if (!replicaNotFound)
-                break;
-        }
-        return replicaNotFound;
     }
 
     // TODO: test & implementation (can throw exception)
@@ -88,7 +74,6 @@ public class Bookshelf implements Loadable, Saveable{
         return new ArrayList<String>(Arrays.asList(splits));
     }
 
-    // TODO: need tests
     // MODIFIES: this
     // EFFECTS: if book of given edition not on the bookshelf yet then add book & edition
     //          else try to add edition & returns true if addition is successful

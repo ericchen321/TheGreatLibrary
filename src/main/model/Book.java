@@ -1,9 +1,8 @@
 package model;
 
-import model.exceptions.IDNotValidException;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Book{
 
@@ -11,25 +10,33 @@ public class Book{
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
     }
     private String name;
-    private Artist author = new Author();
+    private Author author;
     private List<BookEdition> editions = new ArrayList<>();
     private int yearOfPublish;
     private Genre genre;
 
     // constructors
-    public Book(){}
-
-    // TODO: need test
+    // TODO: tests
+    // EFFECTS: constructs a book with given name and author;
+    //          this book's genre is set to uncategorized;
+    //          add this book to the author's list of works
     public Book(String name, String author){
-        this.name = name;
-        this.author.setName(author);
-        setGenre("uncategorized");
+        setBookName(name);
+        this.author = new Author(author);
+        this.author.addBook(this);
+        setGenre("");
     }
 
+    // TODO: tests
+    // EFFECTS: constructs a book with given name, author, year of publish;
+    //          if given genre can be recognized then set the book to given genre,
+    //          otherwise set book's genre to be uncategorized;
+    //          add this book to the author's works
     public Book(String name, String author, String genre, int yop){
-        this.name = name;
-        this.author.setName(author);
-        this.yearOfPublish = yop;
+        setBookName(name);
+        this.author = new Author(author);
+        this.author.addBook(this);
+        setYearOfPublish(yop);
         setGenre(genre);
     }
 
@@ -38,39 +45,43 @@ public class Book{
         this.name = name;
     }
 
+    // MODIFIES: this
+    // EFFECTS: set book's author's name to given name;
+    //          add this book to given author's work
     public void setBookAuthorName(String author) {
         this.author.setName(author);
+        this.author.addBook(this);
     }
 
     public void setYearOfPublish(int yOfp) {
         yearOfPublish = yOfp;
     }
 
-    // EFFECTS: returns true if genre set to user specified;
-    //                  false if set to uncategorized
-    public boolean setGenre(String genre) {
+    // MODIFIES:this
+    // EFFECTS: sets this book's genre to given one if genre is recognizable
+    //          otherwise sets genre to uncategorized
+    public void setGenre(String genre){
         switch (genre) {
             case "art":
                 this.genre = Genre.ART;
-                return true;
+                break;
             case "biography":
                 this.genre = Genre.BIOGRAPHY;
-                return true;
+                break;
             case "classics":
                 this.genre = Genre.CLASSICS;
-                return true;
+                break;
             case "fantasy":
                 this.genre = Genre.FANTASY;
-                return true;
+                break;
             case "history":
                 this.genre = Genre.HISTORY;
-                return true;
+                break;
             case "fiction":
                 this.genre = Genre.FICTION;
-                return true;
+                break;
             default:
                 this.genre = Genre.UNCATAGORIZED;
-                return false;
         }
     }
 
@@ -80,6 +91,10 @@ public class Book{
 
     public String getBookAuthorName() {
         return author.getName();
+    }
+
+    public Author getBookAuthor(){
+        return author;
     }
 
     public int getYearOfPublish() {
@@ -110,28 +125,28 @@ public class Book{
         return editions.size();
     }
 
-    // TODO: test and implementation
-    // REQUIRES: given edition is an edition of this book
+    // TODO: implementation
     // MODIFIES: this
-    // EFFECTS: if given edition's publish year is earlier than current
-    //          publish year of the book then update to the earlier publish year
-    //          and return true
-    //          else do not update this book's publish year and return false
-    private boolean updateYearOfPub(BookEdition ed){
-        return false; // stub
+    // EFFECTS: updates this's publish year by setting the year to the publish year
+    //          of the earliest edition
+    private void updateYearOfPub(){
+        for (Edition e: editions){
+            yearOfPublish = (e.getYearOfPublish() < yearOfPublish)? e.getYearOfPublish():yearOfPublish;
+        }
     }
 
     // TODO: test
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
     // EFFECTS: if given edition exists then do not add, and return false
-    //          else add given edition and return true
+    //          else add given edition, update this's publish year, and return true
     public boolean addEdition(BookEdition bookEd) {
         for (BookEdition e: editions){
             if (e.getID().equals(bookEd.getID()))
                 return false;
         }
         editions.add(bookEd);
+        updateYearOfPub();
         return true;
     }
 
@@ -139,5 +154,18 @@ public class Book{
         return name + " by " + author.getName() + " published in " + yearOfPublish;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(name, book.name) &&
+                Objects.equals(author, book.author);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, author);
+    }
 }

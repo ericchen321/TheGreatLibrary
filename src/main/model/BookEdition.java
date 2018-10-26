@@ -9,7 +9,6 @@ public class BookEdition extends Edition{
     // constructors
     public BookEdition(){}
 
-    // TODO: need tests and implementation
     // MODIFIES: this
     // EFFECTS: makes a new book edition and
     //          throws an exception if ISBN code is not valid:
@@ -20,7 +19,6 @@ public class BookEdition extends Edition{
         checkIDValidity();
     }
 
-    // TODO: maybe needs tests?
     // EFFECTS: throws an exception if ISBN contains not only numbers
     //                                 OR ISBN of the edition is not 10 or 13 digits long
     //          otherwise does nothing
