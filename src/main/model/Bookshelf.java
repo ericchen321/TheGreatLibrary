@@ -93,7 +93,7 @@ public class Bookshelf implements Loadable, Saveable{
     //                 & returns edition
     //          else add edition with given information to the given book & update book's publish year
     //                 & returns edition
-    public Edition addEditionToBookshelf(String bookName, String authorName, String publisher, int yop, String isbn)
+    public Edition addEdition(String bookName, String authorName, String publisher, int yop, String isbn)
             throws IDNotValidException,EditionAlreadyExistException {
         BookEdition bookEd = new BookEdition(publisher,yop,isbn);
         Book book = new Book(bookName, authorName);

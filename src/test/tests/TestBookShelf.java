@@ -45,9 +45,9 @@ public class TestBookShelf {
     }
 
     @Test
-    public void testAddEditionToBookshelfNoBook(){
+    public void testAddEditionNoBook(){
         try{
-            bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
+            bookshelf.addEdition("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
         }
         catch (Exception e){
             fail("should addBook successfully");
@@ -60,7 +60,7 @@ public class TestBookShelf {
         catch (BookAlreadyExistException e){}
 
         try{
-            bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
+            bookshelf.addEdition("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
             fail("Expects fail to addBook when adding again");
         }
         catch (EditionAlreadyExistException e){}

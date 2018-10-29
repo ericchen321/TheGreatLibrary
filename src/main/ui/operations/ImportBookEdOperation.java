@@ -83,7 +83,7 @@ public class ImportBookEdOperation extends ImportOperation {
 
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        bookshelf.addEditionToBookshelf(bookName.getText(),
+                        bookshelf.addEdition(bookName.getText(),
                             authorName.getText(),
                             publisher.getText(),
                             Integer.parseInt(yearOfPublish.getText()),
