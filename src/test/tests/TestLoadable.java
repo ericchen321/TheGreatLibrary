@@ -2,10 +2,12 @@ package tests;
 
 import model.Bookshelf;
 import model.Loadable;
+import model.exceptions.BookAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestLoadable {
     private Bookshelf bookshelf;
@@ -21,8 +23,20 @@ public class TestLoadable {
     @Test
     public void testLoadFromFile(){
         bookshelfloadable.loadFromFile("src/testIOFiles/testScanFromFileBookshelf.txt");
-        assertFalse(bookshelf.add("Special Relativity","Joe","uncategorized",2000));
-        assertFalse(bookshelf.add("How to Play League Right","Bill","biography",2014));
-        assertFalse(bookshelf.add("Reddit it","Jemma","fiction",2012));
+        try{
+            bookshelf.addBook("Special Relativity","Joe","uncategorized",2000);
+            fail("SR should not be added");
+        }
+        catch (BookAlreadyExistException e){}
+        try {
+            bookshelf.addBook("How to Play League Right", "Bill", "biography", 2014);
+            fail("HtPLR should not be added");
+        }
+        catch (BookAlreadyExistException e){}
+        try {
+            bookshelf.addBook("Reddit it", "Jemma", "fiction", 2012);
+            fail("RI should not be added");
+        }
+        catch (BookAlreadyExistException e){}
     }
 }

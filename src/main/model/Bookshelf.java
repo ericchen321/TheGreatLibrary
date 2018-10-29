@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.BookAlreadyExistException;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
 
@@ -14,16 +15,18 @@ public class Bookshelf implements Loadable, Saveable{
     private List<Book> listOfBooks = new ArrayList<Book>();
 
     // MODIFIES: This
-    // EFFECTS: adds a book to the bookshelf if not already added and returns true,
-    //          otherwise returns false
-    public boolean add(String name, String author, String genre, int yop){
+    // EFFECTS: adds a book to the bookshelf with given name, author, genre (if not
+    //          recognized then will be classified as uncategorized), year of publish
+    //          if book with same name & author is not on the shelf yet
+    //          otherwise does not add the book and throws BookAlreadyExistException
+    public Book addBook(String name, String author, String genre, int yop) throws BookAlreadyExistException{
         Book book = new Book(name, author, genre, yop);
         if (!listOfBooks.contains(book)){
             listOfBooks.add(book);
-            return true;
+            return book;
         }
         else{
-            return false;
+            throw new BookAlreadyExistException();
         }
     }
 
@@ -46,7 +49,12 @@ public class Bookshelf implements Loadable, Saveable{
             List<String> lines = Files.readAllLines(Paths.get(pathName));
             for (String line : lines){
                 ArrayList<String> entries = splitOnSlash(line);
-                add(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
+                try{
+                    addBook(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
+                }
+                catch (BookAlreadyExistException bae){
+                    // just chill
+                }
             }
         }
         catch(IOException excep){

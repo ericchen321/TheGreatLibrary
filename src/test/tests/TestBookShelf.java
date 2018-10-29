@@ -1,7 +1,7 @@
 package tests;
 
-import model.BookEdition;
 import model.Bookshelf;
+import model.exceptions.BookAlreadyExistException;
 import model.exceptions.EditionAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,16 +17,31 @@ public class TestBookShelf {
     }
 
     @Test
-    public void testAddAddOneNoReplica(){
-        assertTrue(bookshelf.add("LOL","Eric","art",2018));
-        assertTrue(bookshelf.add("LOL","Jemma","art",2018));
-        assertTrue(bookshelf.add("UAS","Jemma","fiction",2018));
+    public void testAddBookAddOneNoReplica(){
+        try{
+            bookshelf.addBook("LOL","Eric","art",2018);
+            bookshelf.addBook("LOL","Jemma","art",2018);
+            bookshelf.addBook("UAS","Jemma","fiction",2018);
+        }
+        catch (BookAlreadyExistException e){
+            fail("should add all 3 books successfully");
+        }
     }
 
     @Test
-    public void testAddAddTwoOneReplica(){
-        assertTrue(bookshelf.add("BNW", "Huxley", "fiction", 1932));
-        assertFalse(bookshelf.add("BNW", "Huxley", "fiction",1932));
+    public void testAddBookAddTwoOneReplica(){
+        try{
+            bookshelf.addBook("BNW", "Huxley", "fiction", 1932);
+        }
+        catch (BookAlreadyExistException e){
+            fail("first book should be added successfully");
+        }
+
+        try {
+            bookshelf.addBook("BNW", "Huxley", "fiction",1932);
+            fail("2nd book should not be added");
+        }
+        catch (BookAlreadyExistException e){}
     }
 
     @Test
@@ -35,12 +50,18 @@ public class TestBookShelf {
             bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
         }
         catch (Exception e){
-            fail("should add successfully");
+            fail("should addBook successfully");
         }
-        assertFalse(bookshelf.add("The Hot Zone","R Preston","uncategorized",1999));
+
+        try{
+            bookshelf.addBook("The Hot Zone","R Preston","",1999);
+            fail("should not be able to add book");
+        }
+        catch (BookAlreadyExistException e){}
+
         try{
             bookshelf.addEditionToBookshelf("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");
-            fail("Expects fail to add when adding again");
+            fail("Expects fail to addBook when adding again");
         }
         catch (EditionAlreadyExistException e){}
         catch (Exception e){

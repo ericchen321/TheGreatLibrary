@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Book{
 
     private enum Genre {
-        ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATAGORIZED
+        ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATEGORIZED
     }
     private String name;
     private Author author;
@@ -83,7 +83,7 @@ public class Book{
                 this.genre = Genre.FICTION;
                 break;
             default:
-                this.genre = Genre.UNCATAGORIZED;
+                this.genre = Genre.UNCATEGORIZED;
         }
     }
 

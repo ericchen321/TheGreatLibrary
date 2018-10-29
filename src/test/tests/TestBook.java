@@ -39,7 +39,7 @@ public class TestBook {
             BookEdition bookEd = new BookEdition("RH", 2010, "1234567890123");
             book.addEdition(bookEd);
             book.addEdition(bookEd);
-            fail("should not add twice");
+            fail("should not addBook twice");
         }
         catch (IDNotValidException e){
             fail("should make book eds successfully");
