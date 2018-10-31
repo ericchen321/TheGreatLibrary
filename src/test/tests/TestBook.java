@@ -5,7 +5,7 @@ import model.Book;
 import model.BookEdition;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
-import model.exceptions.SameAuthorAsPreviousException;
+import model.exceptions.SameCreatorAsPreviousException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +92,7 @@ public class TestBook {
             book.setAuthor(newAuthor);
             fail("should not be able to add a different author with same name");
         }
-        catch (SameAuthorAsPreviousException e){
+        catch (SameCreatorAsPreviousException e){
             assertTrue(book.getAuthor() == oldAuthor);
             assertFalse(newAuthor.searchBook(book));
         }

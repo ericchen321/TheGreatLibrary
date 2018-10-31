@@ -2,7 +2,7 @@ package tests;
 
 import model.Author;
 import model.Book;
-import model.exceptions.SameAuthorAsPreviousException;
+import model.exceptions.SameCreatorAsPreviousException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class TestAuthor {
             author.addBook(book);
             fail("book already has an author with same name");
         }
-        catch (SameAuthorAsPreviousException e){}
+        catch (SameCreatorAsPreviousException e){}
     }
 
     @Test
