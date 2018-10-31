@@ -36,7 +36,7 @@ public class Bookshelf implements Loadable, Saveable{
     //          else return 0
     public int getEditionSize(String bookName, String authorName){
         for (Book b: listOfBooks){
-            if (b.getBookName().equals(bookName) && b.getBookAuthorName().equals(authorName))
+            if (b.getName().equals(bookName) && b.getAuthorName().equals(authorName))
                 return b.getEditionSize();
         }
         return 0;
@@ -67,7 +67,7 @@ public class Bookshelf implements Loadable, Saveable{
         try{
             PrintWriter writer = new PrintWriter(pathName,"UTF-8");
             for (Book b: listOfBooks){
-                writer.println(b.getBookName()+"/"+b.getBookAuthorName()+"/"+b.getGenre()+"/"+b.getYearOfPublish());
+                writer.println(b.getName()+"/"+b.getAuthorName()+"/"+b.getGenre()+"/"+b.getYearOfPublish());
             }
             writer.close(); //note -- if you miss this, the file will not be written at all.
         }

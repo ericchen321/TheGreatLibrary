@@ -1,6 +1,7 @@
 package model;
 
 import model.exceptions.EditionAlreadyExistException;
+import model.exceptions.SameAuthorAsPreviousException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,24 +19,22 @@ public class Book{
     private Genre genre;
 
     // constructors
-    // TODO: tests
-    // EFFECTS: constructs a book with given name and author;
+    // EFFECTS: constructs a book with given name and author's name;
     //          this book's genre is set to uncategorized;
     //          add this book to the author's list of works
     public Book(String name, String author){
-        setBookName(name);
+        setName(name);
         this.author = new Author(author);
         this.author.addBook(this);
         setGenre("");
     }
 
-    // TODO: tests
     // EFFECTS: constructs a book with given name, author, year of publish;
     //          if given genre can be recognized then set the book to given genre,
     //          otherwise set book's genre to be uncategorized;
     //          add this book to the author's works
     public Book(String name, String author, String genre, int yop){
-        setBookName(name);
+        setName(name);
         this.author = new Author(author);
         this.author.addBook(this);
         setYearOfPublish(yop);
@@ -43,16 +42,27 @@ public class Book{
     }
 
     // setters and getters
-    public void setBookName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     // MODIFIES: this
-    // EFFECTS: set book's author's name to given name;
-    //          add this book to given author's work
-    public void setBookAuthorName(String author) {
-        this.author.setName(author);
-        this.author.addBook(this);
+    // EFFECTS: if given author does not have same name
+    //          then remove this book from current author's books
+    //          AND set book's author to given one
+    //          AND add this book to given author's work
+    //          else if given author has the same name but is not the current one
+    //          then throws SameAuthorAsPreviousException
+    //          else (given is the current) does nothing
+    public void setAuthor(Author author) {
+        if (!(this.author == author)) {
+            if(this.author.equals(author)){
+                throw new SameAuthorAsPreviousException();
+            }
+            this.author.removeBook(this);
+            this.author = author;
+            this.author.addBook(this);
+        }
     }
 
     public void setYearOfPublish(int yOfp) {
@@ -87,15 +97,15 @@ public class Book{
         }
     }
 
-    public String getBookName() {
+    public String getName() {
         return name;
     }
 
-    public String getBookAuthorName() {
+    public String getAuthorName() {
         return author.getName();
     }
 
-    public Author getBookAuthor(){
+    public Author getAuthor(){
         return author;
     }
 
@@ -127,7 +137,6 @@ public class Book{
         return editions.size();
     }
 
-    // TODO: implementation
     // MODIFIES: this
     // EFFECTS: updates this's publish year by setting the year to the publish year
     //          of the earliest edition
@@ -137,7 +146,6 @@ public class Book{
         }
     }
 
-    // TODO: test
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
     // EFFECTS: if given edition exists then do not add, and throws EditionAlreadyExistException
