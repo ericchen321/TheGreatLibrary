@@ -25,7 +25,8 @@ public abstract class Artist {
     }
 
     // TODO: need tests
-    // EFFECTS: return the type of artist: author/director/cast/etc
+    // EFFECTS: returns the type of this
+    //          artist: author/director/cast/etc
     public abstract String getArtistType();
 
     // MODIFIES: this

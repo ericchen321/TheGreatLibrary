@@ -2,7 +2,7 @@ package ui.operations;
 
 import model.Bookshelf;
 import model.exceptions.EditionAlreadyExistException;
-import model.exceptions.IDNotThirteenDigitException;
+import model.exceptions.ISBNNotThirteenDigitException;
 import model.exceptions.IDNotValidException;
 
 import javax.swing.*;
@@ -93,7 +93,7 @@ public class ImportBookEdOperation extends ImportOperation {
                     catch(EditionAlreadyExistException exc){
                         System.out.println("Sorry, edition not added because it's already there!");
                     }
-                    catch (IDNotThirteenDigitException exc){
+                    catch (ISBNNotThirteenDigitException exc){
                         System.out.println("Sorry, edition not added: You need to use the 13-digit ISBN! Or check your publish year!");
                     }
                     catch (IDNotValidException exc){

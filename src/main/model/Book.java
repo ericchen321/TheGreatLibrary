@@ -4,14 +4,14 @@ import model.exceptions.EditionAlreadyExistException;
 
 public class Book extends ArtWork{
 
-    // FIXME: takes care of the -1000 publish year
+    // FIXME: takes care of the DEFAULT_PUBLISH_YEAR
     // constructors
     // EFFECTS: constructs a book with given name and author's name;
     //          this book's genre is set to uncategorized;
-    //          this book's publish year is set to -1000
+    //          this book's publish year is set to -1000 A.D.
     //          add this book to the author's list of works
     public Book(String name, String author){
-        super(name, "", -1000);
+        super(name, "", DEFAULT_PUBLISH_YEAR);
         this.creator = new Author(author);
         this.creator.addWork(this);
     }

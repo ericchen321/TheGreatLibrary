@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 // TODO: need a test class for ArtWork
+/* CLASS INVARIANTS: name should not be null, creator should not be null*/
 public abstract class ArtWork {
+    protected static final int DEFAULT_PUBLISH_YEAR = -1000;
     protected enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATEGORIZED
     }
@@ -64,7 +66,7 @@ public abstract class ArtWork {
 
     // MODIFIES: this
     // EFFECTS: if given creator does not have same name
-    //          then removes this book from current creator's works
+    //          then removes this work from current creator's works
     //          AND set this work's creator to given one
     //          AND add this work to given creator's work
     //          else if given creator has the same name but is not the current one

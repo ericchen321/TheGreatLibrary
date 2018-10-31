@@ -1,7 +1,7 @@
 package model;
 
 import model.exceptions.IDNotValidException;
-import model.exceptions.IDNotThirteenDigitException;
+import model.exceptions.ISBNNotThirteenDigitException;
 
 public class BookEdition extends Edition{
 
@@ -35,7 +35,7 @@ public class BookEdition extends Edition{
         }
 
         if(yearOfPublish >= 2007 && ID.length()==10){
-            throw new IDNotThirteenDigitException();
+            throw new ISBNNotThirteenDigitException();
         }
     }
 }
