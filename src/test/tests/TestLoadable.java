@@ -2,7 +2,7 @@ package tests;
 
 import model.Bookshelf;
 import model.Loadable;
-import model.exceptions.BookAlreadyExistException;
+import model.exceptions.WorkAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,16 +27,16 @@ public class TestLoadable {
             bookshelf.addBook("Special Relativity","Joe","uncategorized",2000);
             fail("SR should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
         try {
             bookshelf.addBook("How to Play League Right", "Bill", "biography", 2014);
             fail("HtPLR should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
         try {
             bookshelf.addBook("Reddit it", "Jemma", "fiction", 2012);
             fail("RI should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
     }
 }

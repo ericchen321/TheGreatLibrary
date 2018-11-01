@@ -1,7 +1,7 @@
 package tests;
 
 import model.Bookshelf;
-import model.exceptions.BookAlreadyExistException;
+import model.exceptions.WorkAlreadyExistException;
 import model.exceptions.EditionAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class TestBookShelf {
             bookshelf.addBook("LOL","Jemma","art",2018);
             bookshelf.addBook("UAS","Jemma","fiction",2018);
         }
-        catch (BookAlreadyExistException e){
+        catch (WorkAlreadyExistException e){
             fail("should add all 3 books successfully");
         }
     }
@@ -33,7 +33,7 @@ public class TestBookShelf {
         try{
             bookshelf.addBook("BNW", "Huxley", "fiction", 1932);
         }
-        catch (BookAlreadyExistException e){
+        catch (WorkAlreadyExistException e){
             fail("first book should be added successfully");
         }
 
@@ -41,7 +41,7 @@ public class TestBookShelf {
             bookshelf.addBook("BNW", "Huxley", "fiction",1932);
             fail("2nd book should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TestBookShelf {
             bookshelf.addBook("The Hot Zone","R Preston","",1999);
             fail("should not be able to add book");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
 
         try{
             bookshelf.addEdition("The Hot Zone", "R Preston","Anchor Books",1999 ,"9780385495226");

@@ -3,7 +3,7 @@ package tests;
 import model.Bookshelf;
 import model.Loadable;
 import model.Saveable;
-import model.exceptions.BookAlreadyExistException;
+import model.exceptions.WorkAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ public class TestSaveable {
             bookshelf.addBook("Digital Design","Dally","uncategorized",2000);
             bookshelf.addBook("The Great Gatsby","Fitzgerald","fiction",1925);
         }
-        catch (BookAlreadyExistException e){
+        catch (WorkAlreadyExistException e){
             fail("Both should be added successfully");
         }
         bookshelfsaveable.printToFile("src/testIOFiles/testPrintToFileBookshelf.txt");
@@ -40,11 +40,11 @@ public class TestSaveable {
             bookshelf1.addBook("Digital Design","Dally","uncategorized",2000);
             fail("DD should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
         try{
             bookshelf1.addBook("The Great Gatsby","Fitzgerald","fiction",1925);
             fail("TGG should not be added");
         }
-        catch (BookAlreadyExistException e){}
+        catch (WorkAlreadyExistException e){}
     }
 }
