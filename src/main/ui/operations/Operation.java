@@ -17,9 +17,11 @@ public abstract class Operation {
     }
 
     // MODIFIES: this
-    // EFFECTS: instantiates a button with a title
+    // EFFECTS: instantiates a button with given title
     //          referring to the operation
-    protected abstract void createButton();
+    protected void createButton(String title){
+        button = new JButton(title);
+    };
 
     // REFERENCE: "Simple Drawing Player" from CPSC 210
     // MODIFIES: this

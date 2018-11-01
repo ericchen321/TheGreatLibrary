@@ -2,9 +2,6 @@ package ui;
 
 import model.MovieShelf;
 
-import javax.swing.*;
-import java.awt.event.KeyEvent;
-
 public class MovieshelfUI extends ShelfUI{
     private MovieShelf movieshelf = new MovieShelf();
 

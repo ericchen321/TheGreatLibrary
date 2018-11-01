@@ -5,8 +5,6 @@ import ui.operations.ImportBookEdOperation;
 import ui.operations.ImportBooksOperation;
 import ui.operations.Operation;
 
-import java.util.Scanner;
-
 public class BookshelfUI extends ShelfUI {
     private Bookshelf bookshelf = new Bookshelf();
 

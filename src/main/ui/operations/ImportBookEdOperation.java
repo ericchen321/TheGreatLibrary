@@ -10,35 +10,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ImportBookEdOperation extends ImportOperation {
-
-    public ImportBookEdOperation(Bookshelf bookshelf) {
-        createButton();
-        initializeButtonAppearance();
-        setButtonAction(bookshelf);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: instantiates a button with a title
-    //          referring to the operation
-    protected void createButton() {
-        button = new JButton("Import an edition for a book");
-    }
-
-    // MODIFIES: this
-    // EFFECTS: set action when button for import book ed operation is clicked
-    private void setButtonAction(Bookshelf bookshelf) {
-        ImportOpActionListener buttonAL = new ImportBookEdActionListener(bookshelf);
-        button.addActionListener(buttonAL);
-    }
-
-    private class ImportBookEdActionListener extends ImportOpActionListener {
+public class ImportBookEdOperation extends Operation {
+    // additional buttons for this operation
+    private JButton cancel = new JButton("Cancel");
+    private JButton confirm = new JButton("Confirm");
+    // action listener class for button of this operation
+    private class ImportBookEdActionListener implements ActionListener {
+        Bookshelf bookshelf;
 
         public ImportBookEdActionListener(Bookshelf bookshelf) {
-            super(bookshelf);
+            this.bookshelf = bookshelf;
         }
 
-        // TODO: may need exception handling
         public void actionPerformed(ActionEvent e) {
             final int ADD_EDITION_DIALOGUE_WIDTH = 400;
             final int ADD_EDITION_DIALOGUE_HEIGHT = 200;
@@ -51,8 +34,7 @@ public class ImportBookEdOperation extends ImportOperation {
             JTextField publisher = new JTextField();
             JTextField yearOfPublish = new JTextField();
             JTextField isbn = new JTextField();
-            JButton cancel = new JButton("Cancel");
-            JButton confirm = new JButton("Confirm");
+
 
             JFrame addEditionDialogue = new JFrame("Add edition");
             addEditionDialogue.setLayout(new BorderLayout());
@@ -73,21 +55,15 @@ public class ImportBookEdOperation extends ImportOperation {
             addEditionDialogue.add(isbn);
             addEditionDialogue.add(cancel);
             addEditionDialogue.add(confirm);
-
-            class ConfirmActionListener implements ActionListener{
-                private Bookshelf bookshelf;
-
-                public ConfirmActionListener(Bookshelf bookshelf){
-                    this.bookshelf = bookshelf;
-                }
-
+            confirm.addActionListener(new ActionListener(){
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
                         bookshelf.addEdition(bookName.getText(),
-                            authorName.getText(),
-                            publisher.getText(),
-                            Integer.parseInt(yearOfPublish.getText()),
-                            isbn.getText());
+                                authorName.getText(),
+                                publisher.getText(),
+                                Integer.parseInt(yearOfPublish.getText()),
+                                isbn.getText());
                         System.out.println("Edition added!");
                     }
                     catch(EditionAlreadyExistException exc){
@@ -100,9 +76,20 @@ public class ImportBookEdOperation extends ImportOperation {
                         System.out.println("Sorry, edition not added: ISBN can only be 10 or 13 digits!");
                     }
                 }
-            }
-
-            confirm.addActionListener(new ConfirmActionListener(bookshelf));
+            });
         }
+    }
+
+    // constructors
+    public ImportBookEdOperation(Bookshelf bookshelf) {
+        createButton("Import an edition for a book");
+        initializeButtonAppearance();
+        setButtonAction(bookshelf);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set action when button for this operation is clicked
+    private void setButtonAction(Bookshelf bookshelf) {
+        button.addActionListener(new ImportBookEdActionListener(bookshelf));
     }
 }
