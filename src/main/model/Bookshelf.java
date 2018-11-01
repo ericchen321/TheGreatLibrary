@@ -60,9 +60,7 @@ public class Bookshelf extends Shelf{
     //          else if edition already exists
     //               throws EditionAlreadyExistException
     //          else if book of given edition not on the bookshelf yet then add book & edition
-    //                 & returns edition
     //          else add edition with given information to the given book & update book's publish year
-    //                 & returns edition
     public void addEdition(String bookName, String authorName, String publisher, int yop, String isbn)
             throws IDNotValidException,EditionAlreadyExistException {
         BookEdition bookEd = new BookEdition(publisher,yop,isbn);
