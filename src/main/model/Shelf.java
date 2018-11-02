@@ -1,7 +1,6 @@
 package model;
 
 import model.exceptions.EditionAlreadyExistException;
-import model.exceptions.IDNotValidException;
 import model.exceptions.WorkAlreadyExistException;
 
 import java.io.IOException;
@@ -12,13 +11,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Shelf implements Loadable, Saveable{
-    private Set<ArtWork> setOfWorks = new HashSet<>();
+    private Set<Artwork> setOfWorks = new HashSet<>();
 
     // MODIFIES: This
     // EFFECTS: if work with same name & creator is not on the shelf yet
     //          then adds given work to the shelf
     //          otherwise does not add the work and throws WorkAlreadyExistException
-    protected void addWork(ArtWork work) throws WorkAlreadyExistException {
+    protected void addWork(Artwork work) throws WorkAlreadyExistException {
         if (!setOfWorks.contains(work)){
             setOfWorks.add(work);
         }
@@ -31,8 +30,8 @@ public abstract class Shelf implements Loadable, Saveable{
     // EFFECTS: if work with same name & creator as given work is stored in the shelf
     //          then return the number of its editions
     //          else return 0
-    protected int getEditionSize(ArtWork work){
-        for (ArtWork aw: setOfWorks){
+    protected int getEditionSize(Artwork work){
+        for (Artwork aw: setOfWorks){
             if (aw.equals(work))
                 return aw.getEditionSize();
         }
@@ -53,9 +52,9 @@ public abstract class Shelf implements Loadable, Saveable{
     //             throws EditionAlreadyExistException
     //          else if given work not on the shelf yet then adds work & edition
     //          else adds given edition to its work & update work's publish year
-    protected void addEdition(ArtWork work, Edition workEd)
+    protected void addEdition(Artwork work, Edition workEd)
             throws EditionAlreadyExistException {
-        for(ArtWork aw: setOfWorks){
+        for(Artwork aw: setOfWorks){
             if (aw.equals(work)){
                 aw.addEdition(workEd);
                 return;
@@ -69,7 +68,7 @@ public abstract class Shelf implements Loadable, Saveable{
     public void printToFile(String pathName) {
         try{
             PrintWriter writer = new PrintWriter(pathName,"UTF-8");
-            for (ArtWork aw: setOfWorks){
+            for (Artwork aw: setOfWorks){
                 writer.println(aw.getName()+"/"+aw.getCreatorName()+"/"+aw.getGenre()+"/"+aw.getYearOfPublish());
             }
             writer.close(); //note -- if you miss this, the file will not be written at all.

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: need a test class for ArtWork
+// TODO: need a test class for Artwork
 /* CLASS INVARIANTS: name should not be null, creator should not be null*/
-public abstract class ArtWork {
+public abstract class Artwork {
     protected static final int DEFAULT_PUBLISH_YEAR = -1000;
     protected enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATEGORIZED
@@ -21,7 +21,7 @@ public abstract class ArtWork {
     protected List<Edition> editions = new ArrayList<>();
 
     // constructors
-    public ArtWork(String name, String genre, int yop){
+    public Artwork(String name, String genre, int yop){
         setName(name);
         setGenre(genre);
         setYearOfPublish(yop);
@@ -153,9 +153,9 @@ public abstract class ArtWork {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ArtWork artWork = (ArtWork) o;
-        return Objects.equals(name, artWork.name) &&
-                Objects.equals(creator, artWork.creator);
+        Artwork artwork = (Artwork) o;
+        return Objects.equals(name, artwork.name) &&
+                Objects.equals(creator, artwork.creator);
     }
 
     @Override

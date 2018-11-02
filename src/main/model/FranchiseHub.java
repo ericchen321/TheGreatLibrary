@@ -1,7 +1,5 @@
 package model;
 
-import model.exceptions.ArtWorkNotFoundException;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -9,7 +7,7 @@ import java.util.Set;
 
 public class FranchiseHub {
 
-    private Map<String, Set<ArtWork>> franchises;
+    private Map<String, Set<Artwork>> franchises;
 
     // constructors
     public FranchiseHub(){
@@ -20,9 +18,9 @@ public class FranchiseHub {
     //           of given name yet
     // MODIFIES: this
     // EFFECTS: add given artwork to franchise of given name
-    public void addToFranchise(String name, ArtWork aw){
+    public void addToFranchise(String name, Artwork aw){
         if(!franchises.containsKey(name)){
-            franchises.put(name, new HashSet<ArtWork>());
+            franchises.put(name, new HashSet<Artwork>());
         }
 
         franchises.get(name).add(aw);
@@ -30,7 +28,7 @@ public class FranchiseHub {
 
     // EFFECTS: returns true if the given franchise contains the given work
     //          false otherwise
-    public boolean searchWork(String name, ArtWork aw) {
+    public boolean searchWork(String name, Artwork aw) {
         return franchises.get(name).contains(aw);
     }
 

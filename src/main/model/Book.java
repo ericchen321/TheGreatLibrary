@@ -2,7 +2,7 @@ package model;
 
 import model.exceptions.EditionAlreadyExistException;
 
-public class Book extends ArtWork{
+public class Book extends Artwork {
 
     // FIXME: takes care of the DEFAULT_PUBLISH_YEAR
     // constructors

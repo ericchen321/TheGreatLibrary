@@ -2,10 +2,7 @@ package model;
 
 import model.exceptions.EditionAlreadyExistException;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Movie extends ArtWork{
+public class Movie extends Artwork {
 
     public Movie(String name, String genre, int yop) {
         super(name, genre, yop);

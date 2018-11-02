@@ -8,7 +8,7 @@ import java.util.Set;
 
 public abstract class Artist {
     protected String name;
-    private Set<ArtWork> works = new HashSet<ArtWork>();
+    private Set<Artwork> works = new HashSet<Artwork>();
 
     // constructors
     public Artist(String name){
@@ -33,31 +33,31 @@ public abstract class Artist {
     // EFFECTS: if given work has creator with same name but the creator is not this
     //          then throws SameCreatorAsPreviousException
     //          otherwise add given work to this artist's works AND set given work's creator to this
-    public void addWork(ArtWork artWork){
-        if(artWork.getCreator().equals(this) && artWork.getCreator()!=this){
+    public void addWork(Artwork artwork){
+        if(artwork.getCreator().equals(this) && artwork.getCreator()!=this){
             throw new SameCreatorAsPreviousException();
         }
 
-        if(!works.contains(artWork)){
-            works.add(artWork);
-            artWork.setCreator(this);
+        if(!works.contains(artwork)){
+            works.add(artwork);
+            artwork.setCreator(this);
         }
     }
 
     // TODO: tests
     // EFFECTS: remove given work from the artist's works if exists
     //          otherwise does nothing
-    public void removeWork(ArtWork artWork){
-        works.remove(artWork);
+    public void removeWork(Artwork artwork){
+        works.remove(artwork);
     }
 
     // TODO: question related to mutating field in objects in a hashSet
     // EFFECTS: returns true if this artist has created the given work
     //                  false if not
-    public boolean searchWork(ArtWork artWork){
-        for(ArtWork aw: works){
+    public boolean searchWork(Artwork artwork){
+        for(Artwork aw: works){
             assert (works.contains(aw));
-            if (aw.equals(artWork))
+            if (aw.equals(artwork))
                 return true;
         }
         return false;
