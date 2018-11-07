@@ -1,17 +1,21 @@
 package ui;
 
+import model.Bookshelf;
+import model.FranchiseHub;
+import model.Movieshelf;
+
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
 public class TheGreatLibrary extends JFrame{
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
-    private BookshelfUI bookshelfUI = new BookshelfUI();
-    private MovieshelfUI movieshelfUI = new MovieshelfUI();
-    private Scanner scanner = new Scanner(System.in);
+    private BookshelfUI bookshelfUI;
+    private MovieshelfUI movieshelfUI;
+    private Bookshelf bookshelf = new Bookshelf();
+    private Movieshelf movieshelf = new Movieshelf();
+    private FranchiseHub franchiseHub = new FranchiseHub();
 
-    // TODO: refactored app constructor for GUI
     // MODIFIES: This;
     //           Bookshelf object
     //           Book objects
@@ -20,7 +24,6 @@ public class TheGreatLibrary extends JFrame{
         super("The Great Library 2019");
         printWelcomeMsg();
         initializeGraphics();
-
     }
 
     // REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
@@ -34,11 +37,13 @@ public class TheGreatLibrary extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+        bookshelfUI = new BookshelfUI(bookshelf);
+        //movieshelfUI = new MovieshelfUI(movieshelf);
         bookshelfUI.addOperations();
-        movieshelfUI.addOperations();
+        //movieshelfUI.addOperations();
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Explore Books", bookshelfUI.getTab());
-        tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
+        //tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
         add(tabbedPane);
     }
 

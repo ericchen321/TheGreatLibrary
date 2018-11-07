@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieShelf extends Shelf{
+public class Movieshelf extends Shelf{
 
     // MODIFIES: This
     // EFFECTS: if movie with same name & director is not on the shelf yet

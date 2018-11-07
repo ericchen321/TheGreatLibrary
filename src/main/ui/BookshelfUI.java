@@ -1,12 +1,18 @@
 package ui;
 
 import model.Bookshelf;
+import model.Shelf;
 import ui.operations.ImportBookEdOperation;
 import ui.operations.ImportBooksOperation;
 import ui.operations.Operation;
 
 public class BookshelfUI extends ShelfUI {
-    private Bookshelf bookshelf = new Bookshelf();
+    private Bookshelf bookshelf;
+
+    // constructors
+    public BookshelfUI(Bookshelf bs){
+        bookshelf = bs;
+    }
 
     // MODIFIES: this
     // EFFECTS: adds all available operations to the bookshelf
