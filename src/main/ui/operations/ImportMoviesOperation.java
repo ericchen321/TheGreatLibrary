@@ -3,23 +3,22 @@ package ui.operations;
 import model.Movieshelf;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ImportMoviesOperation extends Operation implements ActionListener {
-    private Movieshelf movieshelf;
+public class ImportMoviesOperation extends ImportArtworksOperation {
 
     // constructors
+    // MODIFIES: this
+    // EFFECTS: creates a button for this operation;
+    //          initialize the button's appearance;
+    //          set up behavior when the button is clicked
     public ImportMoviesOperation(Movieshelf ms){
-        this.movieshelf = ms;
-        createButton("Import Movies");
-        initializeButtonAppearance();
-        button.addActionListener(this);
+        super(ms, "movie");
     }
 
     // MODIFIES: this
     // EFFECTS: set action when button for this operation is clicked
     public void actionPerformed(ActionEvent e) {
-        movieshelf.loadFromFile("input-movies.txt");
+        shelf.loadFromFile("input-movies.txt");
         System.out.println("Movies imported!");
     }
 }
