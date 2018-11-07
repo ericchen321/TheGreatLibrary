@@ -1,5 +1,7 @@
 package ui.operations;
 
+import model.Book;
+import model.BookEdition;
 import model.Bookshelf;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.ISBNNotThirteenDigitException;
@@ -10,64 +12,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ImportBookEdOperation extends Operation implements ActionListener{
-    private Bookshelf bookshelf;
-    private JButton cancel = new JButton("Cancel");
-    private JButton confirm = new JButton("Confirm");
+public class ImportBookEdOperation extends ImportEditionOperation{
 
     // constructors
-    public ImportBookEdOperation(Bookshelf bookshelf) {
-        this.bookshelf = bookshelf;
-        createButton("Import an edition for a book");
-        initializeButtonAppearance();
-        button.addActionListener(this);
+    public ImportBookEdOperation(Bookshelf bs) {
+        super(bs, "book");
     }
 
     // MODIFIES: this
-    // EFFECTS: sets actions when button for this operation is clicked;
-    //          also sets actions when buttons in this operation are clicked
+    // EFFECTS: sets actions when button for this operation is clicked - creates
+    //          a dialogue for user to enter info for a book edition
+    //          also sets actions when "Cancel"/"Confirm" in this operation are clicked
     public void actionPerformed(ActionEvent e){
-        final int ADD_EDITION_DIALOGUE_WIDTH = 400;
-        final int ADD_EDITION_DIALOGUE_HEIGHT = 200;
-        final int ROW_NUM = 6;
-        final int COL_NUM = 4;
-        final int HORIZ_SPACING = 2;
-        final int VERTI_SPACING = 2;
-        JTextField bookName = new JTextField();
-        JTextField authorName = new JTextField();
-        JTextField publisher = new JTextField();
-        JTextField yearOfPublish = new JTextField();
-        JTextField isbn = new JTextField();
-
-
-        JFrame addEditionDialogue = new JFrame("Add edition");
-        addEditionDialogue.setLayout(new BorderLayout());
-        addEditionDialogue.setMinimumSize(new Dimension(ADD_EDITION_DIALOGUE_WIDTH, ADD_EDITION_DIALOGUE_HEIGHT));
-        addEditionDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        addEditionDialogue.setLocationRelativeTo(null);
-        addEditionDialogue.setVisible(true);
-        addEditionDialogue.setLayout(new GridLayout(ROW_NUM,COL_NUM,HORIZ_SPACING,VERTI_SPACING));
-        addEditionDialogue.add(new JLabel("Book Name"));
-        addEditionDialogue.add(bookName);
-        addEditionDialogue.add(new JLabel("Author Name"));
-        addEditionDialogue.add(authorName);
-        addEditionDialogue.add(new JLabel("Publisher"));
-        addEditionDialogue.add(publisher);
-        addEditionDialogue.add(new JLabel("Year Published"));
-        addEditionDialogue.add(yearOfPublish);
-        addEditionDialogue.add(new JLabel("ISBN"));
-        addEditionDialogue.add(isbn);
-        addEditionDialogue.add(cancel);
-        addEditionDialogue.add(confirm);
+        initializeDialogue("book");
         confirm.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    bookshelf.addEdition(bookName.getText(),
-                            authorName.getText(),
-                            publisher.getText(),
+                    Book b = new Book(workName.getText(),creatorName.getText(),"", Integer.parseInt(yearOfPublish.getText()));
+                    BookEdition be = new BookEdition(publisher.getText(),
                             Integer.parseInt(yearOfPublish.getText()),
-                            isbn.getText());
+                            id.getText());
+                    shelf.addEdition(b,be);
                     System.out.println("Edition added!");
                 }
                 catch(EditionAlreadyExistException exc){

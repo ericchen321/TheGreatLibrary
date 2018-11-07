@@ -52,7 +52,7 @@ public abstract class Shelf implements Loadable, Saveable{
     //             throws EditionAlreadyExistException
     //          else if given work not on the shelf yet then adds work & edition
     //          else adds given edition to its work & update work's publish year
-    protected void addEdition(Artwork work, Edition workEd)
+    public void addEdition(Artwork work, Edition workEd)
             throws EditionAlreadyExistException {
         for(Artwork aw: setOfWorks){
             if (aw.equals(work)){
