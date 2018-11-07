@@ -1,7 +1,6 @@
 package ui;
 
 import model.Bookshelf;
-import model.Shelf;
 import ui.operations.ImportBookEdOperation;
 import ui.operations.ImportBooksOperation;
 import ui.operations.Operation;

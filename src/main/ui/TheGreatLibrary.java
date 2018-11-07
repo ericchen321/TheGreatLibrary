@@ -38,12 +38,12 @@ public class TheGreatLibrary extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         bookshelfUI = new BookshelfUI(bookshelf);
-        //movieshelfUI = new MovieshelfUI(movieshelf);
+        movieshelfUI = new MovieshelfUI(movieshelf);
         bookshelfUI.addOperations();
-        //movieshelfUI.addOperations();
+        movieshelfUI.addOperations();
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Explore Books", bookshelfUI.getTab());
-        //tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
+        tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
         add(tabbedPane);
     }
 
