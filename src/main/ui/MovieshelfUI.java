@@ -3,7 +3,7 @@ package ui;
 import model.Movieshelf;
 import ui.operations.*;
 
-public class MovieshelfUI extends ShelfUI{
+public class MovieshelfUI extends ModuleUI {
     private Movieshelf movieshelf;
 
     // constructors

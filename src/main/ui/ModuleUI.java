@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ShelfUI {
+public abstract class ModuleUI {
     protected JPanel panel = new JPanel();
     protected List<Operation> operations = new ArrayList<Operation>();
 

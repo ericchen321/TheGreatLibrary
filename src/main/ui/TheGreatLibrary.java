@@ -12,6 +12,7 @@ public class TheGreatLibrary extends JFrame{
     private static final int HEIGHT = 700;
     private BookshelfUI bookshelfUI;
     private MovieshelfUI movieshelfUI;
+    private FranchiseHubUI franchiseHubUI;
     private Bookshelf bookshelf = new Bookshelf();
     private Movieshelf movieshelf = new Movieshelf();
     private FranchiseHub franchiseHub = new FranchiseHub();
@@ -39,11 +40,13 @@ public class TheGreatLibrary extends JFrame{
         setVisible(true);
         bookshelfUI = new BookshelfUI(bookshelf);
         movieshelfUI = new MovieshelfUI(movieshelf);
+        franchiseHubUI = new FranchiseHubUI(bookshelf, movieshelf);
         bookshelfUI.addOperations();
         movieshelfUI.addOperations();
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Explore Books", bookshelfUI.getTab());
         tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
+        tabbedPane.addTab("Explore Franchises", franchiseHubUI.getTab());
         add(tabbedPane);
     }
 

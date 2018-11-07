@@ -5,7 +5,7 @@ import ui.operations.ImportBookEdOperation;
 import ui.operations.ImportBooksOperation;
 import ui.operations.Operation;
 
-public class BookshelfUI extends ShelfUI {
+public class BookshelfUI extends ModuleUI {
     private Bookshelf bookshelf;
 
     // constructors
