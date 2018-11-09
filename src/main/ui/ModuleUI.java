@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ModuleUI {
-    protected JPanel panel = new JPanel();
-    protected List<Operation> operations = new ArrayList<Operation>();
+    protected JPanel panel;
+    protected List<Operation> operations;
+
+    // constructors
+    public ModuleUI(){
+        panel = new JPanel();
+        operations = new ArrayList<>();
+    }
 
     // setters and getters
     public JPanel getTab() {

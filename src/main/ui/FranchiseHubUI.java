@@ -9,6 +9,7 @@ public class FranchiseHubUI extends ModuleUI {
 
     // constructors
     public FranchiseHubUI(Bookshelf bs, Movieshelf ms){
+        super();
         bookshelf = bs;
         movieshelf = ms;
     }

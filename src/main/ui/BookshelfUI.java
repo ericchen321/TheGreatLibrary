@@ -10,6 +10,7 @@ public class BookshelfUI extends ModuleUI {
 
     // constructors
     public BookshelfUI(Bookshelf bs){
+        super();
         bookshelf = bs;
     }
 

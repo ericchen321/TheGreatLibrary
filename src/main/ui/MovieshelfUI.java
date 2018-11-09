@@ -8,6 +8,7 @@ public class MovieshelfUI extends ModuleUI {
 
     // constructors
     public MovieshelfUI (Movieshelf ms){
+        super();
         movieshelf = ms;
     }
 
