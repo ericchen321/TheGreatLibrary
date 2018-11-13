@@ -29,7 +29,7 @@ public abstract class Artist {
     //          artist: author/director/cast/etc
     public abstract String getArtistType();
 
-    // MODIFIES: this
+    // MODIFIES: this, artwork
     // EFFECTS: if given work has creator with same name but the creator is not this
     //          then throws SameCreatorAsPreviousException
     //          otherwise add given work to this artist's works AND set given work's creator to this

@@ -1,5 +1,6 @@
 package tests;
 
+import model.Artwork;
 import model.Author;
 import model.Book;
 import model.BookEdition;
@@ -58,6 +59,7 @@ public class TestBook {
         try{
             BookEdition bookEd = new BookEdition("RH", 2000, "1234567890");
             book.addEdition(bookEd);
+            assertEquals(book, bookEd.getArtwork());
         }
         catch (Exception e){fail("should create ed and add ed successfully");}
         assertEquals(2000,book.getYearOfPublish());
@@ -69,6 +71,7 @@ public class TestBook {
         try{
             BookEdition bookEd = new BookEdition("RH", 2018, "1234567890123");
             book.addEdition(bookEd);
+            assertEquals(book, bookEd.getArtwork());
         }
         catch (Exception e){fail("should create ed and add ed successfully");}
         assertEquals(2015,book.getYearOfPublish());

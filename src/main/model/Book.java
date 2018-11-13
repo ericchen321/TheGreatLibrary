@@ -51,7 +51,8 @@ public class Book extends Artwork {
     // REQUIRES: given edition is an edition of this book
     // MODIFIES: this
     // EFFECTS: if given edition exists then do not add, and throws EditionAlreadyExistException
-    //          else add given edition, update this's publish year, and return true
+    //          else add given edition, register this book for given edition,
+    //          update this's publish year, and return true
     public void addEdition(Edition bookEd) throws EditionAlreadyExistException{
         super.addEdition(bookEd);
     }

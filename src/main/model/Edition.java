@@ -1,15 +1,18 @@
 package model;
+import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
+import model.exceptions.WorkAlreadyExistException;
 
 import java.util.Objects;
 
 public abstract class Edition {
+    protected Artwork artwork;
     protected String publisher;
     protected int yearOfPublish;
     protected String ID;
 
     // constructors
-    public Edition(){}
+    public Edition(){};
 
     // EFFECTS: create an edition of a book or movie with
     //          given publisher, year published, and an ID
@@ -20,6 +23,35 @@ public abstract class Edition {
     }
 
     // setters and getters
+    // REQUIRES: this edition is an edition of the given artwork
+    // MODIFIES: this, aw
+    // EFFECTS: if given artwork equals this edition's current artwork but is not the same
+    //          then throws WorkAlreadyExistException
+    //          else if given artwork equals current one and is the same
+    //          then does nothing
+    //          else register given artwork for this edition
+    //          AND remove association with previous edition
+    //          AND add this edition to given artwork's registered editions
+    public void setArtwork(Artwork aw) throws WorkAlreadyExistException{
+        if (aw.equals(artwork) && aw == artwork){
+            throw new WorkAlreadyExistException();
+        }
+        else if(!aw.equals(artwork)){
+            if (artwork != null){
+                artwork.removeEdition(this);
+            }
+            artwork = aw;
+            try{
+                aw.addEdition(this);
+            }
+            catch (EditionAlreadyExistException e){}
+        }
+    }
+
+    public Artwork getArtwork(){
+        return artwork;
+    }
+
     public int getYearOfPublish(){
         return yearOfPublish;
     }

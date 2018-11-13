@@ -1,12 +1,16 @@
 package tests;
 
+import model.Book;
 import model.BookEdition;
 import model.Edition;
 import model.MovieEdition;
+import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
+import model.exceptions.WorkAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestEdition {
@@ -29,5 +33,34 @@ public class TestEdition {
         catch (IDNotValidException e){
             fail("IDs are all valid");
         }
+    }
+
+    // TODO: tests for all interesting functions in Edition class
+
+    @Test
+    public void testSetArtwork(){
+        Book book = new Book("HP", "JKR", "fiction", 2005);
+        try{
+            bookEdition = new BookEdition("RH",2005,"1234567890");
+        }
+        catch (IDNotValidException e){}
+        try{
+            bookEdition.setArtwork(book);
+            assertEquals(book, bookEdition.getArtwork());
+        }
+        catch (WorkAlreadyExistException e){
+            fail("should set artwork successfully in first trial");
+        }
+        try{
+            book.addEdition(bookEdition);
+            fail("should not be able to add again since has already added");
+        }
+        catch (EditionAlreadyExistException e){}
+        try{
+            bookEdition.setArtwork(book);
+            fail("should not be able to set again since has aleady set");
+        }
+        catch (WorkAlreadyExistException e){}
+
     }
 }

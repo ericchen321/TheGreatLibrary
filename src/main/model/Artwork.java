@@ -2,6 +2,7 @@ package model;
 
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.SameCreatorAsPreviousException;
+import model.exceptions.WorkAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Objects;
 /* CLASS INVARIANTS: name should not be null, creator should not be null*/
 public abstract class Artwork {
     protected static final int DEFAULT_PUBLISH_YEAR = -1000;
+
     protected enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATEGORIZED
     }
@@ -64,7 +66,7 @@ public abstract class Artwork {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, creator
     // EFFECTS: if given creator does not have same name
     //          then removes this work from current creator's works
     //          AND set this work's creator to given one
@@ -137,16 +139,29 @@ public abstract class Artwork {
     }
 
     // REQUIRES: given edition is an edition of this artwork
-    // MODIFIES: this
+    // MODIFIES: this, ed
     // EFFECTS: if given edition exists then do not add, and throws EditionAlreadyExistException
-    //          else add given edition, update this's publish year, and return true
+    //          else add given edition
+    //          AND register this work for the given edition
+    //          AND update this work's publish year
+    //          AND return true
     public void addEdition(Edition ed) throws EditionAlreadyExistException {
         for (Edition e: editions){
             if (e.equals(ed))
                 throw new EditionAlreadyExistException();
         }
         editions.add(ed);
+        try{
+            ed.setArtwork(this);
+        }
+        catch (WorkAlreadyExistException e){}
         updateYearOfPub();
+    }
+
+    // MODIFIES: this, edition
+    // EFFECTS: remove given edition from editions registered for this work
+    public void removeEdition(Edition edition){
+        editions.remove(edition);
     }
 
     @Override

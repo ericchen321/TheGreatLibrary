@@ -55,7 +55,8 @@ public class Movie extends Artwork {
     // REQUIRES: given edition is an edition of this movie
     // MODIFIES: this
     // EFFECTS: if given edition exists then do not add, and throws EditionAlreadyExistException
-    //          else add given edition, update this's publish year, and return true
+    //          else add given edition, register this movie for given edition,
+    //          update this's publish year, and return true
     public void addEdition(Edition movieEd) throws EditionAlreadyExistException {
         super.addEdition(movieEd);
     }
