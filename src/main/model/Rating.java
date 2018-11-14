@@ -4,8 +4,8 @@ import model.exceptions.RatingNotValidException;
 import model.exceptions.SameWorkAsPreviousException;
 
 public class Rating {
-    protected double rating;
-    protected Artwork artwork;
+    private double rating;
+    private Artwork artwork;
 
     // constructors
     public Rating(Artwork aw, double r){
@@ -22,7 +22,7 @@ public class Rating {
     //          or if registered artwork is a movie and given rating is in [1, 10]
     //          then set this's rating to the given number
     //          else throws RatingNotValidException
-    protected void setRating(double r) throws RatingNotValidException {
+    public void setRating(double r) throws RatingNotValidException {
         if (artwork instanceof Book && r>=0 && r<=5){
             rating = r;
         }
@@ -46,7 +46,7 @@ public class Rating {
     //          else remove this from current artwork's rating
     //               AND set this's artwork to given
     //               AND register this for the given artwork
-    protected void setArtwork(Artwork aw) throws SameWorkAsPreviousException{
+    public void setArtwork(Artwork aw) throws SameWorkAsPreviousException{
         if (artwork == null){
             artwork = aw;
             aw.setRating(this);
@@ -61,13 +61,17 @@ public class Rating {
         }
     }
 
-    protected double getRating(){
-        return rating;
-    }
-
     // MODIFIES: this
     // EFFECTS: set this's corresponding work to undefined
     public void removeWork() {
         artwork = null;
+    }
+
+    public double getRating(){
+        return rating;
+    }
+
+    public Artwork getArtwork() {
+        return artwork;
     }
 }

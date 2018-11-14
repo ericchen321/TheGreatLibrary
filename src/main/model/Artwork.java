@@ -1,9 +1,6 @@
 package model;
 
-import model.exceptions.EditionAlreadyExistException;
-import model.exceptions.SameCreatorAsPreviousException;
-import model.exceptions.SameWorkAsPreviousException;
-import model.exceptions.WorkAlreadyExistException;
+import model.exceptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,6 +138,17 @@ public abstract class Artwork {
 
     public int getYearOfPublish() {
         return yearOfPublish;
+    }
+
+    public Rating getRating(){
+        return rating;
+    }
+
+    public double getRatingValue(){
+        if(rating == null){
+            throw new RatingNotSetException();
+        }
+        return rating.getRating();
     }
 
     public String getGenre(){
