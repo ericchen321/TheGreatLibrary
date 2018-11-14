@@ -2,6 +2,7 @@ package model;
 
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.SameCreatorAsPreviousException;
+import model.exceptions.SameWorkAsPreviousException;
 import model.exceptions.WorkAlreadyExistException;
 
 import java.util.ArrayList;
@@ -19,14 +20,19 @@ public abstract class Artwork {
     protected String name;
     protected Artist creator;
     protected int yearOfPublish;
+    protected Rating rating;
     protected Genre genre;
     protected List<Edition> editions = new ArrayList<>();
 
     // constructors
+    // MODIFIES: this
+    // EFFECTS: set this work's name, genre, year published;
+    //          initialize rating to 0
     public Artwork(String name, String genre, int yop){
         setName(name);
         setGenre(genre);
         setYearOfPublish(yop);
+        setRating(0);
     }
 
     // setters and getters
@@ -37,6 +43,42 @@ public abstract class Artwork {
     public void setYearOfPublish(int yOfp) {
         yearOfPublish = yOfp;
     }
+
+    // TODO: tests
+    // MODIFIES: this
+    // EFFECTS: sets this's rating to given rating
+    //          AND register this artwork for its rating
+    public void setRating(double rating) {
+        try{
+            setRating(new Rating(this, rating));
+        }
+        catch (SameWorkAsPreviousException e){}
+    }
+
+    // TODO: tests
+    // MODIFIES: this
+    // EFFECTS: if this's rating is not the same as given
+    //          then deregister this work from current rating
+    //               AND sets this's rating to given rating
+    //               AND register this artwork for given rating
+    //                   (possibly throws SameWorkAsPreviousException if an equal work is register
+    //                   for given rating)
+    //          else does nothing
+    public void setRating(Rating r) throws SameWorkAsPreviousException{
+        if(this.rating != r){
+            if (this.rating != null){
+                this.rating.removeWork();
+            }
+            this.rating = r;
+            this.rating.setArtwork(this);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: set this's rating to undefined
+    public void removeRating(){
+        this.rating = null;
+    };
 
     // MODIFIES:this
     // EFFECTS: sets this work's genre to given one if genre is recognizable
@@ -154,7 +196,7 @@ public abstract class Artwork {
         try{
             ed.setArtwork(this);
         }
-        catch (WorkAlreadyExistException e){}
+        catch (SameWorkAsPreviousException e){}
         updateYearOfPub();
     }
 

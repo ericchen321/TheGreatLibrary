@@ -1,6 +1,7 @@
 package model;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
+import model.exceptions.SameWorkAsPreviousException;
 import model.exceptions.WorkAlreadyExistException;
 
 import java.util.Objects;
@@ -26,15 +27,15 @@ public abstract class Edition {
     // REQUIRES: this edition is an edition of the given artwork
     // MODIFIES: this, aw
     // EFFECTS: if given artwork equals this edition's current artwork but is not the same
-    //          then throws WorkAlreadyExistException
+    //          then throws SameWorkAsPreviousException
     //          else if given artwork equals current one and is the same
     //          then does nothing
     //          else register given artwork for this edition
     //          AND remove association with previous edition
     //          AND add this edition to given artwork's registered editions
-    public void setArtwork(Artwork aw) throws WorkAlreadyExistException{
+    public void setArtwork(Artwork aw) throws SameWorkAsPreviousException {
         if (aw.equals(artwork) && aw == artwork){
-            throw new WorkAlreadyExistException();
+            throw new SameWorkAsPreviousException();
         }
         else if(!aw.equals(artwork)){
             if (artwork != null){

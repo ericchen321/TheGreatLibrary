@@ -6,6 +6,7 @@ import model.Edition;
 import model.MovieEdition;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
+import model.exceptions.SameWorkAsPreviousException;
 import model.exceptions.WorkAlreadyExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,6 @@ public class TestEdition {
         }
     }
 
-    // TODO: tests for all interesting functions in Edition class
-
     @Test
     public void testSetArtwork(){
         Book book = new Book("HP", "JKR", "fiction", 2005);
@@ -48,7 +47,7 @@ public class TestEdition {
             bookEdition.setArtwork(book);
             assertEquals(book, bookEdition.getArtwork());
         }
-        catch (WorkAlreadyExistException e){
+        catch (SameWorkAsPreviousException e){
             fail("should set artwork successfully in first trial");
         }
         try{
@@ -60,7 +59,7 @@ public class TestEdition {
             bookEdition.setArtwork(book);
             fail("should not be able to set again since has aleady set");
         }
-        catch (WorkAlreadyExistException e){}
+        catch (SameWorkAsPreviousException e){}
 
     }
 }
