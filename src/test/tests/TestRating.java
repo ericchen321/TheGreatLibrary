@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestRating {
@@ -19,7 +20,7 @@ public class TestRating {
     @BeforeEach
     public void setUp(){
         book = new Book("A Game of Thrones", "George Martin");
-        bookRating = new Rating(book, 4.2);
+        bookRating = new Rating(book, 0);
     }
 
     // FIXME: not done
@@ -27,6 +28,7 @@ public class TestRating {
     public void testFetchRatingIsAssociatedWithBook(){
         try{
             bookRating.fetch();
+            assertEquals(4.45, bookRating.getRating());
         }
         catch (IOException e){
             fail("Oops");

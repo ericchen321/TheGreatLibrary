@@ -93,6 +93,9 @@ public class Rating {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: assigns the top entry's average rating from Goodreads
+    //          to this rating
     private void fetchFromGoodreads() throws IOException{
         BufferedReader br = null;
 
@@ -104,13 +107,13 @@ public class Rating {
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line;
-            StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
+                if(line.contains("<average_rating>")){
+                    this.rating = extractRatingFromGoodreads(line);
+                    break;
+                }
             }
 
-            System.out.println(sb);
         }
         finally {
 
@@ -130,12 +133,37 @@ public class Rating {
             return original;
         }
         else{
-            String out = originalSplit[0];
+            StringBuilder sb = new StringBuilder();
+            sb.append(originalSplit[0]);
             for (int i=1; i<originalSplit.length; i++){
-                out = out + "+" + originalSplit[i];
+                sb.append("+" + originalSplit[i]);
             }
-            return out;
+            return sb.toString();
         }
+    }
+
+    // REQUIRES: given String follows the format "...<...>Rating<...>..."
+    // EFFECTS: returns numerical rating embedded in the given line
+    private double extractRatingFromGoodreads(String line) {
+        int startPos = 0;
+        int endPos = 0;
+
+        for(int i=0; i<line.length(); i++){
+            if(line.charAt(i) == '>') {
+                startPos = i + 1;
+                break;
+            }
+        }
+
+        for(int i=startPos; i<line.length();i++){
+            if(line.charAt(i) == '<') {
+                endPos = i - 1;
+                break;
+            }
+        }
+
+        String rating = line.substring(startPos, endPos+1);
+        return Double.parseDouble(rating);
     }
 
     // TODO
