@@ -2,6 +2,8 @@ package model;
 
 import model.exceptions.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -213,6 +215,10 @@ public abstract class Artwork {
     public void removeEdition(Edition edition){
         editions.remove(edition);
     }
+
+    // MODIFES: this
+    // EFFECTS: fetches rating from online
+    public abstract void fetchRating() throws IOException;
 
     @Override
     public boolean equals(Object o) {

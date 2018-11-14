@@ -2,6 +2,8 @@ package model;
 
 import model.exceptions.EditionAlreadyExistException;
 
+import java.io.IOException;
+
 public class Movie extends Artwork {
 
     public Movie(String name, String genre, int yop) {
@@ -59,5 +61,12 @@ public class Movie extends Artwork {
     //          update this's publish year, and return true
     public void addEdition(Edition movieEd) throws EditionAlreadyExistException {
         super.addEdition(movieEd);
+    }
+
+    // TODO: tests and imp
+    // MODIFIES: this
+    // EFFECTS: fetches rating from IMDB
+    public void fetchRating() throws IOException{
+
     }
 }
