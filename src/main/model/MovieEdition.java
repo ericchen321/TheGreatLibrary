@@ -11,8 +11,8 @@ public class MovieEdition extends Edition{
     //          throws IDNotValidException if IMDBN code is not valid:
     //                 IMDBN contains not only numbers OR
     //                 IMDBN of the edition is not 9 digits long
-    public MovieEdition(String publisher, int yop, String isbn) throws IDNotValidException {
-        super(publisher, yop, isbn);
+    public MovieEdition(String publisher, int yop, String imdbn) throws IDNotValidException {
+        super(publisher, yop, imdbn);
         checkIDValidity();
     }
 

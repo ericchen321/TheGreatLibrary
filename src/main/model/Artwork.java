@@ -3,14 +3,11 @@ package model;
 import model.exceptions.*;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 // TODO: need a test class for Artwork
 /* CLASS INVARIANTS: name should not be null, creator should not be null*/
-public abstract class Artwork {
+public abstract class Artwork implements Observer{
     protected static final int DEFAULT_PUBLISH_YEAR = -1000;
 
     protected enum Genre {
@@ -182,8 +179,10 @@ public abstract class Artwork {
     }
 
     // MODIFIES: this
-    // EFFECTS: updates this's publish year by setting the year to the publish year
-    //          of the earliest edition
+    // EFFECTS: updates this's publish year:
+    //          if current publish year is later than earliest published edition's publish year
+    //          then set the year to the publish year of that edition
+    //          else does nothing
     private void updateYearOfPub(){
         for (Edition e: editions){
             yearOfPublish = (e.getYearOfPublish() < yearOfPublish)? e.getYearOfPublish():yearOfPublish;
@@ -219,6 +218,14 @@ public abstract class Artwork {
     // MODIFES: this
     // EFFECTS: fetches rating from online
     public abstract void fetchRating() throws IOException;
+
+    // MODIFIES: this
+    // EFFECTS: updates the publish year of this work
+    public void update(Observable ed, Object yop){
+        Edition edition = (Edition) ed;
+        System.out.println("Edition with ID "+ edition.getID() + " has publish year changed to " + yop.toString());
+        updateYearOfPub();
+    }
 
     @Override
     public boolean equals(Object o) {

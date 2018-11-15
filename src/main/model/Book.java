@@ -1,11 +1,7 @@
 package model;
 
 import model.exceptions.EditionAlreadyExistException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Book extends Artwork {
 
@@ -62,7 +58,7 @@ public class Book extends Artwork {
         super.addEdition(bookEd);
     }
 
-    // TODO: tests and imp
+    // TODO: tests
     // MODIFIES: this
     // EFFECTS: fetches rating from Goodreads
     public void fetchRating() throws IOException{

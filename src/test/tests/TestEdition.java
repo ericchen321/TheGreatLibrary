@@ -1,9 +1,6 @@
 package tests;
 
-import model.Book;
-import model.BookEdition;
-import model.Edition;
-import model.MovieEdition;
+import model.*;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.IDNotValidException;
 import model.exceptions.SameWorkAsPreviousException;
@@ -15,13 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestEdition {
+    private Book book;
+    private Movie movie;
     private Edition bookEdition;
     private Edition movieEdition;
 
     @BeforeEach
     public void setUp(){
-        bookEdition = new BookEdition();
-        movieEdition = new MovieEdition();
+        book = new Book("HP", "JKR", "fiction", 2005);
+        movie = new Movie("ET","Steven S");
+
+        try{
+            bookEdition = new BookEdition("RH",2005,"1234567890");
+            movieEdition = new MovieEdition("Universal", 1982, "000083866");
+        }
+        catch (IDNotValidException e){}
     }
 
     // TODO: need to include call to MovieEdition's constructor
@@ -38,7 +43,6 @@ public class TestEdition {
 
     @Test
     public void testSetArtwork(){
-        Book book = new Book("HP", "JKR", "fiction", 2005);
         try{
             bookEdition = new BookEdition("RH",2005,"1234567890");
         }
@@ -56,10 +60,23 @@ public class TestEdition {
         }
         catch (EditionAlreadyExistException e){}
         try{
-            bookEdition.setArtwork(book);
-            fail("should not be able to set again since has aleady set");
+            Book identicalBook = new Book("HP", "JKR", "fiction", 2005);
+            bookEdition.setArtwork(identicalBook);
+            fail("should not be able to set again since an identical but not the same book has aleady been set");
         }
         catch (SameWorkAsPreviousException e){}
 
+    }
+
+    @Test
+    public void testSetYearOfPublishUpdatesToEarlierYear(){
+        try{
+            bookEdition.setArtwork(book);
+        }
+        catch (SameWorkAsPreviousException e){
+            fail("Should set work fine");
+        }
+        bookEdition.setYearOfPublish(2002);
+        assertEquals(2002, book.getYearOfPublish());
     }
 }

@@ -1,12 +1,11 @@
 package model;
 import model.exceptions.EditionAlreadyExistException;
-import model.exceptions.IDNotValidException;
 import model.exceptions.SameWorkAsPreviousException;
-import model.exceptions.WorkAlreadyExistException;
 
 import java.util.Objects;
+import java.util.Observable;
 
-public abstract class Edition {
+public abstract class Edition extends Observable{
     protected Artwork artwork;
     protected String publisher;
     protected int yearOfPublish;
@@ -18,8 +17,8 @@ public abstract class Edition {
     // EFFECTS: create an edition of a book or movie with
     //          given publisher, year published, and an ID
     public Edition(String publisher, int yop, String id){
-        this.publisher = publisher;
-        this.yearOfPublish = yop;
+        setPublisher(publisher);
+        setYearOfPublish(yop);
         this.ID = id;
     }
 
@@ -34,19 +33,31 @@ public abstract class Edition {
     //          AND remove association with previous edition
     //          AND add this edition to given artwork's registered editions
     public void setArtwork(Artwork aw) throws SameWorkAsPreviousException {
-        if (aw.equals(artwork) && aw == artwork){
+        if (aw.equals(artwork) && aw != artwork){
             throw new SameWorkAsPreviousException();
         }
         else if(!aw.equals(artwork)){
             if (artwork != null){
                 artwork.removeEdition(this);
+                deleteObserver(artwork);
             }
             artwork = aw;
+            addObserver(artwork);
             try{
                 aw.addEdition(this);
             }
             catch (EditionAlreadyExistException e){}
         }
+    }
+
+    public void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
+
+    public void setYearOfPublish(int yop){
+        yearOfPublish = yop;
+        setChanged();
+        notifyObservers(yop);
     }
 
     public Artwork getArtwork(){
