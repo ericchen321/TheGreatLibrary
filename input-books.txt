@@ -1,4 +1,12 @@
-LOL/Eric Chen/fiction/2011
-HP/JKR/fiction/1999
-Digital Design/Dally/tech/2007
-Digital Design/Dally/tech/2007
+Harry Potter and the Sorcerer's Stone/J K Rowling/fantasy/1997
+Digital Design: A Systems Approach/Dally/technology/2007
+Digital Design: A Systems Approach/Dally/technology/2007
+The Hot Zone: The Terrifying True Story of the Origins of the Ebola Virus/R Preston/science/1994
+What Happened/Hillary Clinton/biography/2017
+Les Misérables/Victor Hugo/classics/1862
+Macbeth/William Shakespeare/classics/1606
+Guns, Germs, and Steel: The Fates of Human Societies/J Diamond/history/1997
+1776/D McCullough/history/2005
+To Kill a Mocking Bird/H Lee/fiction/1960
+The Catcher in the Rye/J D Salinger/fiction/1951
+The Hunger Games/S Collins/fantasy/2008

@@ -1,6 +1,7 @@
 package ui;
 
 import model.Bookshelf;
+import ui.operations.BrowseBooksOperation;
 import ui.operations.ImportBookEdOperation;
 import ui.operations.ImportBooksOperation;
 import ui.operations.Operation;
@@ -24,6 +25,9 @@ public class BookshelfUI extends ModuleUI {
         Operation importBookEdOp = new ImportBookEdOperation(bookshelf);
         operations.add(importBookEdOp);
         this.panel.add(importBookEdOp.getButton());
+        Operation browseBookOp = new BrowseBooksOperation(bookshelf);
+        operations.add(browseBookOp);
+        this.panel.add(browseBookOp.getButton());
     }
 
 }
