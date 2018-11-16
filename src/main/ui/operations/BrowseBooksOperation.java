@@ -31,7 +31,7 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
         displayBooksDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         displayBooksDialogue.setLocationRelativeTo(null);
         displayBooksDialogue.setVisible(true);
-        JTextArea infoDisplayArea = new JTextArea(BOOKS_INFO_AREA_ROW_NUM, BOOKS_INFO_AREA_COL_NUM);
+        JTextArea infoDisplayArea = new JTextArea();
         printBooksToInfoDisplayArea(infoDisplayArea);
 
         JScrollPane infoDisplayPane = new JScrollPane(infoDisplayArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -47,7 +47,6 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
     // EFFECTS: fetch ratings for all books on the bookshelf
     //          AND prints all books on the shelf to given text area
     private void printBooksToInfoDisplayArea(JTextArea area) {
-        shelf.fetchRatings();
         area.append(shelf.toString());
         area.setEditable(false);
     }

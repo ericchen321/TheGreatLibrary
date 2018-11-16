@@ -23,12 +23,18 @@ public abstract class Artwork implements Observer{
     // constructors
     // MODIFIES: this
     // EFFECTS: set this work's name, genre, year published;
-    //          initialize rating to 0
+    //          fetches its rating from online
     public Artwork(String name, String genre, int yop){
         setName(name);
         setGenre(genre);
         setYearOfPublish(yop);
         setRating(0);
+        try{
+            fetchRating();
+        }
+        catch (IOException e){
+            System.out.println(name + ": fetch rating failed");
+        }
     }
 
     // setters and getters

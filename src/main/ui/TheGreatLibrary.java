@@ -58,6 +58,12 @@ public class TheGreatLibrary extends JFrame{
 
     // EFFECTS: star TheGreatLibrary app
     public static void main(String[] args) {
+        try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e){
+            System.out.println("UI style initialization failure");
+        }
         TheGreatLibrary theGreatLibrary = new TheGreatLibrary();
     }
 }

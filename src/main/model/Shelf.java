@@ -78,19 +78,6 @@ public abstract class Shelf implements Loadable, Saveable{
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: fetch ratings for all works on the shelf
-    public void fetchRatings(){
-        for (Artwork aw: setOfWorks){
-            try{
-                aw.fetchRating();
-            }
-            catch (IOException e){
-                System.out.println("Failed to get rating for: " + aw.getName());
-            }
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -98,7 +85,7 @@ public abstract class Shelf implements Loadable, Saveable{
         for (Artwork aw: setOfWorks){
             sb.append((aw instanceof Book? "Book":"Movie") + " Name: ");
             sb.append(aw.getName() + "\n");
-            sb.append((aw instanceof Book? "Author":"Director") + "Name: ");
+            sb.append((aw instanceof Book? "Author":"Director") + " Name: ");
             sb.append(aw.getCreatorName() + "\n");
             sb.append("Rating: ");
             sb.append(aw.getRatingValue() + "\n");
