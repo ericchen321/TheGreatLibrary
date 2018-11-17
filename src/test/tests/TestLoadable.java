@@ -22,7 +22,7 @@ public class TestLoadable {
     // TODO: need to test for movie
     @Test
     public void testLoadFromFile(){
-        bookshelfloadable.loadFromFile("src/testIOFiles/testScanFromFileBookshelf.txt");
+        bookshelfloadable.loadFromFile("src/testIOFiles/testScanFromFileBookshelf.txt", bookshelf);
         try{
             bookshelf.addBook("Special Relativity","Joe","uncategorized",2000);
             fail("SR should not be added");

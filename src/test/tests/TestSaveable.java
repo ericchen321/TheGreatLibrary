@@ -35,7 +35,7 @@ public class TestSaveable {
             fail("Both should be added successfully");
         }
         bookshelfsaveable.printToFile("src/testIOFiles/testPrintToFileBookshelf.txt");
-        bookshelfloadable.loadFromFile("src/testIOFiles/testPrintToFileBookshelf.txt");
+        bookshelfloadable.loadFromFile("src/testIOFiles/testPrintToFileBookshelf.txt",bookshelf1);
         try{
             bookshelf1.addBook("Digital Design","Dally","uncategorized",2000);
             fail("DD should not be added");

@@ -18,7 +18,7 @@ public class ImportMoviesOperation extends ImportArtworksOperation {
     // MODIFIES: this
     // EFFECTS: set action when button for this operation is clicked
     public void actionPerformed(ActionEvent e) {
-        shelf.loadFromFile("input-movies.txt");
+        shelf.loadFromFile("input-movies.txt", shelf);
         System.out.println("Movies imported!");
     }
 }

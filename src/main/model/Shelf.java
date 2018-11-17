@@ -5,10 +5,9 @@ import model.exceptions.WorkAlreadyExistException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public abstract class Shelf implements Loadable, Saveable{
     private Set<Artwork> setOfWorks = new HashSet<>();
@@ -74,6 +73,48 @@ public abstract class Shelf implements Loadable, Saveable{
             writer.close(); //note -- if you miss this, the file will not be written at all.
         }
         catch (IOException excep){
+            excep.printStackTrace();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECT: write works in text file with given path name to the
+    //         given shelf
+    public void loadFromFile(String pathName, Shelf destination){
+        try{
+            List<String> lines = Files.readAllLines(Paths.get(pathName));
+            for (String line : lines){
+                ArrayList<String> entries = splitOnSlash(line);
+                Artwork addedWork;
+                String name = entries.get(0);
+                String creatorName = entries.get(1);
+                String genre = entries.get(2);
+                String yop = entries.get(3);
+                String rating;
+                try{
+                    if(destination instanceof Bookshelf){
+                        addedWork = ((Bookshelf)destination).addBook(name,
+                                creatorName,
+                                genre,
+                                Integer.parseInt(yop));
+                    }
+                    else {
+                        addedWork = ((Movieshelf)destination).addMovie(name,
+                                creatorName,
+                                genre,
+                                Integer.parseInt(yop));
+                    }
+                    if(line.length() == 5){
+                        rating = entries.get(4);
+                        addedWork.setRating(Integer.parseInt(rating));
+                    }
+                }
+                catch (WorkAlreadyExistException bae){
+                    // just chill
+                }
+            }
+        }
+        catch(IOException excep){
             excep.printStackTrace();
         }
     }

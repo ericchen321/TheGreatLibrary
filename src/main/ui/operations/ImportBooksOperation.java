@@ -19,7 +19,7 @@ public class ImportBooksOperation extends ImportArtworksOperation{
     // EFFECTS: set action when button for this operation is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
-        shelf.loadFromFile("input-books.txt");
+        shelf.loadFromFile("input-books.txt",shelf);
         System.out.println("Books imported!");
     }
 

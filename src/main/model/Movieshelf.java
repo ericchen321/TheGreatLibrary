@@ -33,26 +33,6 @@ public class Movieshelf extends Shelf{
     }
 
     // MODIFIES: this
-    // EFFECT: write movies in text file with given path name to the shelf
-    public void loadFromFile(String pathName){
-        try{
-            List<String> lines = Files.readAllLines(Paths.get(pathName));
-            for (String line : lines){
-                ArrayList<String> entries = splitOnSlash(line);
-                try{
-                    addMovie(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
-                }
-                catch (WorkAlreadyExistException bae){
-                    // just chill
-                }
-            }
-        }
-        catch(IOException excep){
-            excep.printStackTrace();
-        }
-    }
-
-    // MODIFIES: this
     // EFFECTS: throws IDNotValidException if given IMDBN is not valid (contains
     //          non-numbers or is not 9-digits long)
     //          else if edition already exists

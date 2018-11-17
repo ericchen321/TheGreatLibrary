@@ -34,26 +34,6 @@ public class Bookshelf extends Shelf{
     }
 
     // MODIFIES: this
-    // EFFECT: write books in text file with given path name to the shelf
-    public void loadFromFile(String pathName){
-        try{
-            List<String> lines = Files.readAllLines(Paths.get(pathName));
-            for (String line : lines){
-                ArrayList<String> entries = splitOnSlash(line);
-                try{
-                    addBook(entries.get(0),entries.get(1),entries.get(2),Integer.parseInt(entries.get(3)));
-                }
-                catch (WorkAlreadyExistException bae){
-                    // just chill
-                }
-            }
-        }
-        catch(IOException excep){
-            excep.printStackTrace();
-        }
-    }
-
-    // MODIFIES: this
     // EFFECTS: throws IDNotValidException if given ISBN is not valid;
     //          throws IDNotThirteenDigitException if given publish year >= 2007 but given
     //                 ISBN is not 13 digits

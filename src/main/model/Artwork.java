@@ -190,6 +190,8 @@ public abstract class Artwork implements Observer{
         sb.append("/");
         sb.append(getCreatorName());
         sb.append("/");
+        sb.append(getGenre());
+        sb.append("/");
         sb.append(getYearOfPublish());
         if(rating != null) {
             sb.append("/");
