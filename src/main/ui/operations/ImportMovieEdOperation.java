@@ -26,7 +26,10 @@ public class ImportMovieEdOperation extends ImportEditionOperation{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Movie m = new Movie(workName.getText(),creatorName.getText());
+                    Movie m = new Movie(workName.getText(),
+                            creatorName.getText(),
+                            "",
+                            Integer.parseInt(yearOfPublish.getText()));
                     MovieEdition me = new MovieEdition(publisher.getText(),
                             Integer.parseInt(yearOfPublish.getText()),
                             id.getText());

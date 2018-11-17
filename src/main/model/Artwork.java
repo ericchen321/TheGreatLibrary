@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.util.*;
 
 // TODO: need a test class for Artwork
-/* CLASS INVARIANTS: name should not be null, creator should not be null*/
+/* CLASS INVARIANTS: name should not be null;
+                     creator should not be null;
+                     publish year should be a valid integer
+                     */
 public abstract class Artwork implements Observer{
-    protected static final int DEFAULT_PUBLISH_YEAR = -1000;
 
     protected enum Genre {
         ART, BIOGRAPHY, CLASSICS, FANTASY, HISTORY, FICTION, UNCATEGORIZED

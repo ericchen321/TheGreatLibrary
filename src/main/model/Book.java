@@ -9,10 +9,10 @@ public class Book extends Artwork {
     // constructors
     // EFFECTS: constructs a book with given name and author's name;
     //          this book's genre is set to uncategorized;
-    //          this book's publish year is set to -1000 B.C.
+    //          this book's publish year is set to given year
     //          add this book to the author's list of works
-    public Book(String name, String author){
-        super(name, "", DEFAULT_PUBLISH_YEAR);
+    public Book(String name, String author, int yop){
+        super(name, "", yop);
         this.creator = new Author(author);
         this.creator.addWork(this);
     }

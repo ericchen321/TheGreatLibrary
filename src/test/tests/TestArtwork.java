@@ -15,8 +15,8 @@ public class TestArtwork {
 
     @BeforeEach
     public void setUp(){
-        book = new Book("HP", "JKR");
-        movie = new Movie("2001","SK");
+        book = new Book("HP", "JKR",1999);
+        movie = new Movie("2001","SK",1964);
     }
 
     @Test

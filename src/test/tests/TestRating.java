@@ -19,7 +19,7 @@ public class TestRating {
 
     @BeforeEach
     public void setUp(){
-        book = new Book("A Game of Thrones", "George Martin");
+        book = new Book("A Game of Thrones", "George Martin",2001);
         bookRating = new Rating(book, 0);
     }
 

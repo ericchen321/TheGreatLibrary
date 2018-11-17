@@ -21,11 +21,12 @@ public class TestBook {
     }
 
     @Test
-    public void testBookGivenNameAndAuthorName(){
-        book = new Book("LOL", "Eric");
+    public void testBookGivenNameAndAuthorNameAndPublishYear(){
+        book = new Book("LOL", "Eric",2018);
         assertEquals("LOL",book.getName());
         assertEquals("Eric",book.getAuthorName());
         assertEquals("uncategorized",book.getGenre());
+        assertEquals(2018, book.getYearOfPublish());
         assertTrue(book.getAuthor().searchBook(book));
     }
 

@@ -29,7 +29,7 @@ public class Movieshelf extends Shelf{
     //          then return the number of editions
     //          else return 0
     public int getEditionSize(String movieName, String directorName){
-        return super.getEditionSize(new Movie(movieName, directorName));
+        return super.getEditionSize(new Movie(movieName, directorName, 0));
     }
 
     // MODIFIES: this
@@ -64,7 +64,7 @@ public class Movieshelf extends Shelf{
     public void addEdition(String movieName, String directorName, String publisher, int yop, String isbn)
             throws IDNotValidException,EditionAlreadyExistException {
         MovieEdition movieEd = new MovieEdition(publisher,yop,isbn);
-        Movie movie = new Movie(movieName, directorName);
+        Movie movie = new Movie(movieName, directorName, yop);
         super.addEdition(movie, movieEd);
     }
 }

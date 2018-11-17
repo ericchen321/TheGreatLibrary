@@ -17,8 +17,8 @@ public class TestFranchiseHub {
 
     @Test
     public void testAddToFranchise() {
-        Book book1 = new Book("A Game of Thrones", "GM");
-        Book book2 = new Book("A Clash of Kings", "GM");
+        Book book1 = new Book("A Game of Thrones", "GM",2010);
+        Book book2 = new Book("A Clash of Kings", "GM",2011);
 
         franchiseHub.addToFranchise("A Song of Ice and Fire", book1);
         franchiseHub.addToFranchise("A Song of Ice and Fire", book2);

@@ -20,7 +20,7 @@ public class TestEdition {
     @BeforeEach
     public void setUp(){
         book = new Book("HP", "JKR", "fiction", 2005);
-        movie = new Movie("ET","Steven S");
+        movie = new Movie("ET","Steven S","fantasy", 1984);
 
         try{
             bookEdition = new BookEdition("RH",2005,"1234567890");

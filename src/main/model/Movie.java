@@ -6,18 +6,14 @@ import java.io.IOException;
 
 public class Movie extends Artwork {
 
-    public Movie(String name, String genre, int yop) {
-        super(name, genre, yop);
-    }
-
     // FIXME: takes care of the DEFAULT_PUBLISH_YEAR
     // constructors
     // EFFECTS: constructs a movie with given name and director's name;
     //          this movie's genre is set to uncategorized;
-    //          this movie's publish year is set to -1000 A.D.
+    //          this movie's publish year is set to given year
     //          add this movie to the director's list of works
-    public Movie(String name, String director){
-        super(name, "", DEFAULT_PUBLISH_YEAR);
+    public Movie(String name, String director, int yop){
+        super(name, "", yop);
         this.creator = new Director(director);
         this.creator.addWork(this);
     }

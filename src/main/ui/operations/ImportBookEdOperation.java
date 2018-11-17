@@ -29,7 +29,10 @@ public class ImportBookEdOperation extends ImportEditionOperation{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Book b = new Book(workName.getText(),creatorName.getText(),"", Integer.parseInt(yearOfPublish.getText()));
+                    Book b = new Book(workName.getText(),
+                            creatorName.getText(),
+                            "",
+                            Integer.parseInt(yearOfPublish.getText()));
                     BookEdition be = new BookEdition(publisher.getText(),
                             Integer.parseInt(yearOfPublish.getText()),
                             id.getText());

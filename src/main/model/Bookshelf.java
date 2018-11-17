@@ -30,7 +30,7 @@ public class Bookshelf extends Shelf{
     //          then return the number of editions
     //          else return 0
     public int getEditionSize(String bookName, String authorName){
-        return super.getEditionSize(new Book(bookName, authorName));
+        return super.getEditionSize(new Book(bookName, authorName,0));
     }
 
     // MODIFIES: this
@@ -64,7 +64,7 @@ public class Bookshelf extends Shelf{
     public void addEdition(String bookName, String authorName, String publisher, int yop, String isbn)
             throws IDNotValidException,EditionAlreadyExistException {
         BookEdition bookEd = new BookEdition(publisher,yop,isbn);
-        Book book = new Book(bookName, authorName);
+        Book book = new Book(bookName, authorName, yop);
         super.addEdition(book, bookEd);
     }
 }
