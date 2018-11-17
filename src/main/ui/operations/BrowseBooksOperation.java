@@ -1,7 +1,7 @@
 package ui.operations;
 
-import model.Artwork;
 import model.Bookshelf;
+import model.Shelf;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,6 +15,7 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
         super(bookshelf);
     }
 
+    // REFERENCE: https://stackoverflow.com/questions/7306295/swing-jlist-with-multiline-text-and-dynamic-height
     // MODIFIES: this
     // EFFECTS: set action when button for this operation is clicked
     @Override
@@ -32,7 +33,10 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
         displayBooksDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         displayBooksDialogue.setLocationRelativeTo(null);
         displayBooksDialogue.setVisible(true);
-        JList infoDisplayArea = new JList(shelf.printWorks());
+        final DefaultListModel listModel = new DefaultListModel();
+        reformatAndAdd(shelf.printWorks(),listModel);
+        ;
+        JList infoDisplayArea = new JList(listModel);
 
         JScrollPane infoDisplayPane = new JScrollPane(infoDisplayArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoDisplayPane.setBorder(new EmptyBorder(BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL,
@@ -41,5 +45,21 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
                 BOOKS_INFO_AREA_BORDER_SIZE_HORIZONTAL));
 
         displayBooksDialogue.add(infoDisplayPane);
+    }
+
+    // EFFECTS: adds each work contained in the string array
+    //          to the given listModel after formatting them in html
+    private void reformatAndAdd(String[] strings, DefaultListModel listModel) {
+        for(String s: strings){
+            ArrayList<String> workInfo = Shelf.splitOnSlash(s);
+            StringBuilder sb = new StringBuilder();
+            sb.append("<html>");
+            for(String w: workInfo){
+                sb.append(w);
+                sb.append("<br>");
+            }
+            sb.append("</html>");
+            listModel.addElement(sb.toString());
+        }
     }
 }
