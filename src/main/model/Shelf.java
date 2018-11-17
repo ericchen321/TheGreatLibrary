@@ -69,7 +69,7 @@ public abstract class Shelf implements Loadable, Saveable{
         try{
             PrintWriter writer = new PrintWriter(pathName,"UTF-8");
             for (Artwork aw: setOfWorks){
-                writer.println(aw.getName()+"/"+aw.getCreatorName()+"/"+aw.getGenre()+"/"+aw.getYearOfPublish());
+                writer.println(aw.toString());
             }
             writer.close(); //note -- if you miss this, the file will not be written at all.
         }
@@ -78,20 +78,16 @@ public abstract class Shelf implements Loadable, Saveable{
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    // EFFECTS: return an array of string representations of each work
+    //          on the shelf
+    public String[] printWorks() {
+        ArrayList<String> str_works = new ArrayList<>();
 
         for (Artwork aw: setOfWorks){
-            sb.append((aw instanceof Book? "Book":"Movie") + " Name: ");
-            sb.append(aw.getName() + "\n");
-            sb.append((aw instanceof Book? "Author":"Director") + " Name: ");
-            sb.append(aw.getCreatorName() + "\n");
-            sb.append("Rating: ");
-            sb.append(aw.getRatingValue() + "\n");
-            sb.append("\n");
+            str_works.add(aw.toString());
         }
 
-        return sb.toString();
+        String[] strs = new String[str_works.size()];
+        return str_works.toArray(strs);
     }
 }

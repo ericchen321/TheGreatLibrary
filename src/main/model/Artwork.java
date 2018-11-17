@@ -180,8 +180,21 @@ public abstract class Artwork implements Observer{
         return editions.size();
     }
 
+    // FIXME: coupling
+    @Override
     public String toString(){
-        return name + " by " + creator.getName() + " published in " + yearOfPublish;
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName());
+        sb.append("/");
+        sb.append(getCreatorName());
+        sb.append("/");
+        sb.append(getYearOfPublish());
+        if(rating != null) {
+            sb.append("/");
+            sb.append(rating.getRating());
+        }
+
+        return sb.toString();
     }
 
     // MODIFIES: this

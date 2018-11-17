@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class BrowseBooksOperation extends BrowseArtworksOperation {
 
@@ -19,7 +20,7 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
     @Override
     public void actionPerformed(ActionEvent e) {
         final int DISPLAY_BOOKS_DIALOGUE_WIDTH = 1000;
-        final int DISPLAY_BOOKS_DIALOGUE_HEIGHT = 800;
+        final int DISPLAY_BOOKS_DIALOGUE_HEIGHT = 600;
         final int BOOKS_INFO_AREA_ROW_NUM = 800;
         final int BOOKS_INFO_AREA_COL_NUM = 600;
         final int BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL = 50;
@@ -31,8 +32,7 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
         displayBooksDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         displayBooksDialogue.setLocationRelativeTo(null);
         displayBooksDialogue.setVisible(true);
-        JTextArea infoDisplayArea = new JTextArea();
-        printBooksToInfoDisplayArea(infoDisplayArea);
+        JList infoDisplayArea = new JList(shelf.printWorks());
 
         JScrollPane infoDisplayPane = new JScrollPane(infoDisplayArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoDisplayPane.setBorder(new EmptyBorder(BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL,
@@ -41,13 +41,5 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
                 BOOKS_INFO_AREA_BORDER_SIZE_HORIZONTAL));
 
         displayBooksDialogue.add(infoDisplayPane);
-    }
-
-    // MODIFIES: this, area
-    // EFFECTS: fetch ratings for all books on the bookshelf
-    //          AND prints all books on the shelf to given text area
-    private void printBooksToInfoDisplayArea(JTextArea area) {
-        area.append(shelf.toString());
-        area.setEditable(false);
     }
 }
