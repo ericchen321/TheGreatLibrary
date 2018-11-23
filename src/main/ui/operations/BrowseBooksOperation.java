@@ -20,7 +20,7 @@ public class BrowseBooksOperation extends BrowseArtworksOperation {
     // EFFECTS: set action when button for this operation is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
-        final int DISPLAY_BOOKS_DIALOGUE_WIDTH = 1000;
+        final int DISPLAY_BOOKS_DIALOGUE_WIDTH = 500;
         final int DISPLAY_BOOKS_DIALOGUE_HEIGHT = 600;
         final int BOOKS_INFO_AREA_ROW_NUM = 800;
         final int BOOKS_INFO_AREA_COL_NUM = 600;
