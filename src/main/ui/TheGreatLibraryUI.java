@@ -2,6 +2,7 @@ package ui;
 
 import model.*;
 import ui.operations.ImportArtworksOperation;
+import ui.operations.ImportEditionOperation;
 import ui.operations.Operation;
 
 import java.awt.*;
@@ -43,12 +44,15 @@ public class TheGreatLibraryUI extends JFrame{
         setVisible(true);
 
         Operation importArtworks = new ImportArtworksOperation();
+        Operation importEdition = new ImportEditionOperation();
 
         activeModuleObservable.addObserver(importArtworks);
+        activeModuleObservable.addObserver(importEdition);
         activeModuleObservable.setActiveModule(bookshelf);
 
         JToolBar toolBar = new JToolBar("Operations");
         toolBar.add(importArtworks.getButton());
+        toolBar.add(importEdition.getButton());
         toolBar.setPreferredSize(new Dimension(WIDTH, HEIGHT/4));
         add(toolBar, BorderLayout.PAGE_START);
 

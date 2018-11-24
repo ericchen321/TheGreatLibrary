@@ -1,14 +1,16 @@
 package ui.operations;
 
-import model.Shelf;
+import model.*;
+import model.exceptions.EditionAlreadyExistException;
+import model.exceptions.IDNotValidException;
+import model.exceptions.ISBNNotThirteenDigitException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class ImportEditionOperation extends Operation implements ActionListener{
-    protected Shelf shelf;
+public class ImportEditionOperation extends Operation implements ActionListener{
     protected JButton cancel = new JButton("Cancel");
     protected JButton confirm = new JButton("Confirm");
     protected JTextField workName = new JTextField();
@@ -18,17 +20,85 @@ public abstract class ImportEditionOperation extends Operation implements Action
     protected JTextField id = new JTextField();
 
     // constructors
-    public ImportEditionOperation(Shelf s, String type){
-        shelf = s;
-        createButton("Import an edition for a " + type);
+    public ImportEditionOperation(){
+        createButton("Import edition");
         initializeButtonAppearance();
         button.addActionListener(this);
+    }
+
+    @Override
+    // REFERENCE: https://stackoverflow.com/questions/4801386/how-do-i-add-an-image-to-a-jbutton
+    //            icon made by Icon Pond at flaticon.com
+    public void initializeButtonAppearance(){
+        super.initializeButtonAppearance();
+        ImageIcon icon = createImageIcon("/imgs/import-ed.png");
+        button.setIcon(icon);
+        button.setVerticalTextPosition(AbstractButton.BOTTOM);
+        button.setHorizontalTextPosition(AbstractButton.CENTER);
+        button.setHorizontalAlignment(AbstractButton.CENTER);
     }
 
     // MODIFIES: this
     // EFFECTS: sets actions when button for this operation is clicked;
     //          also sets actions when "Cancel"/"Confirm" is clicked
-    public abstract void actionPerformed(ActionEvent e);
+    public void actionPerformed(ActionEvent e){
+        if (activeModule instanceof Bookshelf){
+            initializeDialogue("book");
+            confirm.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        Book b = new Book(workName.getText(),
+                                creatorName.getText(),
+                                "",
+                                Integer.parseInt(yearOfPublish.getText()));
+                        BookEdition be = new BookEdition(publisher.getText(),
+                                Integer.parseInt(yearOfPublish.getText()),
+                                id.getText());
+                        ((Bookshelf) activeModule).addEdition(b,be);
+                        System.out.println("Edition added!");
+                    }
+                    catch(EditionAlreadyExistException exc){
+                        System.out.println("Sorry, edition not added because it's already there!");
+                    }
+                    catch (ISBNNotThirteenDigitException exc){
+                        System.out.println("Sorry, edition not added: You need to use the 13-digit ISBN! Or check your publish year!");
+                    }
+                    catch (IDNotValidException exc){
+                        System.out.println("Sorry, edition not added: ISBN can only be 10 or 13 digits!");
+                    }
+                }
+            });
+        }
+        else if (activeModule instanceof Movieshelf){
+            initializeDialogue("movie");
+            confirm.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        Movie m = new Movie(workName.getText(),
+                                creatorName.getText(),
+                                "",
+                                Integer.parseInt(yearOfPublish.getText()));
+                        MovieEdition me = new MovieEdition(publisher.getText(),
+                                Integer.parseInt(yearOfPublish.getText()),
+                                id.getText());
+                        ((Movieshelf) activeModule).addEdition(m,me);
+                        System.out.println("Edition added!");
+                    }
+                    catch(EditionAlreadyExistException exc){
+                        System.out.println("Sorry, edition not added because it's already there!");
+                    }
+                    catch (IDNotValidException exc){
+                        System.out.println("Sorry, edition not added: IMDBN should not contain numbers and must be 9-digits long!");
+                    }
+                }
+            });
+        }
+        else{
+            System.out.println("Operation not supported!");
+        }
+    }
 
     // REQUIRES: given String must be "book" or "movie"
     protected void initializeDialogue(String type){
