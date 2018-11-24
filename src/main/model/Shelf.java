@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public abstract class Shelf implements Loadable, Saveable{
+public abstract class Shelf extends Module implements Loadable, Saveable{
     private Set<Artwork> setOfWorks = new HashSet<>();
 
     // MODIFIES: This

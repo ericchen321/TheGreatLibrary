@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 
-public class FranchiseHub {
+public class FranchiseHub extends Module{
 
     private Map<String, Set<Artwork>> franchises;
 

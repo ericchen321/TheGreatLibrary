@@ -3,6 +3,8 @@ package ui;
 import model.Bookshelf;
 import model.Movieshelf;
 
+import java.awt.event.ActionEvent;
+
 public class FranchiseHubUI extends ModuleUI {
     private Bookshelf bookshelf;
     private Movieshelf movieshelf;
@@ -12,10 +14,5 @@ public class FranchiseHubUI extends ModuleUI {
         super();
         bookshelf = bs;
         movieshelf = ms;
-    }
-
-    @Override
-    public void addOperations() {
-
     }
 }

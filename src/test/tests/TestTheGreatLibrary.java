@@ -1,15 +1,7 @@
 package tests;
 
-import model.Book;
 import org.junit.jupiter.api.BeforeEach;
-import ui.TheGreatLibrary;
-import org.junit.jupiter.api.Test;
+import ui.TheGreatLibraryUI;
 
 public class TestTheGreatLibrary {
-    private TheGreatLibrary TGLapp;
-
-    @BeforeEach
-    public void setUp(){
-        TGLapp = new TheGreatLibrary();
-    }
 }
