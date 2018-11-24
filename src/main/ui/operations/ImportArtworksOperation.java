@@ -20,15 +20,9 @@ public class ImportArtworksOperation extends Operation implements ActionListener
         button.addActionListener(this);
     }
 
-    @Override
-    // REFERENCE: https://stackoverflow.com/questions/4801386/how-do-i-add-an-image-to-a-jbutton
-    //            icon image by Kirill Kazachek from www.flaticon.com
+    // REFERENCE: icon image by Kirill Kazachek from www.flaticon.com
     public void initializeButtonAppearance(){
-        super.initializeButtonAppearance();
-        ImageIcon icon = createImageIcon("/imgs/import.png");
-        button.setIcon(icon);
-        button.setVerticalTextPosition(AbstractButton.BOTTOM);
-        button.setHorizontalTextPosition(AbstractButton.CENTER);
+        super.initializeButtonAppearance("/imgs/import.png");
     }
 
     // MODIFIES: this

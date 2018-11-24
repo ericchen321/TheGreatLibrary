@@ -4,6 +4,7 @@ import model.*;
 import ui.operations.ImportArtworksOperation;
 import ui.operations.ImportEditionOperation;
 import ui.operations.Operation;
+import ui.operations.RefreshOperation;
 
 import java.awt.*;
 import javax.swing.*;
@@ -45,20 +46,26 @@ public class TheGreatLibraryUI extends JFrame{
 
         Operation importArtworks = new ImportArtworksOperation();
         Operation importEdition = new ImportEditionOperation();
+        Operation refresh = new RefreshOperation();
 
         activeModuleObservable.addObserver(importArtworks);
         activeModuleObservable.addObserver(importEdition);
+        activeModuleObservable.addObserver(refresh);
         activeModuleObservable.setActiveModule(bookshelf);
 
         JToolBar toolBar = new JToolBar("Operations");
         toolBar.add(importArtworks.getButton());
         toolBar.add(importEdition.getButton());
+        toolBar.add(refresh.getButton());
         toolBar.setPreferredSize(new Dimension(WIDTH, HEIGHT/4));
         add(toolBar, BorderLayout.PAGE_START);
 
         bookshelfUI = new BookshelfUI(bookshelf);
+        refresh.addObserver(bookshelfUI);
         movieshelfUI = new MovieshelfUI(movieshelf);
+        refresh.addObserver(movieshelfUI);
         franchiseHubUI = new FranchiseHubUI(bookshelf, movieshelf);
+        refresh.addObserver(franchiseHubUI);
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Explore Books", bookshelfUI.getTab());
         tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());
@@ -82,6 +89,8 @@ public class TheGreatLibraryUI extends JFrame{
             }
         });
         add(tabbedPane);
+        tabbedPane.revalidate();
+        tabbedPane.repaint();
     }
 
     // EFFECTS: print the welcome message

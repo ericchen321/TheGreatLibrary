@@ -26,16 +26,9 @@ public class ImportEditionOperation extends Operation implements ActionListener{
         button.addActionListener(this);
     }
 
-    @Override
-    // REFERENCE: https://stackoverflow.com/questions/4801386/how-do-i-add-an-image-to-a-jbutton
-    //            icon made by Icon Pond at flaticon.com
+    // REFERENCE: icon made by Icon Pond at flaticon.com
     public void initializeButtonAppearance(){
-        super.initializeButtonAppearance();
-        ImageIcon icon = createImageIcon("/imgs/import-ed.png");
-        button.setIcon(icon);
-        button.setVerticalTextPosition(AbstractButton.BOTTOM);
-        button.setHorizontalTextPosition(AbstractButton.CENTER);
-        button.setHorizontalAlignment(AbstractButton.CENTER);
+        super.initializeButtonAppearance("/imgs/import-ed.png");
     }
 
     // MODIFIES: this

@@ -4,6 +4,7 @@ import model.Bookshelf;
 import model.Movieshelf;
 
 import java.awt.event.ActionEvent;
+import java.util.Observable;
 
 public class FranchiseHubUI extends ModuleUI {
     private Bookshelf bookshelf;
@@ -14,5 +15,10 @@ public class FranchiseHubUI extends ModuleUI {
         super();
         bookshelf = bs;
         movieshelf = ms;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

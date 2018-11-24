@@ -17,7 +17,7 @@ public abstract class BrowseArtworksOperation extends Operation implements Actio
     public BrowseArtworksOperation(Shelf s){
         shelf = s;
         createButton("Browse " + ((s instanceof Bookshelf)? "books":"movies"));
-        initializeButtonAppearance();
+        //initializeButtonAppearance();
         button.addActionListener(this);
     }
 

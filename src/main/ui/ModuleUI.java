@@ -7,15 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
-public abstract class ModuleUI{
+public abstract class ModuleUI implements Observer{
     protected JPanel panel;
-    protected List<Operation> operations;
 
     // constructors
     public ModuleUI(){
         panel = new JPanel();
-        operations = new ArrayList<>();
     }
 
     // setters and getters

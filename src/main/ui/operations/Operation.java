@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class Operation implements Observer{
+public abstract class Operation extends Observable implements Observer{
     protected static final int BUTTON_WIDTH = 180;
     protected static final int BUTTON_HEIGHT = 150;
     protected static final String BUTTON_FONTNAME = "Arial";
@@ -30,14 +30,20 @@ public abstract class Operation implements Observer{
     };
 
     // REFERENCE: "Simple Drawing Player" from CPSC 210
+    //            https://stackoverflow.com/questions/4801386/how-do-i-add-an-image-to-a-jbutton
     // MODIFIES: this
-    // EFFECTS:  initializes the button used for this tool
-    protected void initializeButtonAppearance() {
+    // EFFECTS:  initializes the button's size, text, icon
+    protected void initializeButtonAppearance(String path) {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
         button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         button.setFont(new Font(BUTTON_FONTNAME, BUTTON_FONTTYPE, BUTTON_FONTSIZE));
+        ImageIcon icon = createImageIcon(path);
+        button.setIcon(icon);
+        button.setVerticalTextPosition(AbstractButton.BOTTOM);
+        button.setHorizontalTextPosition(AbstractButton.CENTER);
+
     }
 
     // REFERENCE: modified based on docs.oracle.com/javase/tutorial/uiswing/components/icon.html
