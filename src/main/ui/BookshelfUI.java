@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class BookshelfUI extends ModuleUI {
-    final int BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL = 50;
-    final int BOOKS_INFO_AREA_BORDER_SIZE_HORIZONTAL = 10;
     private Bookshelf bookshelf;
 
     // constructors
@@ -28,6 +26,8 @@ public class BookshelfUI extends ModuleUI {
     }
 
     private void initializeInfoDisplayAreaContent(){
+        final int BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL = 50;
+        final int BOOKS_INFO_AREA_BORDER_SIZE_HORIZONTAL = 10;
         final DefaultListModel listModel = new DefaultListModel();
         reformatAndAdd(bookshelf.printWorks(),listModel);
 
@@ -39,9 +39,11 @@ public class BookshelfUI extends ModuleUI {
                 BOOKS_INFO_AREA_BORDER_SIZE_VERTICAL,
                 BOOKS_INFO_AREA_BORDER_SIZE_HORIZONTAL));
         infoDisplayPane.setPreferredSize(new Dimension(900, 400));
-        panel.add(infoDisplayPane);
         infoDisplayPane.revalidate();
         infoDisplayPane.repaint();
+        panel.add(infoDisplayPane);
+        panel.revalidate();
+        panel.repaint();
     }
 
     private void updateInfoDisplayAreaContent() {
