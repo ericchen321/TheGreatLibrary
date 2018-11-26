@@ -4,17 +4,11 @@ import model.Movieshelf;
 
 import java.util.Observable;
 
-public class MovieshelfUI extends ModuleUI {
-    private Movieshelf movieshelf;
+public class MovieshelfUI extends ShelfUI {
 
     // constructors
-    public MovieshelfUI (Movieshelf ms){
-        super();
-        movieshelf = ms;
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
+    public MovieshelfUI (Movieshelf movieshelf){
+        super(movieshelf);
+        initializeInfoDisplayAreaContent();
     }
 }
