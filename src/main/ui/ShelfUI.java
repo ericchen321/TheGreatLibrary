@@ -16,8 +16,10 @@ public abstract class ShelfUI extends ModuleUI {
         this.shelf = shelf;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
+    // MODIFIES: this
+    // EFFECTS: update browsing area's content AND tell
+    //          user content is refreshed
+    public void updateBrowsingArea() {
         updateInfoDisplayAreaContent();
         System.out.println("Refreshed!");
     }
