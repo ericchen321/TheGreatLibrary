@@ -1,7 +1,11 @@
 package ui;
 
+import model.Artwork;
+import model.Book;
+import model.Movie;
 import model.Movieshelf;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class MovieshelfUI extends ShelfUI {
@@ -9,7 +13,7 @@ public class MovieshelfUI extends ShelfUI {
     // constructors
     public MovieshelfUI (Movieshelf movieshelf){
         super(movieshelf);
-        initializeInfoDisplayAreaContent();
+        resetInfoDisplayAreaContent();
     }
 
     @Override
@@ -21,5 +25,14 @@ public class MovieshelfUI extends ShelfUI {
         if (activeModule instanceof Movieshelf){
             super.updateBrowsingArea();
         }
+    }
+
+    @Override
+    protected Artwork buildArtworkFromString(String workString) {
+        workString = workString.substring(6, workString.length()-8);
+        ArrayList<String> workInfo = splitOnBreakLine(workString);
+        String workName = workInfo.get(0);
+        String authorName = workInfo.get(1);
+        return new Movie(workName, authorName, 0);
     }
 }

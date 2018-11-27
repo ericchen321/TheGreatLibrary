@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.ArtWorkNotFoundException;
 import model.exceptions.EditionAlreadyExistException;
 import model.exceptions.WorkAlreadyExistException;
 
@@ -11,6 +12,19 @@ import java.util.*;
 
 public abstract class Shelf extends Module implements Loadable, Saveable{
     private Set<Artwork> setOfWorks = new HashSet<>();
+
+    // TODO: test
+    // EFFECTS: returns the artwork on the shelf equal to the given work
+    //          if such work exists on the shelf
+    //          else returns ArtworkNotFoundException
+    public Artwork getArtwork(Artwork artwork){
+        for (Artwork aw: setOfWorks){
+            if (aw.equals(artwork)){
+                return aw;
+            }
+        }
+        throw new ArtWorkNotFoundException();
+    }
 
     // MODIFIES: This
     // EFFECTS: if work with same name & creator is not on the shelf yet

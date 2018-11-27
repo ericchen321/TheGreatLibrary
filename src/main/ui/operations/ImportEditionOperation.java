@@ -11,13 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ImportEditionOperation extends Operation implements ActionListener{
-    protected JButton cancel = new JButton("Cancel");
-    protected JButton confirm = new JButton("Confirm");
-    protected JTextField workName = new JTextField();
-    protected JTextField creatorName = new JTextField();
-    protected JTextField publisher = new JTextField();
-    protected JTextField yearOfPublish = new JTextField();
-    protected JTextField id = new JTextField();
+    private JButton cancel = new JButton("Cancel");
+    private JButton confirm = new JButton("Confirm");
+    private JTextField workName = new JTextField();
+    private JTextField creatorName = new JTextField();
+    private JTextField publisher = new JTextField();
+    private JTextField yearOfPublish = new JTextField();
+    private JTextField id = new JTextField();
 
     // constructors
     public ImportEditionOperation(){

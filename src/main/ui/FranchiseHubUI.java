@@ -1,23 +1,32 @@
 package ui;
 
-import model.Bookshelf;
-import model.Movieshelf;
+import model.Artwork;
+import model.FranchiseHub;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Observable;
 
-public class FranchiseHubUI extends ModuleUI {
-    private Bookshelf bookshelf;
-    private Movieshelf movieshelf;
+public class FranchiseHubUI extends ModuleUI{
+    private FranchiseHub franchiseHub;
 
     // constructors
-    public FranchiseHubUI(Bookshelf bs, Movieshelf ms){
+    public FranchiseHubUI(FranchiseHub franchiseHub){
         super();
-        bookshelf = bs;
-        movieshelf = ms;
+        this.franchiseHub = franchiseHub;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-
+        if(o instanceof ShelfUI){
+            List<Artwork> aws = (List<Artwork>) arg;
+            for (Artwork aw: aws){
+                franchiseHub.addToFranchise((String) arg, aw);
+            }
+            System.out.println("Selected works added to the franchise you named!");
+        }
     }
 }
