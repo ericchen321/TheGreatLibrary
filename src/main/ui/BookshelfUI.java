@@ -1,7 +1,6 @@
 package ui;
 
 import model.Bookshelf;
-import model.Module;
 
 import java.util.Observable;
 

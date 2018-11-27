@@ -3,7 +3,6 @@ package ui;
 import model.Bookshelf;
 import model.Movieshelf;
 
-import java.awt.event.ActionEvent;
 import java.util.Observable;
 
 public class FranchiseHubUI extends ModuleUI {

@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
 
 public abstract class ShelfUI extends ModuleUI {
     protected Shelf shelf;
