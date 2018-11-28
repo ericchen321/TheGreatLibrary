@@ -1,9 +1,9 @@
 package ui;
 
 import model.Artwork;
-import model.Book;
 import model.Movie;
 import model.Movieshelf;
+import ui.operations.RefreshOperation;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -18,11 +18,12 @@ public class MovieshelfUI extends ShelfUI {
 
     @Override
     // MODIFIES: this
-    // EFFECTS: update browsing area's content AND tell
+    // EFFECTS: if an RefreshOperation sends the message
+    //          update browsing area's content AND tell
     //          user content is refreshed if activeModule is
     //          of Movieshelf type
     public void update(Observable o, Object activeModule) {
-        if (activeModule instanceof Movieshelf){
+        if (o instanceof RefreshOperation && activeModule instanceof Movieshelf){
             super.updateBrowsingArea();
         }
     }

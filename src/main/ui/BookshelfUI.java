@@ -3,7 +3,6 @@ package ui;
 import model.Artwork;
 import model.Book;
 import model.Bookshelf;
-import ui.operations.AddToFranchiseOperation;
 import ui.operations.RefreshOperation;
 
 import java.util.ArrayList;
@@ -20,18 +19,12 @@ public class BookshelfUI extends ShelfUI {
     @Override
     // MODIFIES: this
     // EFFECTS: if an RefreshOperation sends the message
-    //             then updates browsing area's content AND tell
-    //             user content is refreshed if activeModule is
-    //             of Bookshelf type
-    //          else if an AddToFranchiseOperation sends the message
-    //             then adds selected artworks to the library's franchise hub
+    //          then updates browsing area's content AND tell
+    //          user content is refreshed if activeModule is
+    //          of Bookshelf type
     public void update(Observable o, Object activeModule) {
         if (o instanceof RefreshOperation && activeModule instanceof Bookshelf){
             super.updateBrowsingArea();
-        }
-        else if (o instanceof AddToFranchiseOperation){
-            setChanged();
-            notifyObservers(super.extractSelectedArtworks());
         }
     }
 

@@ -62,14 +62,14 @@ public class TheGreatLibraryUI extends JFrame{
 
         bookshelfUI = new BookshelfUI(bookshelf);
         refresh.addObserver(bookshelfUI);
-        addToFranchise.addObserver(bookshelfUI);
+        ((AddToFranchiseOperation) addToFranchise).setBookshelfUI(bookshelfUI);
         movieshelfUI = new MovieshelfUI(movieshelf);
+        ((AddToFranchiseOperation) addToFranchise).setMovieshelfUI(movieshelfUI);
         refresh.addObserver(movieshelfUI);
-        addToFranchise.addObserver(movieshelfUI);
         franchiseHubUI = new FranchiseHubUI(franchiseHub);
-        bookshelfUI.addObserver(franchiseHubUI);
-        movieshelfUI.addObserver(franchiseHubUI);
         refresh.addObserver(franchiseHubUI);
+        ((AddToFranchiseOperation) addToFranchise).setFranchiseHubUI(franchiseHubUI);
+
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Explore Books", bookshelfUI.getTab());
         tabbedPane.addTab("Explore Movies",movieshelfUI.getTab());

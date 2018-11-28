@@ -2,6 +2,9 @@ package ui.operations;
 
 import model.Bookshelf;
 import model.Movieshelf;
+import ui.BookshelfUI;
+import ui.FranchiseHubUI;
+import ui.MovieshelfUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddToFranchiseOperation extends Operation implements ActionListener {
-    JButton cancel = new JButton("cancel");
-    JButton confirm = new JButton("confirm");
-    JTextField franchiseNameField = new JTextField();
+    private JButton cancel = new JButton("cancel");
+    private JButton confirm = new JButton("confirm");
+    private JTextField franchiseNameField = new JTextField();
+    private BookshelfUI bookshelfUI;
+    private MovieshelfUI movieshelfUI;
+    private FranchiseHubUI franchiseHubUI;
 
     // constructors
     // MODIFIES: this
@@ -22,6 +28,19 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         createButton("To Franchise");
         initializeButtonAppearance();
         button.addActionListener(this);
+    }
+
+    // setters and getters
+    public void setBookshelfUI(BookshelfUI bookshelfUI) {
+        this.bookshelfUI = bookshelfUI;
+    }
+
+    public void setMovieshelfUI(MovieshelfUI movieshelfUI) {
+        this.movieshelfUI = movieshelfUI;
+    }
+
+    public void setFranchiseHubUI(FranchiseHubUI franchiseHubUI) {
+        this.franchiseHubUI = franchiseHubUI;
     }
 
     // REFERENCE: icon image by Freepik from www.flaticon.com
@@ -37,8 +56,12 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setChanged();
-                notifyObservers(franchiseNameField.getText());
+                if(activeModule instanceof Bookshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),bookshelfUI.extractSelectedArtworks());
+                }
+                else if (activeModule instanceof Movieshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),movieshelfUI.extractSelectedArtworks());
+                }
             }
         });
     }

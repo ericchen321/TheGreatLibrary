@@ -1,20 +1,22 @@
 package ui;
 
 import model.Artwork;
+import model.Shelf;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Observer;
 
-public abstract class ModuleUI extends Observable implements Observer{
+public abstract class ModuleUI implements Observer{
     protected JPanel panel;
     protected final int INFO_AREA_BORDER_SIZE_VERTICAL = 50;
     protected final int INFO_AREA_BORDER_SIZE_HORIZONTAL = 10;
+    protected JList displayEntries;
 
     // constructors
     public ModuleUI(){
         panel = new JPanel();
+        displayEntries = new JList();
     }
 
     // setters and getters
@@ -42,14 +44,28 @@ public abstract class ModuleUI extends Observable implements Observer{
     // EFFECTS: returns an array of strings with each representing a work on the
     //          given Iterable of artworks
     protected String[] artworkIterableToStrings(Iterable<Artwork> artworkIterable) {
-        ArrayList<String> str_works = new ArrayList<>();
+        ArrayList<String> stringOfWorks = new ArrayList<>();
 
         for (Artwork aw: artworkIterable){
-            str_works.add(aw.toString());
+            stringOfWorks.add(aw.toString());
         }
 
-        String[] strs = new String[str_works.size()];
-        return str_works.toArray(strs);
+        String[] strs = new String[stringOfWorks.size()];
+        return stringOfWorks.toArray(strs);
+    }
+
+    // EFFECTS: returns given string representation of an artwork
+    //          to HTML format
+    public String artWorkStringToHtml(String inString){
+        ArrayList<String> workInfo = Shelf.splitOnSlash(inString);
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html>");
+        for(String w: workInfo){
+            sb.append(w);
+            sb.append("<br>");
+        }
+        sb.append("</html>");
+        return sb.toString();
     }
 
 }

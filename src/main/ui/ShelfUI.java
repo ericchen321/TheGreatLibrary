@@ -12,12 +12,11 @@ import java.util.List;
 
 public abstract class ShelfUI extends ModuleUI{
     protected Shelf shelf;
-    private JList workDisplayList;
 
     // constructors
     public ShelfUI(Shelf shelf){
+        super();
         this.shelf = shelf;
-        workDisplayList = new JList();
     }
 
     @Override
@@ -36,10 +35,13 @@ public abstract class ShelfUI extends ModuleUI{
         final DefaultListModel listModel = new DefaultListModel();
 
         String[] worksOnShelf = artworkIterableToStrings(shelf);
-        reformatAndAdd(worksOnShelf,listModel);
-        workDisplayList = new JList(listModel);
+        for (int i=0; i<worksOnShelf.length; i++){
+            String artWorkStringInHtml = artWorkStringToHtml(worksOnShelf[i]);
+            listModel.addElement(artWorkStringInHtml);
+        }
+        displayEntries = new JList(listModel);
 
-        JScrollPane infoDisplayPane = new JScrollPane(workDisplayList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane infoDisplayPane = new JScrollPane(displayEntries, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoDisplayPane.setBorder(new EmptyBorder(INFO_AREA_BORDER_SIZE_VERTICAL,
                 INFO_AREA_BORDER_SIZE_HORIZONTAL,
                 INFO_AREA_BORDER_SIZE_VERTICAL,
@@ -52,29 +54,15 @@ public abstract class ShelfUI extends ModuleUI{
         panel.repaint();
     }
 
-    // EFFECTS: adds each work contained in the string array
-    //          to the given listModel after formatting them in html
-    private void reformatAndAdd(String[] strings, DefaultListModel listModel) {
-        for(String s: strings){
-            ArrayList<String> workInfo = Shelf.splitOnSlash(s);
-            StringBuilder sb = new StringBuilder();
-            sb.append("<html>");
-            for(String w: workInfo){
-                sb.append(w);
-                sb.append("<br>");
-            }
-            sb.append("</html>");
-            listModel.addElement(sb.toString());
-        }
-    }
+
 
     // EFFECTS: return a list of selected artworks in the browsing area
     public List<Artwork> extractSelectedArtworks(){
-        int[] selectedIndicies = workDisplayList.getSelectedIndices();
+        int[] selectedIndicies = displayEntries.getSelectedIndices();
         ArrayList<Artwork> artworks = new ArrayList<>();
 
         for (int i=0; i<selectedIndicies.length;i++){
-            String workString = (String) workDisplayList.getModel().getElementAt(i);
+            String workString = (String) displayEntries.getModel().getElementAt(i);
             Artwork aw = buildArtworkFromString(workString);
             Artwork awOnShelf = shelf.getArtwork(aw);
             artworks.add(awOnShelf);
