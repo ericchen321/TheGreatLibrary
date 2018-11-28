@@ -13,7 +13,6 @@ public class BookshelfUI extends ShelfUI {
     // constructors
     public BookshelfUI(Bookshelf bookshelf){
         super(bookshelf);
-        resetInfoDisplayAreaContent();
     }
 
     @Override

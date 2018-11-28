@@ -17,6 +17,7 @@ public abstract class ShelfUI extends ModuleUI{
     public ShelfUI(Shelf shelf){
         super();
         this.shelf = shelf;
+        resetInfoDisplayAreaContent();
     }
 
     @Override

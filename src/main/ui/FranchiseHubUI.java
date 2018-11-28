@@ -84,6 +84,5 @@ public class FranchiseHubUI extends ModuleUI{
         for (Artwork aw: artworks){
             franchiseHub.addToFranchise(franchiseName, aw);
         }
-        System.out.println("Works added to franchise you named!");
     }
 }

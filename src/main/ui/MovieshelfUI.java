@@ -13,7 +13,6 @@ public class MovieshelfUI extends ShelfUI {
     // constructors
     public MovieshelfUI (Movieshelf movieshelf){
         super(movieshelf);
-        resetInfoDisplayAreaContent();
     }
 
     @Override

@@ -53,17 +53,6 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         initializeDialogue();
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(activeModule instanceof Bookshelf){
-                    franchiseHubUI.addToHub(franchiseNameField.getText(),bookshelfUI.extractSelectedArtworks());
-                }
-                else if (activeModule instanceof Movieshelf){
-                    franchiseHubUI.addToHub(franchiseNameField.getText(),movieshelfUI.extractSelectedArtworks());
-                }
-            }
-        });
     }
 
     // EFFECTS: opens a dialogue to prompt user to enter the franchise's name
@@ -86,5 +75,18 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         addEditionDialogue.add(franchiseNameField);
         addEditionDialogue.add(cancel);
         addEditionDialogue.add(confirm);
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(activeModule instanceof Bookshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),bookshelfUI.extractSelectedArtworks());
+                    System.out.println("Books added to franchise you named!");
+                }
+                else if (activeModule instanceof Movieshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),movieshelfUI.extractSelectedArtworks());
+                    System.out.println("Movies added to franchise you named!");
+                }
+            }
+        });
     }
 }
