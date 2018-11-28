@@ -1,0 +1,9 @@
+Lincoln/Steven Spielberg/history/2012/0.0
+The Great Dictator/Charles Chaplin/classics/1940/0.0
+Harry Potter and the Goblet of Fire/Mike Newell/fantasy/2005/0.0
+2001: A Space Odyssey/Stanley Kubrick/fantasy/1968/0.0
+The Pacific/HBO/history/2005/0.0
+Harry Potter and the Half-Blood Prince/David Yates/fantasy/2009/0.0
+The Godfather/Francis Ford Coppola/fiction/1972/0.0
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb/Stanley Kubrick/fantasy/1964/0.0
+Citizen Kane/Orson Welles/classics/1941/0.0
