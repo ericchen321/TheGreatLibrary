@@ -46,11 +46,10 @@ public class FranchiseHubUI extends ModuleUI{
 
         for(Map.Entry<String, Set<Artwork>> franchise: franchiseHub){
             String franchiseString = assembleFranchiseString(franchise);
-            franchiseString = reformatFranchiseString(franchiseString);
+            franchiseString = franchiseStringToHtml(franchiseString);
             listModel.addElement(franchiseString);
         }
         displayEntries = new JList(listModel);
-
 
         JScrollPane infoDisplayPane = new JScrollPane(displayEntries, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         infoDisplayPane.setBorder(new EmptyBorder(INFO_AREA_BORDER_SIZE_VERTICAL,
@@ -65,17 +64,21 @@ public class FranchiseHubUI extends ModuleUI{
         panel.repaint();
     }
 
+    // EFFECTS: returns a string representing the name of a franchise and its associated works
+    //          in the format "<franchise name>::<work 0>::<work 1>::...::<work n>"
     private String assembleFranchiseString(Map.Entry<String, Set<Artwork>> franchise) {
         StringBuilder sb = new StringBuilder();
         sb.append(franchise.getKey());
+        sb.append("::");
         String[] worksInString = artworkIterableToStrings(franchise.getValue());
         for (String s: worksInString){
             sb.append(s);
+            sb.append("::");
         }
         return sb.toString();
     }
 
-    private String reformatFranchiseString(String franchiseString) {
+    private String franchiseStringToHtml(String franchiseString) {
         return franchiseString;
     }
 

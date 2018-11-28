@@ -57,7 +57,7 @@ public abstract class ModuleUI implements Observer{
     // EFFECTS: returns given string representation of an artwork
     //          to HTML format
     public String artWorkStringToHtml(String inString){
-        ArrayList<String> workInfo = Shelf.splitOnSlash(inString);
+        ArrayList<String> workInfo = Shelf.splitOn(inString, "/");
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
         for(String w: workInfo){

@@ -55,8 +55,6 @@ public abstract class ShelfUI extends ModuleUI{
         panel.repaint();
     }
 
-
-
     // EFFECTS: return a list of selected artworks in the browsing area
     public List<Artwork> extractSelectedArtworks(){
         int[] selectedIndicies = displayEntries.getSelectedIndices();
@@ -76,12 +74,4 @@ public abstract class ShelfUI extends ModuleUI{
     //           "..." cannot be empty
     // EFFECTS: return an artwork based on the info in the given string
     protected abstract Artwork buildArtworkFromString(String workString);
-
-    // FIXME: coupling issue with splitOnSplash in Shelf class
-    // REFERECE: modified based upon FileReaderWriter, CPSC 210
-    // EFFECTS: split a string by "<br>", returns substrings
-    public static ArrayList<String> splitOnBreakLine(String line){
-        String[] splits = line.split("<br>");
-        return new ArrayList<String>(Arrays.asList(splits));
-    }
 }

@@ -3,6 +3,7 @@ package ui;
 import model.Artwork;
 import model.Book;
 import model.Bookshelf;
+import model.Shelf;
 import ui.operations.RefreshOperation;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class BookshelfUI extends ShelfUI {
     @Override
     protected Artwork buildArtworkFromString(String workString) {
         workString = workString.substring(6, workString.length()-8);
-        ArrayList<String> workInfo = splitOnBreakLine(workString);
+        ArrayList<String> workInfo = Shelf.splitOn(workString, "<br>");
         String workName = workInfo.get(0);
         String authorName = workInfo.get(1);
         return new Book(workName, authorName, 0);

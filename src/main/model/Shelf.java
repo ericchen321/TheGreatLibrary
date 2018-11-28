@@ -52,9 +52,9 @@ public abstract class Shelf extends Module implements Loadable, Saveable, Iterab
     }
 
     // REFERECE: modified based upon FileReaderWriter, CPSC 210
-    // EFFECTS: split a string by "/", returns substrings
-    public static ArrayList<String> splitOnSlash(String line){
-        String[] splits = line.split("/");
+    // EFFECTS: split a string by given splitter, returns substrings
+    public static ArrayList<String> splitOn(String line, String splitter){
+        String[] splits = line.split(splitter);
         return new ArrayList<String>(Arrays.asList(splits));
     }
 
@@ -98,7 +98,7 @@ public abstract class Shelf extends Module implements Loadable, Saveable, Iterab
         try{
             List<String> lines = Files.readAllLines(Paths.get(pathName));
             for (String line : lines){
-                ArrayList<String> entries = splitOnSlash(line);
+                ArrayList<String> entries = splitOn(line, "/");
                 Artwork addedWork;
                 String name = entries.get(0);
                 String creatorName = entries.get(1);
