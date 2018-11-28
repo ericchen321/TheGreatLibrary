@@ -42,8 +42,9 @@ public abstract class ShelfUI extends ModuleUI{
         final int WORKS_INFO_AREA_BORDER_SIZE_VERTICAL = 50;
         final int WORKS_INFO_AREA_BORDER_SIZE_HORIZONTAL = 10;
         final DefaultListModel listModel = new DefaultListModel();
-        reformatAndAdd(shelf.printWorks(),listModel);
 
+        String[] worksOnShelf = printAllWorks(shelf);
+        reformatAndAdd(worksOnShelf,listModel);
         workDisplayList = new JList(listModel);
 
         JScrollPane infoDisplayPane = new JScrollPane(workDisplayList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -57,6 +58,18 @@ public abstract class ShelfUI extends ModuleUI{
         panel.add(infoDisplayPane);
         panel.revalidate();
         panel.repaint();
+    }
+
+    // EFFECTS: returns an array of strings with each representing a work on the shelf
+    private String[] printAllWorks(Shelf shelf) {
+        ArrayList<String> str_works = new ArrayList<>();
+
+        for (Artwork aw: shelf){
+            str_works.add(aw.toString());
+        }
+
+        String[] strs = new String[str_works.size()];
+        return str_works.toArray(strs);
     }
 
     // EFFECTS: adds each work contained in the string array

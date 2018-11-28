@@ -1,11 +1,8 @@
 package model;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
-public class FranchiseHub extends Module{
+public class FranchiseHub extends Module implements Iterable<Map.Entry<String, Set<Artwork>>>{
 
     private Map<String, Set<Artwork>> franchises;
 
@@ -37,5 +34,10 @@ public class FranchiseHub extends Module{
     // EFFECTS: get the number of works in the given franchise
     public int getWorkSize(String name) {
         return franchises.get(name).size();
+    }
+
+    @Override
+    public Iterator<Map.Entry<String, Set<Artwork>>> iterator() {
+        return franchises.entrySet().iterator();
     }
 }

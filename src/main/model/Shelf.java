@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public abstract class Shelf extends Module implements Loadable, Saveable{
+public abstract class Shelf extends Module implements Loadable, Saveable, Iterable<Artwork>{
     private Set<Artwork> setOfWorks = new HashSet<>();
 
     // TODO: test
@@ -133,16 +133,8 @@ public abstract class Shelf extends Module implements Loadable, Saveable{
         }
     }
 
-    // EFFECTS: return an array of string representations of each work
-    //          on the shelf
-    public String[] printWorks() {
-        ArrayList<String> str_works = new ArrayList<>();
-
-        for (Artwork aw: setOfWorks){
-            str_works.add(aw.toString());
-        }
-
-        String[] strs = new String[str_works.size()];
-        return str_works.toArray(strs);
+    @Override
+    public Iterator<Artwork> iterator(){
+        return setOfWorks.iterator();
     }
 }
