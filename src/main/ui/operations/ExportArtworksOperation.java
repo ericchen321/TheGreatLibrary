@@ -1,0 +1,28 @@
+package ui.operations;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ExportArtworksOperation extends Operation implements ActionListener {
+
+    // constructors
+    // MODIFIES: this
+    // EFFECTS: creates a button for this operation;
+    //          initialize the button's appearance;
+    //          set up behavior when the button is clicked
+    public ExportArtworksOperation(){
+        createButton("Export");
+        initializeButtonAppearance();
+        button.addActionListener(this);
+    }
+
+    // REFERENCE: icon image by geotatah from www.flaticon.com
+    public void initializeButtonAppearance(){
+        super.initializeButtonAppearance("/imgs/export-by-geotatah.png");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+}

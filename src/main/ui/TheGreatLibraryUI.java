@@ -45,15 +45,18 @@ public class TheGreatLibraryUI extends JFrame{
         Operation importEdition = new ImportEditionOperation();
         Operation refresh = new RefreshOperation();
         Operation addToFranchise = new AddToFranchiseOperation();
+        Operation exportArtworks = new ExportArtworksOperation();
 
         activeModuleObservable.addObserver(importArtworks);
         activeModuleObservable.addObserver(importEdition);
         activeModuleObservable.addObserver(refresh);
         activeModuleObservable.addObserver(addToFranchise);
+        activeModuleObservable.addObserver(exportArtworks);
         activeModuleObservable.setActiveModule(bookshelf);
 
         JToolBar toolBar = new JToolBar("Operations");
         toolBar.add(importArtworks.getButton());
+        toolBar.add(exportArtworks.getButton());
         toolBar.add(importEdition.getButton());
         toolBar.add(refresh.getButton());
         toolBar.add(addToFranchise.getButton());
