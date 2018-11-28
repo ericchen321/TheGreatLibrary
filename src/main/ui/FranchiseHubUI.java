@@ -2,15 +2,14 @@ package ui;
 
 import model.Artwork;
 import model.FranchiseHub;
+import model.Shelf;
 import ui.operations.RefreshOperation;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Set;
 
 public class FranchiseHubUI extends ModuleUI{
     private FranchiseHub franchiseHub;
@@ -78,8 +77,26 @@ public class FranchiseHubUI extends ModuleUI{
         return sb.toString();
     }
 
+    // REQUIRES: given string must be in the format
+    //           "<franchise name>::<work 0>::<work 1>::...::<work n>"
+    // EFFECTS: returns a franchise-representing string in HTML format
     private String franchiseStringToHtml(String franchiseString) {
-        return franchiseString;
+        ArrayList<String> franchiseElemenets = Shelf.splitOn(franchiseString, "::");
+        String franchiseName = franchiseElemenets.get(0);
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html>");
+        sb.append("<b>");
+        sb.append(franchiseName);
+        sb.append("</b>");
+        sb.append("<br><br>");
+        if (franchiseElemenets.size()>1){
+            for (int i=1; i<franchiseElemenets.size(); i++){
+                sb.append(removeHtmlPreAndSuffix(artWorkStringToHtml(franchiseElemenets.get(i))));
+                sb.append("<br><br>");
+            }
+        }
+        sb.append("</html>");
+        return sb.toString();
     }
 
     // EFFECTS: add franchise with given name and artworks to the hub

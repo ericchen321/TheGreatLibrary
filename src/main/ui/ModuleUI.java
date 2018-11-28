@@ -54,18 +54,29 @@ public abstract class ModuleUI implements Observer{
         return stringOfWorks.toArray(strs);
     }
 
+    // REQUIRES: given string formatted as "<work name>/<author name>/..."
     // EFFECTS: returns given string representation of an artwork
-    //          to HTML format
-    public String artWorkStringToHtml(String inString){
+    //          to HTML format ("<html>...</html>")
+    protected String artWorkStringToHtml(String inString){
         ArrayList<String> workInfo = Shelf.splitOn(inString, "/");
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
-        for(String w: workInfo){
-            sb.append(w);
-            sb.append("<br>");
+        for (int i=0; i<workInfo.size(); i++){
+            sb.append(workInfo.get(i));
+            if (i != workInfo.size() - 1)
+                sb.append("<br>");
         }
         sb.append("</html>");
         return sb.toString();
+    }
+
+    // REQUIRES: given string formatted as "<html>...</html>"
+    // EFFECTS: remove the <html> and </html> part of an html-formatted string
+    protected String removeHtmlPreAndSuffix(String inString){
+        if(inString.length()== 13)
+            return "";
+        else
+            return inString.substring(6, inString.length()-1-6);
     }
 
 }

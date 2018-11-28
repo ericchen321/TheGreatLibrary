@@ -31,7 +31,7 @@ public class BookshelfUI extends ShelfUI {
     // TODO: extract a method from here for behaviors also existing in MovieshelfUI
     @Override
     protected Artwork buildArtworkFromString(String workString) {
-        workString = workString.substring(6, workString.length()-8);
+        workString = removeHtmlPreAndSuffix(workString);
         ArrayList<String> workInfo = Shelf.splitOn(workString, "<br>");
         String workName = workInfo.get(0);
         String authorName = workInfo.get(1);
