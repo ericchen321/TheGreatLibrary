@@ -12,13 +12,8 @@ public class ExportArtworksOperation extends Operation implements ActionListener
     //          set up behavior when the button is clicked
     public ExportArtworksOperation(){
         createButton("Export");
-        initializeButtonAppearance();
+        initializeButtonAppearance("/imgs/export-by-geotatah.png"); // REFERENCE: icon image by geotatah from www.flaticon.com
         button.addActionListener(this);
-    }
-
-    // REFERENCE: icon image by geotatah from www.flaticon.com
-    public void initializeButtonAppearance(){
-        super.initializeButtonAppearance("/imgs/export-by-geotatah.png");
     }
 
     @Override

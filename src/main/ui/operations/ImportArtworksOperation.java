@@ -16,13 +16,8 @@ public class ImportArtworksOperation extends Operation implements ActionListener
     //          set up behavior when the button is clicked
     public ImportArtworksOperation(){
         createButton("Import");
-        initializeButtonAppearance();
+        initializeButtonAppearance("/imgs/import.png"); // REFERENCE: icon image by Kirill Kazachek from www.flaticon.com
         button.addActionListener(this);
-    }
-
-    // REFERENCE: icon image by Kirill Kazachek from www.flaticon.com
-    public void initializeButtonAppearance(){
-        super.initializeButtonAppearance("/imgs/import.png");
     }
 
     // MODIFIES: this

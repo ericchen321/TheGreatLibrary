@@ -23,7 +23,7 @@ public class ImportEditionOperation extends Operation implements ActionListener{
     // constructors
     public ImportEditionOperation(){
         createButton("Import edition");
-        initializeButtonAppearance();
+        initializeButtonAppearance("/imgs/import-ed.png"); // REFERENCE: icon made by Icon Pond at flaticon.com
         button.addActionListener(this);
         cancel.addActionListener(new ActionListener() {
             @Override
@@ -77,11 +77,6 @@ public class ImportEditionOperation extends Operation implements ActionListener{
                 }
             }
         });
-    }
-
-    // REFERENCE: icon made by Icon Pond at flaticon.com
-    public void initializeButtonAppearance(){
-        super.initializeButtonAppearance("/imgs/import-ed.png");
     }
 
     // MODIFIES: this

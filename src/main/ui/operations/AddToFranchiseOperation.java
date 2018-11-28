@@ -27,7 +27,7 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
     //          set up behavior when the button is clicked
     public AddToFranchiseOperation(){
         createButton("To Franchise");
-        initializeButtonAppearance();
+        initializeButtonAppearance("/imgs/add-by-Freepik.png"); // REFERENCE: icon image by Freepik from www.flaticon.com
         button.addActionListener(this);
         cancel.addActionListener(new ActionListener() {
             @Override
@@ -61,11 +61,6 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
 
     public void setFranchiseHubUI(FranchiseHubUI franchiseHubUI) {
         this.franchiseHubUI = franchiseHubUI;
-    }
-
-    // REFERENCE: icon image by Freepik from www.flaticon.com
-    public void initializeButtonAppearance(){
-        super.initializeButtonAppearance("/imgs/add-by-Freepik.png");
     }
 
     // EFFECTS: prompts user to enter a name for the franchise
