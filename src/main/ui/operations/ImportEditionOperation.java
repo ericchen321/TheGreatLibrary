@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ImportEditionOperation extends Operation implements ActionListener{
+    private JFrame addEditionDialogue;
     private JButton cancel = new JButton("Cancel");
     private JButton confirm = new JButton("Confirm");
     private JTextField workName = new JTextField();
@@ -24,22 +25,16 @@ public class ImportEditionOperation extends Operation implements ActionListener{
         createButton("Import edition");
         initializeButtonAppearance();
         button.addActionListener(this);
-    }
-
-    // REFERENCE: icon made by Icon Pond at flaticon.com
-    public void initializeButtonAppearance(){
-        super.initializeButtonAppearance("/imgs/import-ed.png");
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets actions when button for this operation is clicked;
-    //          also sets actions when "Cancel"/"Confirm" is clicked
-    public void actionPerformed(ActionEvent e){
-        if (activeModule instanceof Bookshelf){
-            initializeDialogue("book");
-            confirm.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addEditionDialogue.dispose();
+            }
+        });
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (activeModule instanceof Bookshelf){
                     try {
                         Book b = new Book(workName.getText(),
                                 creatorName.getText(),
@@ -61,13 +56,7 @@ public class ImportEditionOperation extends Operation implements ActionListener{
                         System.out.println("Sorry, edition not added: ISBN can only be 10 or 13 digits!");
                     }
                 }
-            });
-        }
-        else if (activeModule instanceof Movieshelf){
-            initializeDialogue("movie");
-            confirm.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
+                else if (activeModule instanceof Movieshelf){
                     try {
                         Movie m = new Movie(workName.getText(),
                                 creatorName.getText(),
@@ -86,7 +75,23 @@ public class ImportEditionOperation extends Operation implements ActionListener{
                         System.out.println("Sorry, edition not added: IMDBN should not contain numbers and must be 9-digits long!");
                     }
                 }
-            });
+            }
+        });
+    }
+
+    // REFERENCE: icon made by Icon Pond at flaticon.com
+    public void initializeButtonAppearance(){
+        super.initializeButtonAppearance("/imgs/import-ed.png");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: prompts user to add an edition to a book or a movie
+    public void actionPerformed(ActionEvent e){
+        if (activeModule instanceof Bookshelf){
+            initializeDialogue("book");
+        }
+        else if (activeModule instanceof Movieshelf){
+            initializeDialogue("movie");
         }
         else{
             System.out.println("Operation not supported!");
@@ -102,7 +107,7 @@ public class ImportEditionOperation extends Operation implements ActionListener{
         final int HORIZ_SPACING = 2;
         final int VERTI_SPACING = 2;
 
-        JFrame addEditionDialogue = new JFrame("Add edition");
+        addEditionDialogue = new JFrame("Add edition");
         addEditionDialogue.setLayout(new BorderLayout());
         addEditionDialogue.setMinimumSize(new Dimension(ADD_EDITION_DIALOGUE_WIDTH, ADD_EDITION_DIALOGUE_HEIGHT));
         addEditionDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

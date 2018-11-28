@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddToFranchiseOperation extends Operation implements ActionListener {
+    private JFrame addToFranchiseDialogue;
     private JButton cancel = new JButton("cancel");
     private JButton confirm = new JButton("confirm");
     private JTextField franchiseNameField = new JTextField();
@@ -28,6 +29,25 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         createButton("To Franchise");
         initializeButtonAppearance();
         button.addActionListener(this);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addToFranchiseDialogue.dispose();
+            }
+        });
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(activeModule instanceof Bookshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),bookshelfUI.extractSelectedArtworks());
+                    System.out.println("Books added to franchise you named!");
+                }
+                else if (activeModule instanceof Movieshelf){
+                    franchiseHubUI.addToHub(franchiseNameField.getText(),movieshelfUI.extractSelectedArtworks());
+                    System.out.println("Movies added to franchise you named!");
+                }
+            }
+        });
     }
 
     // setters and getters
@@ -48,8 +68,7 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         super.initializeButtonAppearance("/imgs/add-by-Freepik.png");
     }
 
-    // EFFECTS: prompts user to put selected works in the active
-    //          Shelf UI to a franchise
+    // EFFECTS: prompts user to enter a name for the franchise
     @Override
     public void actionPerformed(ActionEvent e) {
         initializeDialogue();
@@ -64,29 +83,16 @@ public class AddToFranchiseOperation extends Operation implements ActionListener
         final int HORIZ_SPACING = 2;
         final int VERTI_SPACING = 2;
 
-        JFrame addEditionDialogue = new JFrame("Add to franchise");
-        addEditionDialogue.setLayout(new BorderLayout());
-        addEditionDialogue.setMinimumSize(new Dimension(ADD_TO_FRANCHISE_DIALOGUE_WIDTH, ADD_TO_FRANCHISE_DIALOGUE_HEIGHT));
-        addEditionDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        addEditionDialogue.setLocationRelativeTo(null);
-        addEditionDialogue.setVisible(true);
-        addEditionDialogue.setLayout(new GridLayout(ROW_NUM,COL_NUM,HORIZ_SPACING,VERTI_SPACING));
-        addEditionDialogue.add(new JLabel("Franchise Name"));
-        addEditionDialogue.add(franchiseNameField);
-        addEditionDialogue.add(cancel);
-        addEditionDialogue.add(confirm);
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(activeModule instanceof Bookshelf){
-                    franchiseHubUI.addToHub(franchiseNameField.getText(),bookshelfUI.extractSelectedArtworks());
-                    System.out.println("Books added to franchise you named!");
-                }
-                else if (activeModule instanceof Movieshelf){
-                    franchiseHubUI.addToHub(franchiseNameField.getText(),movieshelfUI.extractSelectedArtworks());
-                    System.out.println("Movies added to franchise you named!");
-                }
-            }
-        });
+        addToFranchiseDialogue = new JFrame("Add to franchise");
+        addToFranchiseDialogue.setLayout(new BorderLayout());
+        addToFranchiseDialogue.setMinimumSize(new Dimension(ADD_TO_FRANCHISE_DIALOGUE_WIDTH, ADD_TO_FRANCHISE_DIALOGUE_HEIGHT));
+        addToFranchiseDialogue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addToFranchiseDialogue.setLocationRelativeTo(null);
+        addToFranchiseDialogue.setVisible(true);
+        addToFranchiseDialogue.setLayout(new GridLayout(ROW_NUM,COL_NUM,HORIZ_SPACING,VERTI_SPACING));
+        addToFranchiseDialogue.add(new JLabel("Franchise Name"));
+        addToFranchiseDialogue.add(franchiseNameField);
+        addToFranchiseDialogue.add(cancel);
+        addToFranchiseDialogue.add(confirm);
     }
 }
