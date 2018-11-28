@@ -20,14 +20,7 @@ public abstract class ShelfUI extends ModuleUI{
         workDisplayList = new JList();
     }
 
-    // MODIFIES: this
-    // EFFECTS: update browsing area's content AND tell
-    //          user content is refreshed
-    public void updateBrowsingArea() {
-        updateInfoDisplayAreaContent();
-        System.out.println("Refreshed!");
-    }
-
+    @Override
     // MODIFIES: this
     // EFFECTS: update content in the browsing area
     protected void updateInfoDisplayAreaContent() {
@@ -35,41 +28,28 @@ public abstract class ShelfUI extends ModuleUI{
         resetInfoDisplayAreaContent();
     }
 
+    @Override
     // MODIFIES: this
-    // EFFECTSL initializes content in the browsing area: briefly
-    //          lists info of works on the shelf
+    // EFFECTS: initializes content in the browsing area: briefly
+    //          lists info of entries in the module
     protected void resetInfoDisplayAreaContent(){
-        final int WORKS_INFO_AREA_BORDER_SIZE_VERTICAL = 50;
-        final int WORKS_INFO_AREA_BORDER_SIZE_HORIZONTAL = 10;
         final DefaultListModel listModel = new DefaultListModel();
 
-        String[] worksOnShelf = printAllWorks(shelf);
+        String[] worksOnShelf = artworkIterableToStrings(shelf);
         reformatAndAdd(worksOnShelf,listModel);
         workDisplayList = new JList(listModel);
 
         JScrollPane infoDisplayPane = new JScrollPane(workDisplayList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        infoDisplayPane.setBorder(new EmptyBorder(WORKS_INFO_AREA_BORDER_SIZE_VERTICAL,
-                WORKS_INFO_AREA_BORDER_SIZE_HORIZONTAL,
-                WORKS_INFO_AREA_BORDER_SIZE_VERTICAL,
-                WORKS_INFO_AREA_BORDER_SIZE_HORIZONTAL));
+        infoDisplayPane.setBorder(new EmptyBorder(INFO_AREA_BORDER_SIZE_VERTICAL,
+                INFO_AREA_BORDER_SIZE_HORIZONTAL,
+                INFO_AREA_BORDER_SIZE_VERTICAL,
+                INFO_AREA_BORDER_SIZE_HORIZONTAL));
         infoDisplayPane.setPreferredSize(new Dimension(900, 400));
         infoDisplayPane.revalidate();
         infoDisplayPane.repaint();
         panel.add(infoDisplayPane);
         panel.revalidate();
         panel.repaint();
-    }
-
-    // EFFECTS: returns an array of strings with each representing a work on the shelf
-    private String[] printAllWorks(Shelf shelf) {
-        ArrayList<String> str_works = new ArrayList<>();
-
-        for (Artwork aw: shelf){
-            str_works.add(aw.toString());
-        }
-
-        String[] strs = new String[str_works.size()];
-        return str_works.toArray(strs);
     }
 
     // EFFECTS: adds each work contained in the string array
@@ -89,7 +69,7 @@ public abstract class ShelfUI extends ModuleUI{
     }
 
     // EFFECTS: return a list of selected artworks in the browsing area
-    public List<Artwork> getSelectedArtworks(){
+    public List<Artwork> extractSelectedArtworks(){
         int[] selectedIndicies = workDisplayList.getSelectedIndices();
         ArrayList<Artwork> artworks = new ArrayList<>();
 

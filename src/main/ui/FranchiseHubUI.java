@@ -25,4 +25,14 @@ public class FranchiseHubUI extends ModuleUI{
             System.out.println("Selected works added to the franchise you named!");
         }
     }
+
+    @Override
+    protected void updateInfoDisplayAreaContent() {
+
+    }
+
+    @Override
+    protected void resetInfoDisplayAreaContent() {
+
+    }
 }

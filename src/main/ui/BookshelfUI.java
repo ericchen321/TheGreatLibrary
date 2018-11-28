@@ -31,7 +31,7 @@ public class BookshelfUI extends ShelfUI {
         }
         else if (o instanceof AddToFranchiseOperation){
             setChanged();
-            notifyObservers(super.getSelectedArtworks());
+            notifyObservers(super.extractSelectedArtworks());
         }
     }
 
