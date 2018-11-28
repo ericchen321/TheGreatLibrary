@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class ShelfUI extends ModuleUI{
@@ -61,7 +60,7 @@ public abstract class ShelfUI extends ModuleUI{
         ArrayList<Artwork> artworks = new ArrayList<>();
 
         for (int i=0; i<selectedIndicies.length;i++){
-            String workString = (String) displayEntries.getModel().getElementAt(i);
+            String workString = (String) displayEntries.getModel().getElementAt(selectedIndicies[i]);
             Artwork aw = buildArtworkFromString(workString);
             Artwork awOnShelf = shelf.getArtwork(aw);
             artworks.add(awOnShelf);
