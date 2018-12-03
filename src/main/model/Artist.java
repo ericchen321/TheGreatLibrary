@@ -67,7 +67,7 @@ public abstract class Artist {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Artist)) return false;
         Artist artist = (Artist) o;
         return Objects.equals(name, artist.name);
     }

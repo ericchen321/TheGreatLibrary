@@ -253,7 +253,7 @@ public abstract class Artwork implements Observer{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Artwork)) return false;
         Artwork artwork = (Artwork) o;
         return Objects.equals(name, artwork.name) &&
                 Objects.equals(creator, artwork.creator);
